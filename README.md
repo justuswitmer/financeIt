@@ -9,7 +9,6 @@ We **STRONGLY** recommend following these instructions carefully. It's a lot, an
 - Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
 
 
-
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
