@@ -19,8 +19,17 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Header from '../Header/Header';
 
 import './App.css';
+import SummaryView from '../Summary/SummaryView';
+import SummaryNew from '../Summary/SummaryNew';
+import SummaryGraph from '../Summary/SummaryGraph';
+import CategoriesEdit from '../Categories/CategoriesEdit';
+import CategoriesView from '../Categories/CategoriesView';
+import TransactionsView from '../Transactions/TransactionsView';
+import TransactionsEdit from '../Transactions/TransactionsEdit';
+import AccountView from '../Account/AccountView';
 
 class App extends Component {
   componentDidMount() {
@@ -31,6 +40,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Header />
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -91,6 +101,62 @@ class App extends Component {
               path="/home"
               component={LandingPage}
               authRedirect="/user"
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/summary"
+              component={SummaryView}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/summarynew"
+              component={SummaryNew}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/summarygraph"
+              component={SummaryGraph}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/categoriesedit"
+              component={CategoriesEdit}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/categories"
+              component={CategoriesView}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/transactionsedit"
+              component={TransactionsEdit}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/transactions"
+              component={TransactionsView}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/account"
+              component={AccountView}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
