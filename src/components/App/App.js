@@ -91,7 +91,7 @@ class App extends Component {
               exact
               path="/registration"
               component={RegisterPage}
-              authRedirect="/user"
+              authRedirect="/summarynew"
             />
             <ProtectedRoute
               // with authRedirect:

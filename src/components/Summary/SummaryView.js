@@ -26,7 +26,7 @@ class SummaryView extends Component {
         <>
           {this.props.transaction.map(transaction =>
             <SummaryViewItem
-
+              key={transaction.category}
               transaction={transaction}
             />
           )}
@@ -37,7 +37,8 @@ class SummaryView extends Component {
 }
 
 const mapStateToProps = reduxState => ({
-  transaction: reduxState.transaction
+  transaction: reduxState.transaction,
+  category: reduxState.category
 });
 
 export default connect(mapStateToProps)(SummaryView);

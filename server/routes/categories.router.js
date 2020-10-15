@@ -9,13 +9,7 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  queryText = `SELECT "category"."name" as "category", "category"."budgetedAmount", SUM("transaction"."amount") as "categoryAmount" FROM "user"
-  JOIN "transaction"
-  ON "transaction"."userId" = "user"."id"
-  JOIN "category"
-  ON "category"."id" = "transaction"."categoryId"
-  WHERE "transaction"."date" BETWEEN '2020/10/01' AND '2020/10/31'
-  GROUP BY "category"."name", "category"."budgetedAmount"
+  queryText = `SELECT * FROM "category"
   ORDER BY "category"."name" ASC
   ;`;
   pool
@@ -24,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('we got an error in transactions router', err);
+      console.log('we got an error in categories router', err);
       res.sendStatus(500);
     });
 });

@@ -12,9 +12,11 @@ class SummaryViewItem extends Component {
       <div>
 
         <li>
-          {this.props.transaction.category}
-          {this.props.transaction.categoryAmount}
+          {this.props.transaction.category} |
+          {this.props.transaction.categoryAmount} |
+          {this.props.transaction.budgetedAmount}
         </li>
+        <li>{Number(this.props.transaction.categoryAmount) + Number(this.props.transaction.budgetedAmount)} </li>
       </div>
     );
   }
