@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class CategoriesView extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Categories',
   };
 
   render() {

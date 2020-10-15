@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class TransactionsView extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Transactions',
   };
 
   render() {

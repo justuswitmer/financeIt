@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class SummaryGraph extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Summary Graphs',
   };
 
   render() {

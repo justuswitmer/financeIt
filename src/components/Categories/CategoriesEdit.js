@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class CategoriesEdit extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Edit Categories',
   };
 
   render() {

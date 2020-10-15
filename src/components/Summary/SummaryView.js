@@ -1,23 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
+// Custom imports
+import SummaryViewItem from './SummaryViewItem';
+
 class SummaryView extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Summary',
   };
+
+  componentDidMount() {
+    this.getTransactions()
+  }
+
+  getTransactions = () => {
+    this.props.dispatch({
+      type: 'GET'
+    })
+  }
 
   render() {
     return (
       <div>
         <h2>{this.state.heading}</h2>
+        <>
+          {this.props.transaction.map(transaction =>
+            <SummaryViewItem
+
+              transaction={transaction}
+            />
+          )}
+        </>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(SummaryView);
+const mapStateToProps = reduxState => ({
+  transaction: reduxState.transaction
+});
+
+export default connect(mapStateToProps)(SummaryView);

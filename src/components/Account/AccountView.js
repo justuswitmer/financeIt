@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class AboutView extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Account',
   };
 
   render() {
