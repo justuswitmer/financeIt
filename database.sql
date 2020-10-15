@@ -16,7 +16,7 @@ CREATE TABLE "category" (
 	"userId" INT
 );
 
-CREATE TABLE "transactions" (
+CREATE TABLE "transaction" (
 	"id" SERIAL PRIMARY KEY,
 	"description" VARCHAR(400) NOT NULL,
 	"amount" INT NOT NULL,
@@ -25,26 +25,6 @@ CREATE TABLE "transactions" (
 	"userId" INT REFERENCES "user",
 	"categoryId" INT REFERENCES "category"
 );
-
-SELECT * FROM "user"
-JOIN "transactions"
-ON "transactions"."userId" = "user"."id"
-JOIN "category"
-ON "category"."id" = "transactions"."categoryId"
-;
-
-SELECT "user"."username", "transactions"."description", "transactions"."amount", "category"."name" FROM "user"
-JOIN "transactions"
-ON "transactions"."userId" = "user"."id"
-JOIN "category"
-ON "category"."id" = "transactions"."categoryId"
-;
-
-SELECT * FROM "user"
-JOIN "category"
-ON "category"."userId" = "user"."id"
-;
-
 
 INSERT INTO "category" ("name", "budgetedAmount", "userId")
 VALUES 
@@ -68,7 +48,7 @@ VALUES
 
 SELECT SUM("budgetedAmount") FROM "category";
 
-INSERT INTO "transactions" ("description", "amount", "date", "account", "userId", "categoryId")
+INSERT INTO "transaction" ("description", "amount", "date", "account", "userId", "categoryId")
 VALUES
 ('Methow Conservancy',	-250.00,	'10/14/2020',	'Family Checking',	1,	23),
 ('Zeitgeist Coffee, Seattle, WA',	-10.10,	'10/14/2020',	'Alaska Airlines Visa',	1,	12),
@@ -170,3 +150,82 @@ VALUES
 ('Union Garage',	-25.41,	'8/3/2020',	'Alaska Airlines Visa',	1,	28),
 ('Zoka Coffee Roa, Seattle, WA',	-2.52,	'8/10/2020',	'Alaska Airlines Visa',	1,	18),
 ('Okanogan County Energy, Winthrop, WA',	-205.44,	'8/10/2020',	'Alaska Airlines Visa',	1,	21);
+
+
+
+
+-------------------------------Queries Below-------------------------------
+
+SELECT * FROM "user"
+JOIN "transactions"
+ON "transactions"."userId" = "user"."id"
+JOIN "category"
+ON "category"."id" = "transactions"."categoryId"
+;
+
+SELECT "user"."username", "transactions"."description", "transactions"."amount", "category"."name" FROM "user"
+JOIN "transactions"
+ON "transactions"."userId" = "user"."id"
+JOIN "category"
+ON "category"."id" = "transactions"."categoryId"
+;
+
+SELECT * FROM "user"
+JOIN "category"
+ON "category"."userId" = "user"."id"
+;
+
+
+-- Query for pulling in amount spent in each category between dates specified ordered alphabetically 
+SELECT "category"."name" as "category", "category"."budgetedAmount", SUM("transaction"."amount") as "categoryAmount" FROM "user"
+JOIN "transaction"
+ON "transaction"."userId" = "user"."id"
+JOIN "category"
+ON "category"."id" = "transaction"."categoryId"
+WHERE "transaction"."date" BETWEEN '2020/10/01' AND '2020/10/31'
+GROUP BY "category"."name", "category"."budgetedAmount"
+ORDER BY "category"."name" ASC
+;
+
+-- Query for getting categories ordered alphabetically
+SELECT * FROM "category"
+ORDER BY "category"."name" ASC
+;
+
+--Query for pulling in amount spent for a category between dates specified 
+SELECT "category"."name" as "category", SUM("transaction"."amount") as "categoryAmount" FROM "user"
+JOIN "transaction"
+ON "transaction"."userId" = "user"."id"
+JOIN "category"
+ON "category"."id" = "transaction"."categoryId"
+WHERE "transaction"."date" BETWEEN '2020/10/01' AND '2020/10/31'
+AND "category"."id" = 13
+GROUP BY "category"."name"
+;
+
+--Query for pulling in amount spent for a categoryId between dates specified
+SELECT SUM("transaction"."amount") FROM "transaction"
+	WHERE "transaction"."date" BETWEEN '2020/10/01' AND '2020/10/31'
+	AND "transaction"."categoryId" = 21
+	GROUP BY "transaction"."categoryId"
+	;
+
+-- Query for pulling in a budgetedAmount for a category id
+SELECT "category"."budgetedAmount" FROM "category"
+	WHERE "category"."id" = 21
+	GROUP BY "category"."budgetedAmount"
+	;
+
+-- Query for subtracting amount spent from budgetedAmount
+SELECT
+	(SELECT SUM("transaction"."amount") FROM "transaction"
+	WHERE "transaction"."date" BETWEEN '2020/10/01' AND '2020/10/31'
+	AND "transaction"."categoryId" = 21
+	GROUP BY "transaction"."categoryId") 
+	+
+	(SELECT "category"."budgetedAmount" FROM "category"
+	WHERE "category"."id" = 21
+	GROUP BY "category"."budgetedAmount")
+;
+
+
