@@ -7,6 +7,7 @@ class SummaryViewItem extends Component {
     heading: 'Summary Items',
   };
 
+
   render() {
     return (
       <div>

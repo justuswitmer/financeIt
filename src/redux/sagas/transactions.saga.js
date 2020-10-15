@@ -1,10 +1,12 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
-function* fetchTransaction() {
+function* fetchTransaction(action) {
+  console.log('in fetchTransaction saga', action);
   let response = yield axios({
-    method: 'GET',
-    url: '/api/transaction',
+    method: 'POST',
+    url: `/api/transaction/`,
+    data: action.payload
   });
   console.log('this is our response', response);
   yield put({
@@ -15,6 +17,7 @@ function* fetchTransaction() {
 
 function* transactionSaga() {
   yield takeLatest('GET', fetchTransaction);
+  yield takeLatest('FETCH_DATES', fetchTransaction);
 }
 
 export default transactionSaga;

@@ -8,18 +8,21 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
+  console.log('getting my req.body', req.body);
+  const startDate = req.body.startDate;
+  const endDate = req.body.endDate;
   queryText = `SELECT "category"."name" as "category", "category"."budgetedAmount", SUM("transaction"."amount") as "categoryAmount" FROM "user"
   JOIN "transaction"
   ON "transaction"."userId" = "user"."id"
   JOIN "category"
   ON "category"."id" = "transaction"."categoryId"
-  WHERE "transaction"."date" BETWEEN '2020/10/01' AND '2020/10/31'
+  WHERE "transaction"."date" BETWEEN $1 AND $2
   GROUP BY "category"."name", "category"."budgetedAmount"
   ORDER BY "category"."name" ASC
   ;`;
   pool
-    .query(queryText)
+    .query(queryText, [startDate, endDate])
     .then(result => {
       res.send(result.rows);
     })
