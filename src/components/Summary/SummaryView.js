@@ -1,30 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 // Custom imports
 import SummaryViewItem from './SummaryViewItem';
+
+// Date formats
+const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
+const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 
 class SummaryView extends Component {
   state = {
     heading: 'Summary',
     newDate: {
-      startDate: '',
-      endDate: '',
+      startDate: moment().startOf('month').format('MM/DD/YYYY'),
+      endDate: moment().endOf('month').format('MM/DD/YYYY'),
     }
   };
 
   componentDidMount() {
-    // this.getTransactions()
-  }
-
-  getTransactions = () => {
-    this.props.dispatch({
-      type: 'GET'
-    })
+    this.handleClick();
+    console.log('in componentDidMount', this.state.newDate);
   }
 
   handleChange = (property, event) => {
     console.log('in handleChange', event.target.value);
+    console.log(startOfMonth, endOfMonth);
+
     this.setState({
       newDate: {
         ...this.state.newDate,
@@ -40,6 +42,10 @@ class SummaryView extends Component {
       payload: this.state.newDate
     });
   }
+
+  // handleDateChange = (date) => {
+  //   setSelectedDate(date);
+  // };
 
   render() {
     return (
@@ -58,6 +64,7 @@ class SummaryView extends Component {
         <button
           onClick={this.handleClick}
         >Select</button>
+
         {this.props.transaction.map(transaction =>
           <SummaryViewItem
             key={transaction.category}
