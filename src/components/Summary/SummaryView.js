@@ -43,10 +43,6 @@ class SummaryView extends Component {
     });
   }
 
-  // handleDateChange = (date) => {
-  //   setSelectedDate(date);
-  // };
-
   render() {
     return (
       <div>

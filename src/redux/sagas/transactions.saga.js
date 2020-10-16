@@ -16,7 +16,6 @@ function* fetchTransaction(action) {
 }
 
 function* transactionSaga() {
-  yield takeLatest('GET', fetchTransaction);
   yield takeLatest('FETCH_DATES', fetchTransaction);
 }
 

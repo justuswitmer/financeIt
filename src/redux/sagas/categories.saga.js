@@ -6,7 +6,7 @@ function* fetchCategory() {
     method: 'GET',
     url: '/api/category',
   });
-  console.log('this is our response', response);
+  console.log('in fetchCategory Saga', response);
   yield put({
     type: "SET_CATEGORY",
     payload: response.data,

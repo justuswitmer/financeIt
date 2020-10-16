@@ -9,6 +9,7 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
+  console.log('in category router');
   queryText = `SELECT * FROM "category"
   ORDER BY "category"."name" ASC
   ;`;
