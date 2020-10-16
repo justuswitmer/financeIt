@@ -55,7 +55,7 @@ function* deleteCategorySaga(action) {
 
 
 function* categorySaga() {
-  yield takeLatest('GET', fetchCategorySaga);
+  yield takeLatest('FETCH_CATEGORY', fetchCategorySaga);
   yield takeLatest('ADD_CATEGORY', addCategorySaga);
   yield takeLatest('UPDATE_CATEGORY', updateCategorySaga);
   yield takeLatest('DELETE_CATEGORY', deleteCategorySaga);

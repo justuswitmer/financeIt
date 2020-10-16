@@ -27,8 +27,8 @@ import SummaryNew from '../Summary/SummaryNew';
 import SummaryGraph from '../Summary/SummaryGraph';
 import CategoriesEdit from '../Categories/CategoriesEdit';
 import CategoriesView from '../Categories/CategoriesView';
-import TransactionsView from '../Transactions/TransactionsView';
-import TransactionsEdit from '../Transactions/TransactionsEdit';
+import TransactionView from '../Transactions/TransactionView';
+import TransactionEdit from '../Transactions/TransactionEdit';
 import AccountView from '../Account/AccountView';
 
 
@@ -142,15 +142,15 @@ class App extends Component {
             <ProtectedRoute
               // logged in shows UserPage else shows LoginPage
               exact
-              path="/transactionsedit"
-              component={TransactionsEdit}
+              path="/transactionedit"
+              component={TransactionEdit}
             />
 
             <ProtectedRoute
               // logged in shows UserPage else shows LoginPage
               exact
-              path="/transactions"
-              component={TransactionsView}
+              path="/transaction"
+              component={TransactionView}
             />
 
             <ProtectedRoute
