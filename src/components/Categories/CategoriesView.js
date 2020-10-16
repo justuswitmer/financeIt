@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Material-UI
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import {
+  Table,
+  Paper,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+  TableBody,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -87,12 +89,17 @@ class CategoriesView extends Component {
           onClick={this.addCategory}
         >Add Category
         </button>
+        <button
+          onClick={() => { this.props.history.push('/categoriesedit') }}
+        >Edit Categories
+        </button>
 
-        {this.props.category.map(category =>
+
+        {/* {this.props.category.map(category =>
           <li key={category.id}>
             {category.name} | {category.budgetedAmount}
           </li>
-        )}
+        )} */}
         <TableContainer component={Paper}>
           <Table className={this.state.table.minWidth} aria-label="simple table">
             <TableHead>

@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CategoriesEditItem from './CategoriesEditItem';
 
 // Material-UI
 import {
-  Table,
-  Paper,
   TableRow,
-  TableHead,
-  TableContainer,
   TableCell,
-  TableBody,
   TextField,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,9 +22,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-class CategoriesEdit extends Component {
+class CategoriesEditItem extends Component {
   state = {
-    heading: 'Edit Categories',
     updateCategory: {},
     table: {
       minWidth: 200,
@@ -49,6 +42,7 @@ class CategoriesEdit extends Component {
       updateCategory: {
         ...this.state.updateCategory,
         [property]: event.target.value,
+        id: this.props.category.id
       }
     })
   }
@@ -67,31 +61,25 @@ class CategoriesEdit extends Component {
   render() {
     return (
       <div>
-        <h2>{this.state.heading}</h2>
-        <TableContainer component={Paper}>
-          <Table className={this.state.table.minWidth} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Categories</TableCell>
-                <TableCell align="right">Monthly Amount</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.props.category.map(category =>
-                <CategoriesEditItem
-                  category={category}
-                />
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <TableRow key={this.props.category.id}>
+          <TableCell component="th" scope="row">
+            <TextField
+              label={this.props.category.name}
+              onChange={(event) => this.categoryChange('category', event)}
+              onBlur={this.updateCategory}
+            />
+          </TableCell>
+          <TableCell align="right">
+            <TextField
+              label={this.props.category.budgetedAmount}
+              onChange={(event) => this.categoryChange('budgetedAmount', event)}
+              onBlur={this.updateCategory}
+            />
+          </TableCell>
+        </TableRow>
       </div>
     );
   }
 }
 
-const mapStateToProps = reduxState => ({
-  category: reduxState.category
-})
-
-export default connect(mapStateToProps)(CategoriesEdit);
+export default connect()(CategoriesEditItem);
