@@ -26,9 +26,40 @@ function* addCategorySaga(action) {
   });
 }
 
+function* updateCategorySaga(action) {
+  console.log('in updateCategorySaga', action.payload);
+  let response = yield axios({
+    method: 'PUT',
+    url: action.url,
+    data: action.payload
+  });
+  console.log('in updateCategorySaga', action);
+  yield put({
+    type: "GET",
+    payload: response.data
+  });
+}
+
+function* deleteCategorySaga(action) {
+  console.log('in updateCategorySaga', action.url);
+  let response = yield axios({
+    method: 'DELETE',
+    url: action.url,
+  });
+  console.log('in updateCategorySaga', action);
+  yield put({
+    type: "GET",
+    payload: response.data
+  });
+}
+
+
 function* categorySaga() {
   yield takeLatest('GET', fetchCategorySaga);
   yield takeLatest('ADD_CATEGORY', addCategorySaga);
+  yield takeLatest('UPDATE_CATEGORY', updateCategorySaga);
+  yield takeLatest('DELETE_CATEGORY', deleteCategorySaga);
 }
+
 
 export default categorySaga;

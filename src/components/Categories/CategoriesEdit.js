@@ -49,6 +49,7 @@ class CategoriesEdit extends Component {
       updateCategory: {
         ...this.state.updateCategory,
         [property]: event.target.value,
+        userId: this.props.user.id
       }
     })
   }
@@ -91,7 +92,8 @@ class CategoriesEdit extends Component {
 }
 
 const mapStateToProps = reduxState => ({
-  category: reduxState.category
+  category: reduxState.category,
+  user: reduxState.user
 })
 
 export default connect(mapStateToProps)(CategoriesEdit);
