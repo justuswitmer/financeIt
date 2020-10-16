@@ -10,6 +10,11 @@ class CategoriesView extends Component {
 
   state = {
     heading: 'Categories',
+    newCategory: {
+      category: '',
+      budgetedAmount: '',
+      user: this.props.user.id
+    }
   };
 
   componentDidMount = () => {
@@ -18,10 +23,45 @@ class CategoriesView extends Component {
     })
   }
 
+  newCategoryChange = (property, event) => {
+    console.log('in newCategoryChange', event.target.value);
+    this.setState({
+      newCategory: {
+        ...this.state.newCategory,
+        [property]: event.target.value
+      }
+    })
+  }
+
+  addCategory = () => {
+    console.log('in addCategory');
+    this.props.dispatch({
+      type: 'ADD_CATEGORY',
+      payload: this.state.newCategory
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>{this.state.heading}</h2>
+
+        <h3>Add New Category</h3>
+        <input
+          type='text'
+          placeholder='new category'
+          onChange={(event) => this.newCategoryChange('category', event)}
+        />
+        <input
+          type='text'
+          placeholder='new monthly amount'
+          onChange={(event) => this.newCategoryChange('budgetedAmount', event)}
+        />
+        <button
+          onClick={this.addCategory}
+        >Add Category
+        </button>
+
         {this.props.category.map(category =>
           <li key={category.id}>
             {category.name} | {category.budgetedAmount}
@@ -33,7 +73,8 @@ class CategoriesView extends Component {
 }
 
 const mapStateToProps = reduxState => ({
-  category: reduxState.category
+  category: reduxState.category,
+  user: reduxState.user
 })
 
 export default connect(mapStateToProps)(CategoriesView);
