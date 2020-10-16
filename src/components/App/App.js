@@ -31,6 +31,7 @@ import TransactionsView from '../Transactions/TransactionsView';
 import TransactionsEdit from '../Transactions/TransactionsEdit';
 import AccountView from '../Account/AccountView';
 
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
