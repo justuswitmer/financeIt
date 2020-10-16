@@ -42,28 +42,6 @@ class CategoriesEdit extends Component {
     })
   }
 
-  categoryChange = (property, event) => {
-    console.log('in  categoryChange', event.target.value);
-    this.setState({
-      updateCategory: {
-        ...this.state.updateCategory,
-        [property]: event.target.value,
-        userId: this.props.user.id
-      }
-    })
-  }
-
-  updateCategory = () => {
-    console.log('in updateCategory', this.state.updateCategory);
-    this.props.dispatch({
-      type: 'UPDATE_CATEGORY',
-      data: this.state.updateCategory
-    });
-    this.setState({
-      updateCategory: {}
-    });
-  }
-
   render() {
     return (
       <div>

@@ -13,9 +13,22 @@ function* fetchTransactionSaga(action) {
     payload: response.data,
   });
 }
+function* addTransactionSaga(action) {
+  let response = yield axios({
+    method: 'POST',
+    url: '/api/transaction/add',
+    data: action.payload
+  });
+  console.log('in addTransactionSaga', response);
+  yield put({
+    type: "GET",
+    payload: response.data,
+  });
+}
 
 function* transactionSaga() {
   yield takeLatest('FETCH_TRANSACTION', fetchTransactionSaga);
+  yield takeLatest('ADD_TRANSACTION', addTransactionSaga)
 }
 
 export default transactionSaga;

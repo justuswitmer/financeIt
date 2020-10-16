@@ -29,7 +29,8 @@ class TransactionsView extends Component {
       amount: '',
       date: '',
       name: '',
-      account: ''
+      account: '',
+      user: this.props.user.id
     },
     newDate: {
       startDate: moment().startOf('month').format('MM/DD/YYYY'),
