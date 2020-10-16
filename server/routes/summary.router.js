@@ -10,7 +10,7 @@ const router = express.Router();
 
 // route to retrieve transactions grouped by categories and dates
 router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('getting my req.body', req.body);
+  console.log('getting my req.body in summary router', req.body);
   const startDate = req.body.startDate;
   const endDate = req.body.endDate;
   queryText = `SELECT "category"."name" as "category", "category"."budgetedAmount", SUM("transaction"."amount") as "categoryAmount" FROM "user"

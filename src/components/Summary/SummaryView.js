@@ -48,12 +48,12 @@ class SummaryView extends Component {
       <div>
         <h2>{this.state.heading}</h2>
         <input
-          type='text'
+          type='date'
           placeholder='start date'
           onChange={(event) => this.handleChange('startDate', event)}
         />
         <input
-          type='text'
+          type='date'
           placeholder='end date'
           onChange={(event) => this.handleChange('endDate', event)}
         />
@@ -61,10 +61,10 @@ class SummaryView extends Component {
           onClick={this.handleClick}
         >Select</button>
 
-        {this.props.transaction.map(transaction =>
+        {this.props.summary.map(summary =>
           <SummaryViewItem
-            key={transaction.category}
-            transaction={transaction}
+            key={summary.category}
+            summary={summary}
           />
         )}
       </div>
@@ -73,7 +73,7 @@ class SummaryView extends Component {
 }
 
 const mapStateToProps = reduxState => ({
-  transaction: reduxState.transaction,
+  summary: reduxState.summary,
   category: reduxState.category
 });
 
