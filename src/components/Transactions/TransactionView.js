@@ -58,7 +58,7 @@ class TransactionsView extends Component {
     this.props.dispatch({
       type: 'ADD_TRANSACTION',
       payload: this.state.newTransaction
-    })
+    });
     this.setState({
       newTransaction: {
         description: '',

@@ -14,7 +14,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('getting my req.body in transaction router', req.body);
   const startDate = req.body.startDate;
   const endDate = req.body.endDate;
-  queryText = `SELECT * FROM "transaction"
+  queryText = `SELECT "transaction"."id", "transaction"."description", 
+  "transaction"."amount", "transaction"."date", "transaction"."account", 
+  "category"."name" FROM "transaction"
   JOIN "category"
   ON "transaction"."categoryId" = "category"."id"
   WHERE "transaction"."date" BETWEEN $1 AND $2

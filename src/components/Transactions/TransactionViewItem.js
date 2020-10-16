@@ -59,17 +59,15 @@ class TransactionViewItem extends Component {
 
   render() {
     return (
-      <div>
-        <TableRow>
-          <TableCell component="th" scope="row">
-            {this.props.transaction.description}
-          </TableCell>
-          <TableCell align="right">{this.props.transaction.amount}</TableCell>
-          <TableCell align="right">{this.props.transaction.date}</TableCell>
-          <TableCell align="right">{this.props.transaction.name}</TableCell>
-          <TableCell align="right">{this.props.transaction.account}</TableCell>
-        </TableRow>
-      </div>
+      <TableRow>
+        <TableCell component="th" scope="row">
+          {this.props.transaction.description}
+        </TableCell>
+        <TableCell align="right">{this.props.transaction.amount}</TableCell>
+        <TableCell align="right">{this.props.transaction.date}</TableCell>
+        <TableCell align="right">{this.props.transaction.name}</TableCell>
+        <TableCell align="right">{this.props.transaction.account}</TableCell>
+      </TableRow>
     );
   }
 }
