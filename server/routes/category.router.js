@@ -78,7 +78,6 @@ router.delete('/:id', (req, res) => {
       console.log('got an error in category router DELETE', err);
       res.sendStatus(500);
     })
-
 });
 
 module.exports = router;

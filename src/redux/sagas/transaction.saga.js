@@ -26,9 +26,36 @@ function* addTransactionSaga(action) {
   });
 }
 
+function* updateTransactionSaga(action) {
+  console.log('in updateTransactionSaga', action.payload);
+  let response = yield axios({
+    method: 'PUT',
+    url: action.url,
+    data: action.payload
+  });
+  yield put({
+    type: "FETCH_TRANSACTION",
+    payload: response.data
+  });
+}
+
+function* deleteTransactionSaga(action) {
+  console.log('in deleteTransactionSaga', action.url);
+  let response = yield axios({
+    method: 'DELETE',
+    url: action.url,
+  });
+  yield put({
+    type: "FETCH_TRANSACTION",
+    payload: response.data
+  });
+}
+
 function* transactionSaga() {
   yield takeLatest('FETCH_TRANSACTION', fetchTransactionSaga);
-  yield takeLatest('ADD_TRANSACTION', addTransactionSaga)
+  yield takeLatest('ADD_TRANSACTION', addTransactionSaga);
+  yield takeLatest('UPDATE_TRANSACTION', updateTransactionSaga);
+  yield takeLatest('DELETE_TRANSACTION', deleteTransactionSaga);
 }
 
 export default transactionSaga;

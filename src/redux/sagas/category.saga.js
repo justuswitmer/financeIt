@@ -33,9 +33,8 @@ function* updateCategorySaga(action) {
     url: action.url,
     data: action.payload
   });
-  console.log('in updateCategorySaga', action);
   yield put({
-    type: "GET",
+    type: "FETCH_CATEGORY",
     payload: response.data
   });
 }
@@ -46,9 +45,8 @@ function* deleteCategorySaga(action) {
     method: 'DELETE',
     url: action.url,
   });
-  console.log('in updateCategorySaga', action);
   yield put({
-    type: "GET",
+    type: "FETCH_CATEGORY",
     payload: response.data
   });
 }

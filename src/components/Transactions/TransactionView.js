@@ -189,7 +189,7 @@ class TransactionsView extends Component {
         >Add Transaction
         </Button>
         <Button
-          onClick={() => { this.props.history.push('/categoriesedit') }}
+          onClick={() => { this.props.history.push('/transactionedit') }}
           variant='contained'
         >Edit Transactions
         </Button>
