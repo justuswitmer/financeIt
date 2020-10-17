@@ -161,27 +161,6 @@ class TransactionsView extends Component {
             )}
           </Select>
         </FormControl>
-        <FormControl variant="outlined">
-          <InputLabel id="demo-simple-select-outlined-label">account</InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            onChange={(event) => this.newTransactionChange('account', event)}
-            label="account"
-            value={''}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {this.props.transaction.map(transaction =>
-              <MenuItem
-                key={transaction.id}
-                value={transaction.account}
-              >{transaction.account}
-              </MenuItem>
-            )}
-          </Select>
-        </FormControl>
         <Button
           onClick={this.addTransaction}
           variant='contained'
@@ -200,7 +179,6 @@ class TransactionsView extends Component {
                 <TableCell align="right">Amount</TableCell>
                 <TableCell align="right">Date</TableCell>
                 <TableCell align="right">Category</TableCell>
-                <TableCell align="right">Account</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

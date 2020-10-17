@@ -63,7 +63,6 @@ class TransactionViewItem extends Component {
         <TableCell align="right">{this.props.transaction.amount}</TableCell>
         <TableCell align="right">{this.props.transaction.date}</TableCell>
         <TableCell align="right">{this.props.transaction.name}</TableCell>
-        <TableCell align="right">{this.props.transaction.account}</TableCell>
       </TableRow>
     );
   }

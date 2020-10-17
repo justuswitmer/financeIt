@@ -99,6 +99,7 @@ class TransactionEditItem extends Component {
         <TableCell
           align="right">
           <TextField
+            type='date'
             label={this.props.transaction.date}
             onChange={(event) => this.transactionChange('date', event)}
           />
@@ -122,30 +123,6 @@ class TransactionEditItem extends Component {
                   key={category.id}
                   value={category.id}
                 >{category.name}
-                </MenuItem>
-              )}
-            </Select>
-          </FormControl>
-        </TableCell>
-        <TableCell
-          align="right">
-          <FormControl variant="outlined">
-            <InputLabel id="demo-simple-select-outlined-label">account</InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              onChange={(event) => this.transactionChange('account', event)}
-              label="account"
-              value={''}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {this.props.transactions.map(transaction =>
-                <MenuItem
-                  key={transaction.id}
-                  value={transaction.account}
-                >{transaction.account}
                 </MenuItem>
               )}
             </Select>
