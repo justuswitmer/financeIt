@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import moment from 'moment';
+import moment from 'moment';
 
 // Material-UI
 import {
@@ -14,8 +14,8 @@ import {
   Select,
 } from '@material-ui/core';
 
-// const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
-// const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
+const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
+const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 
 class TransactionEditItem extends Component {
   state = {
@@ -28,13 +28,16 @@ class TransactionEditItem extends Component {
       account: this.props.transaction.account,
       transactionId: this.props.transaction.id,
       user: this.props.user.id,
+      newDate: {
+        startDate: startOfMonth,
+        endDate: endOfMonth,
+      },
     },
   };
 
   componentDidMount = () => {
-    this.props.dispatch({
-      type: 'FETCH_TRANSACTION'
-    })
+    console.log('in componentDidMount');
+
   }
 
   transactionChange = (property, event) => {
@@ -70,6 +73,7 @@ class TransactionEditItem extends Component {
     this.props.dispatch({
       type: 'DELETE_TRANSACTION',
       url: `/api/transaction/${this.props.transaction.id}`,
+      payload: this.state.updateTransaction.newDate
     });
   }
 

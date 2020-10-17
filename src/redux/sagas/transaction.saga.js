@@ -22,6 +22,7 @@ function* addTransactionSaga(action) {
   });
   yield put({
     type: "FETCH_TRANSACTION",
+    payload: action.payload.newDate
   });
 }
 
@@ -34,17 +35,19 @@ function* updateTransactionSaga(action) {
   });
   yield put({
     type: "FETCH_TRANSACTION",
+    payload: action.payload.newDate
   });
 }
 
 function* deleteTransactionSaga(action) {
-  console.log('in deleteTransactionSaga', action.url);
+  console.log('in deleteTransactionSaga', action.payload);
   yield axios({
     method: 'DELETE',
     url: action.url,
   });
   yield put({
     type: "FETCH_TRANSACTION",
+    payload: action.payload
   });
 }
 

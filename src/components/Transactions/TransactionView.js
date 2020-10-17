@@ -44,6 +44,9 @@ class TransactionsView extends Component {
 
   componentDidMount = () => {
     this.handleClick();
+    this.props.dispatch({
+      type: 'FETCH_CATEGORY'
+    });
   }
 
   newTransactionChange = (property, event) => {

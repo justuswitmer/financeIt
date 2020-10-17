@@ -34,16 +34,19 @@ class TransactionEdit extends Component {
       date: '',
       categoryId: '',
       account: '',
-      userId: this.props.user.id
+      userId: this.props.user.id,
+      newDate: {
+        startDate: moment().startOf('month').format('MM/DD/YYYY'),
+        endDate: moment().endOf('month').format('MM/DD/YYYY'),
+      },
     },
-    newDate: {
-      startDate: moment().startOf('month').format('MM/DD/YYYY'),
-      endDate: moment().endOf('month').format('MM/DD/YYYY'),
-    }
   };
 
   componentDidMount = () => {
     this.handleClick();
+    this.props.dispatch({
+      type: 'FETCH_CATEGORY'
+    });
   }
 
   newTransactionChange = (property, event) => {
@@ -90,7 +93,7 @@ class TransactionEdit extends Component {
     console.log('in handleClick', this.state.newDate);
     this.props.dispatch({
       type: 'FETCH_TRANSACTION',
-      payload: this.state.newDate
+      payload: this.state.newTransaction.newDate
     });
   }
 
