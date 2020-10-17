@@ -14,40 +14,37 @@ function* fetchTransactionSaga(action) {
   });
 }
 function* addTransactionSaga(action) {
-  let response = yield axios({
+  console.log('in addTransactionSaga');
+  yield axios({
     method: 'POST',
     url: '/api/transaction/add',
     data: action.payload
   });
-  console.log('in addTransactionSaga', response);
   yield put({
-    type: "GET",
-    payload: response.data,
+    type: "FETCH_TRANSACTION",
   });
 }
 
 function* updateTransactionSaga(action) {
   console.log('in updateTransactionSaga', action.payload);
-  let response = yield axios({
+  yield axios({
     method: 'PUT',
     url: action.url,
     data: action.payload
   });
   yield put({
     type: "FETCH_TRANSACTION",
-    payload: response.data
   });
 }
 
 function* deleteTransactionSaga(action) {
   console.log('in deleteTransactionSaga', action.url);
-  let response = yield axios({
+  yield axios({
     method: 'DELETE',
     url: action.url,
   });
   yield put({
     type: "FETCH_TRANSACTION",
-    payload: response.data
   });
 }
 

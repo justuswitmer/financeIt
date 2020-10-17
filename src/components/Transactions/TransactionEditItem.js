@@ -31,6 +31,12 @@ class TransactionEditItem extends Component {
     },
   };
 
+  componentDidMount = () => {
+    this.props.dispatch({
+      type: 'FETCH_TRANSACTION'
+    })
+  }
+
   transactionChange = (property, event) => {
     console.log('in  transactionChange', event.target.value);
     this.setState({

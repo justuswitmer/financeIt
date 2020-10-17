@@ -21,7 +21,7 @@ function* addCategorySaga(action) {
   });
   console.log('in AddCategorySaga', response);
   yield put({
-    type: "GET",
+    type: "FETCH_CATEGORY",
     payload: response.data,
   });
 }

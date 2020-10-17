@@ -44,10 +44,6 @@ class TransactionEdit extends Component {
 
   componentDidMount = () => {
     this.handleClick();
-    console.log('in componentDidMount Transactions', this.state.newDate);
-    this.props.dispatch({
-      type: 'FETCH_CATEGORY'
-    })
   }
 
   newTransactionChange = (property, event) => {
@@ -189,9 +185,9 @@ class TransactionEdit extends Component {
         >Add Transaction
         </Button>
         <Button
-          onClick={() => { this.props.history.push('/transactionedit') }}
+          onClick={() => { this.props.history.push('/transaction') }}
           variant='contained'
-        >Edit Transactions
+        >Return to Transactions
         </Button>
         <TableContainer component={Paper}>
           <Table aria-label="simple table">

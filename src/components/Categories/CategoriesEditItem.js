@@ -36,7 +36,7 @@ class CategoriesEditItem extends Component {
 
   componentDidMount = () => {
     this.props.dispatch({
-      type: 'GET'
+      type: 'FETCH_CATEGORY'
     })
   }
 

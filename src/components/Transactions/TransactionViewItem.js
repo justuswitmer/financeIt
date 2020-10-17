@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 
 // Material-UI
 import {
-
   TableRow,
-
   TableCell,
-
 } from '@material-ui/core';
 
 // const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
