@@ -32,10 +32,9 @@ class TransactionsView extends Component {
       description: '',
       amount: '',
       date: '',
-      name: '',
+      categoryId: '',
       account: '',
-      category: '',
-      user: this.props.user.id
+      userId: this.props.user.id
     },
     newDate: {
       startDate: moment().startOf('month').format('MM/DD/YYYY'),
@@ -72,10 +71,9 @@ class TransactionsView extends Component {
         description: '',
         amount: '',
         date: '',
-        name: '',
+        categoryId: '',
         account: '',
-        category: '',
-        user: this.props.user.id
+        userId: this.props.user.id
       }
     })
   }
@@ -148,7 +146,7 @@ class TransactionsView extends Component {
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            onChange={(event) => this.newTransactionChange('category', event)}
+            onChange={(event) => this.newTransactionChange('categoryId', event)}
             label="category"
             value={''}
           >

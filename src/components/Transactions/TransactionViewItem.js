@@ -22,7 +22,7 @@ class TransactionViewItem extends Component {
       amount: '',
       date: '',
       name: '',
-      account: ''
+      account: '',
     },
     // newDate: {
     //   startDate: moment().startOf('month').format('MM/DD/YYYY'),
