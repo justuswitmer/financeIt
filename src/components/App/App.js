@@ -23,7 +23,6 @@ import Header from '../Header/Header';
 
 import './App.css';
 import SummaryView from '../Summary/SummaryView';
-import SummaryNew from '../Summary/SummaryNew';
 import SummaryGraph from '../Summary/SummaryGraph';
 import CategoriesEdit from '../Categories/CategoriesEdit';
 import CategoriesView from '../Categories/CategoriesView';
@@ -92,7 +91,7 @@ class App extends Component {
               exact
               path="/registration"
               component={RegisterPage}
-              authRedirect="/summarynew"
+              authRedirect="/summary"
             />
             <ProtectedRoute
               // with authRedirect:
@@ -109,13 +108,6 @@ class App extends Component {
               exact
               path="/summary"
               component={SummaryView}
-            />
-
-            <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/summarynew"
-              component={SummaryNew}
             />
 
             <ProtectedRoute

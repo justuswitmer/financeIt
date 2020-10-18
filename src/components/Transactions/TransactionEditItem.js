@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import swal from '@sweetalert/with-react'
+
 
 // Material-UI
 import {
@@ -70,11 +72,27 @@ class TransactionEditItem extends Component {
 
   deleteTransaction = () => {
     console.log('in deleteTransaction');
-    this.props.dispatch({
-      type: 'DELETE_TRANSACTION',
-      url: `/api/transaction/${this.props.transaction.id}`,
-      payload: this.state.updateTransaction.newDate
-    });
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this transaction.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("The transaction has been deleted.", {
+            icon: "success",
+          });
+          this.props.dispatch({
+            type: 'DELETE_TRANSACTION',
+            url: `/api/transaction/${this.props.transaction.id}`,
+            payload: this.state.updateTransaction.newDate
+          });
+        } else {
+          swal("The transaction has not been deleted and is safe!");
+        }
+      });
   }
 
   render() {

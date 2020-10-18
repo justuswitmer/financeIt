@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import swal from '@sweetalert/with-react'
 
 // Material-UI
 import {
@@ -68,10 +69,26 @@ class CategoriesEditItem extends Component {
 
   deleteCategory = () => {
     console.log('in deleteCategory');
-    this.props.dispatch({
-      type: 'DELETE_CATEGORY',
-      url: `/api/category/${this.props.category.id}`,
-    });
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this category.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("The category has been deleted.", {
+            icon: "success",
+          });
+          this.props.dispatch({
+            type: 'DELETE_CATEGORY',
+            url: `/api/category/${this.props.category.id}`,
+          });
+        } else {
+          swal("The category has not been deleted and is safe!");
+        }
+      });
   }
 
   render() {
