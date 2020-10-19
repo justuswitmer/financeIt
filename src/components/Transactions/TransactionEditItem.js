@@ -149,7 +149,7 @@ class TransactionEditItem extends Component {
         <TableCell align="right">
           <Button
             variant='contained'
-            color='primary'
+            color='secondary'
             onClick={this.updateTransaction}
           >
             Save
@@ -159,7 +159,7 @@ class TransactionEditItem extends Component {
           align="right">
           <Button
             variant='contained'
-            color='primary'
+            color='secondary'
             onClick={this.deleteTransaction}
           >Delete
           </Button>

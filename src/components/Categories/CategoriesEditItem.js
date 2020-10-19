@@ -94,40 +94,38 @@ class CategoriesEditItem extends Component {
 
   render() {
     return (
-      <div>
-        <TableRow key={this.props.category.id}>
-          <TableCell component="th" scope="row">
-            <TextField
-              label={this.props.category.name}
-              onChange={(event) => this.categoryChange('category', event)}
-            />
-          </TableCell>
-          <TableCell align="right">
-            <TextField
-              label={this.props.category.budgetedAmount}
-              onChange={(event) => this.categoryChange('budgetedAmount', event)}
-            />
-          </TableCell>
-          <TableCell align="right">
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={this.updateCategory}
-            >
-              Save
+      <TableRow key={this.props.category.id}>
+        <TableCell component="th" scope="row">
+          <TextField
+            label={this.props.category.name}
+            onChange={(event) => this.categoryChange('category', event)}
+          />
+        </TableCell>
+        <TableCell align="right">
+          <TextField
+            label={this.props.category.budgetedAmount}
+            onChange={(event) => this.categoryChange('budgetedAmount', event)}
+          />
+        </TableCell>
+        <TableCell align="right">
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={this.updateCategory}
+          >
+            Save
             </Button>
-          </TableCell>
-          <TableCell align="right">
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={this.deleteCategory}
-            >
-              Delete
+        </TableCell>
+        <TableCell align="right">
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={this.deleteCategory}
+          >
+            Delete
             </Button>
-          </TableCell>
-        </TableRow>
-      </div>
+        </TableCell>
+      </TableRow>
     );
   }
 }

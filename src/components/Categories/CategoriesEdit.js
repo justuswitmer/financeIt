@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CategoriesEditItem from './CategoriesEditItem';
+import muiStyles from '../Styling/Styling';
 
 // Material-UI
 import {
@@ -11,20 +12,21 @@ import {
   TableContainer,
   TableCell,
   TableBody,
+  Grid,
 } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = (theme) => makeStyles({
-  table: {
-    minWidth: 650,
-  },
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-});
+// const useStyles = (theme) => makeStyles({
+//   table: {
+//     minWidth: 650,
+//   },
+//   root: {
+//     '& > *': {
+//       margin: theme.spacing(1),
+//       width: '25ch',
+//     },
+//   },
+// });
 
 
 class CategoriesEdit extends Component {
@@ -44,11 +46,16 @@ class CategoriesEdit extends Component {
       <div>
         <h2>{this.state.heading}</h2>
         <TableContainer component={Paper}>
-          <Table className={this.props.classes.table} aria-label="simple table">
+          <Table
+            className={this.props.classes.table}
+            aria-label="simple table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell>Categories</TableCell>
-                <TableCell align="right">Monthly Amount</TableCell>
+                <TableCell >Monthly Amount</TableCell>
+                <TableCell >Save</TableCell>
+                <TableCell >Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -70,4 +77,6 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(withStyles(useStyles)(CategoriesEdit));
+export default connect(mapStateToProps)
+  (withStyles(muiStyles)
+    (CategoriesEdit));

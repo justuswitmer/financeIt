@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import muiStyles from '../Styling/Styling';
 
 // Material-UI
 import {
@@ -14,14 +15,6 @@ import {
   Button,
 } from '@material-ui/core';
 import { withStyles, createStyles } from '@material-ui/core/styles';
-
-const muiStyles = (theme) => createStyles({
-  table: {
-    minWidth: '650px',
-    margin: theme.spacing(12),
-    width: '80%',
-  },
-});
 
 class CategoriesView extends Component {
 
@@ -87,15 +80,20 @@ class CategoriesView extends Component {
         <Button
           onClick={this.addCategory}
           variant='contained'
+          color='secondary'
         >Add Category
         </Button>
         <Button
           onClick={() => { this.props.history.push('/categoriesedit') }}
           variant='contained'
+          color='secondary'
         >Edit Categories
         </Button>
         <TableContainer component={Paper}>
-          <Table className={this.props.classes.table} aria-label="simple table">
+          <Table
+            className={this.props.classes.table}
+            aria-label="simple table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell>Categories</TableCell>
@@ -124,4 +122,6 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(withStyles(muiStyles)(CategoriesView));
+export default connect(mapStateToProps)
+  (withStyles(muiStyles)
+    (CategoriesView));

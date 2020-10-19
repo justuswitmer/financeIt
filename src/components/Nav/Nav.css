@@ -1,10 +1,8 @@
-
-
 .nav {
   margin: 0 0 30px;
   background-color: #00acb0;
   overflow: hidden;
-  
+
 }
 
 .nav-link {
@@ -27,6 +25,3 @@
   background-color: #008183;
 }
 
-.nav-right {
-  float: right;
-}

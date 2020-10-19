@@ -114,6 +114,7 @@ class TransactionEdit extends Component {
         <Button
           onClick={this.handleClick}
           variant='contained'
+          color='secondary'
         >Select Dates
         </Button>
         <h3>Add New Transaction</h3>
@@ -162,11 +163,13 @@ class TransactionEdit extends Component {
         <Button
           onClick={this.addTransaction}
           variant='contained'
+          color='secondary'
         >Add Transaction
         </Button>
         <Button
           onClick={() => { this.props.history.push('/transaction') }}
           variant='contained'
+          color='secondary'
         >Return to Transactions
         </Button>
         <TableContainer component={Paper}>

@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
+
 // Custom imports
 import SummaryViewItem from './SummaryViewItem';
+import muiStyles from '../Styling/Styling';
+
+// Material-UI
+import {
+  Paper,
+  Grid,
+} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
 // Date formats
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
@@ -45,28 +54,38 @@ class SummaryView extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.state.heading}</h2>
-        <input
-          type='date'
-          placeholder='start date'
-          onChange={(event) => this.handleChange('startDate', event)}
-        />
-        <input
-          type='date'
-          placeholder='end date'
-          onChange={(event) => this.handleChange('endDate', event)}
-        />
-        <button
-          onClick={this.handleClick}
-        >Select</button>
+      <div className={this.props.classes.grid.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <h2>{this.state.heading}</h2>
+          </Grid>
+          <Grid item xs={12}>
+            <input
+              type='date'
+              placeholder='start date'
+              onChange={(event) => this.handleChange('startDate', event)}
+            />
+            <input
+              type='date'
+              placeholder='end date'
+              onChange={(event) => this.handleChange('endDate', event)}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <button
+              onClick={this.handleClick}
+            >Select</button>
+          </Grid>
+          <Grid item xs={12}>
+            {this.props.summary.map(summary =>
+              <SummaryViewItem
+                key={summary.category}
+                summary={summary}
+              />
+            )}
+          </Grid>
 
-        {this.props.summary.map(summary =>
-          <SummaryViewItem
-            key={summary.category}
-            summary={summary}
-          />
-        )}
+        </Grid>
       </div>
     );
   }
@@ -77,4 +96,6 @@ const mapStateToProps = reduxState => ({
   category: reduxState.category
 });
 
-export default connect(mapStateToProps)(SummaryView);
+export default connect(mapStateToProps)
+  (withStyles(muiStyles)
+    (SummaryView));
