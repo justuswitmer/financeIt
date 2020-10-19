@@ -8,7 +8,6 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-
 // route to retrieve transactions grouped by dates
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('getting my req.body in transaction router', req.body);
