@@ -13,13 +13,15 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles } from '@material-ui/core/styles';
 
-// const useStyles = makeStyles({
-//   table: {
-//     minWidth: 650,
-//   },
-// });
+const muiStyles = (theme) => createStyles({
+  table: {
+    minWidth: '650px',
+    margin: theme.spacing(12),
+    width: '80%',
+  },
+});
 
 class CategoriesView extends Component {
 
@@ -29,9 +31,6 @@ class CategoriesView extends Component {
       category: '',
       budgetedAmount: '',
       user: this.props.user.id
-    },
-    table: {
-      minWidth: 200,
     },
   };
 
@@ -96,7 +95,7 @@ class CategoriesView extends Component {
         >Edit Categories
         </Button>
         <TableContainer component={Paper}>
-          <Table className={this.state.table.minWidth} aria-label="simple table">
+          <Table className={this.props.classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Categories</TableCell>
@@ -115,7 +114,7 @@ class CategoriesView extends Component {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
+      </div >
     );
   }
 }
@@ -125,4 +124,4 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(CategoriesView);
+export default connect(mapStateToProps)(withStyles(muiStyles)(CategoriesView));

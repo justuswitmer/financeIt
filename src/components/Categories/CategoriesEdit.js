@@ -12,28 +12,25 @@ import {
   TableCell,
   TableBody,
 } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-// const useStyles = makeStyles(theme => ({
-//   table: {
-//     minWidth: 650,
-//   },
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//       width: '25ch',
-//     },
-//   },
-// }));
+const useStyles = (theme) => makeStyles({
+  table: {
+    minWidth: 650,
+  },
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+});
 
 
 class CategoriesEdit extends Component {
   state = {
     heading: 'Edit Categories',
     updateCategory: {},
-    table: {
-      minWidth: 200,
-    },
   };
 
   componentDidMount = () => {
@@ -47,7 +44,7 @@ class CategoriesEdit extends Component {
       <div>
         <h2>{this.state.heading}</h2>
         <TableContainer component={Paper}>
-          <Table className={this.state.table.minWidth} aria-label="simple table">
+          <Table className={this.props.classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Categories</TableCell>
@@ -73,4 +70,4 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(CategoriesEdit);
+export default connect(mapStateToProps)(withStyles(useStyles)(CategoriesEdit));

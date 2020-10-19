@@ -9,19 +9,20 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
 
-// const useStyles = makeStyles(theme => ({
-//   table: {
-//     minWidth: 650,
-//   },
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//       width: '25ch',
-//     },
-//   },
-// }));
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+const useStyles = (theme) => makeStyles({
+  table: {
+    minWidth: 650,
+  },
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+});
 
 
 class CategoriesEditItem extends Component {
@@ -135,4 +136,4 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(CategoriesEditItem);
+export default connect(mapStateToProps)(withStyles(useStyles)(CategoriesEditItem));

@@ -33,7 +33,6 @@ class TransactionEdit extends Component {
       amount: '',
       date: '',
       categoryId: '',
-      account: '',
       userId: this.props.user.id,
       newDate: {
         startDate: moment().startOf('month').format('MM/DD/YYYY'),
@@ -71,7 +70,6 @@ class TransactionEdit extends Component {
         amount: '',
         date: '',
         categoryId: '',
-        account: '',
         userId: this.props.user.id
       }
     })
