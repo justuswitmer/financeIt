@@ -24,7 +24,7 @@ const Nav = (props) => {
         <Link className="nav-link" to="/categories">
           Categories
         </Link>
-        <Link className="nav-link" to="/transactions">
+        <Link className="nav-link" to="/transaction">
           Transactions
         </Link>
         <Link className="nav-link" to="/account">

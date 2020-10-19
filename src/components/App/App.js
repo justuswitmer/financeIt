@@ -23,13 +23,12 @@ import Header from '../Header/Header';
 
 import './App.css';
 import SummaryView from '../Summary/SummaryView';
-import SummaryNew from '../Summary/SummaryNew';
 import SummaryGraph from '../Summary/SummaryGraph';
 import CategoriesEdit from '../Categories/CategoriesEdit';
 import CategoriesView from '../Categories/CategoriesView';
-import TransactionsView from '../Transactions/TransactionsView';
-import TransactionsEdit from '../Transactions/TransactionsEdit';
+import TransactionView from '../Transactions/TransactionView';
 import AccountView from '../Account/AccountView';
+import TransactionEdit from '../Transactions/TransactionEdit';
 
 
 class App extends Component {
@@ -92,7 +91,7 @@ class App extends Component {
               exact
               path="/registration"
               component={RegisterPage}
-              authRedirect="/summarynew"
+              authRedirect="/summary"
             />
             <ProtectedRoute
               // with authRedirect:
@@ -109,13 +108,6 @@ class App extends Component {
               exact
               path="/summary"
               component={SummaryView}
-            />
-
-            <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/summarynew"
-              component={SummaryNew}
             />
 
             <ProtectedRoute
@@ -142,15 +134,14 @@ class App extends Component {
             <ProtectedRoute
               // logged in shows UserPage else shows LoginPage
               exact
-              path="/transactionsedit"
-              component={TransactionsEdit}
+              path="/transaction"
+              component={TransactionView}
             />
-
             <ProtectedRoute
               // logged in shows UserPage else shows LoginPage
               exact
-              path="/transactions"
-              component={TransactionsView}
+              path="/transactionedit"
+              component={TransactionEdit}
             />
 
             <ProtectedRoute

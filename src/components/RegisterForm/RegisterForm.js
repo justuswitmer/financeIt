@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import swal from '@sweetalert/with-react'
 
 class RegisterForm extends Component {
   state = {
@@ -25,6 +26,16 @@ class RegisterForm extends Component {
       [propertyName]: event.target.value,
     });
   };
+
+  welcome = () => {
+    swal({
+      title: "Welcome!",
+      text: `Thanks for registering! You are on the summary page, which will show all your categories when you create them. 
+            Click on "Categories" to begin!`,
+      icon: "success",
+      button: "Start Budgeting!",
+    });
+  }
 
   render() {
     return (
@@ -60,7 +71,20 @@ class RegisterForm extends Component {
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          <input
+            className="btn"
+            type="submit"
+            name="submit"
+            value="Register"
+            onClick={this.welcome}
+          />
+          <input
+            className="btn"
+            type="button"
+            name="click me"
+            value="click me"
+            onClick={this.welcome}
+          />
         </div>
       </form>
     );
@@ -68,3 +92,5 @@ class RegisterForm extends Component {
 }
 
 export default connect(mapStoreToProps)(RegisterForm);
+
+

@@ -10,19 +10,19 @@ import {
   TableContainer,
   TableCell,
   TableBody,
+  TextField,
+  Button,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const muiStyles = (theme) => createStyles({
   table: {
-    minWidth: 650,
+    minWidth: '650px',
+    margin: theme.spacing(12),
+    width: '80%',
   },
 });
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
 class CategoriesView extends Component {
 
   state = {
@@ -32,14 +32,11 @@ class CategoriesView extends Component {
       budgetedAmount: '',
       user: this.props.user.id
     },
-    table: {
-      minWidth: 200,
-    },
   };
 
   componentDidMount = () => {
     this.props.dispatch({
-      type: 'GET'
+      type: 'FETCH_CATEGORY'
     })
   }
 
@@ -73,35 +70,32 @@ class CategoriesView extends Component {
         <h2>{this.state.heading}</h2>
 
         <h3>Add New Category</h3>
-        <input
+        <TextField
           type='text'
           placeholder='new category'
           onChange={(event) => this.newCategoryChange('category', event)}
           value={this.state.newCategory.category}
+          variant='outlined'
         />
-        <input
+        <TextField
           type='text'
           placeholder='new monthly amount'
           onChange={(event) => this.newCategoryChange('budgetedAmount', event)}
           value={this.state.newCategory.budgetedAmount}
+          variant='outlined'
         />
-        <button
+        <Button
           onClick={this.addCategory}
+          variant='contained'
         >Add Category
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => { this.props.history.push('/categoriesedit') }}
+          variant='contained'
         >Edit Categories
-        </button>
-
-
-        {/* {this.props.category.map(category =>
-          <li key={category.id}>
-            {category.name} | {category.budgetedAmount}
-          </li>
-        )} */}
+        </Button>
         <TableContainer component={Paper}>
-          <Table className={this.state.table.minWidth} aria-label="simple table">
+          <Table className={this.props.classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Categories</TableCell>
@@ -120,7 +114,7 @@ class CategoriesView extends Component {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
+      </div >
     );
   }
 }
@@ -130,4 +124,4 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(CategoriesView);
+export default connect(mapStateToProps)(withStyles(muiStyles)(CategoriesView));

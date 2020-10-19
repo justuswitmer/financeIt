@@ -11,11 +11,10 @@ import {
   TableContainer,
   TableCell,
   TableBody,
-  TextField,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = (theme) => makeStyles({
   table: {
     minWidth: 650,
   },
@@ -25,44 +24,19 @@ const useStyles = makeStyles(theme => ({
       width: '25ch',
     },
   },
-}));
+});
 
 
 class CategoriesEdit extends Component {
   state = {
     heading: 'Edit Categories',
     updateCategory: {},
-    table: {
-      minWidth: 200,
-    },
   };
 
   componentDidMount = () => {
     this.props.dispatch({
-      type: 'GET'
+      type: 'FETCH_CATEGORY'
     })
-  }
-
-  categoryChange = (property, event) => {
-    console.log('in  categoryChange', event.target.value);
-    this.setState({
-      updateCategory: {
-        ...this.state.updateCategory,
-        [property]: event.target.value,
-        userId: this.props.user.id
-      }
-    })
-  }
-
-  updateCategory = () => {
-    console.log('in updateCategory', this.state.updateCategory);
-    this.props.dispatch({
-      type: 'UPDATE_CATEGORY',
-      data: this.state.updateCategory
-    });
-    this.setState({
-      updateCategory: {}
-    });
   }
 
   render() {
@@ -70,7 +44,7 @@ class CategoriesEdit extends Component {
       <div>
         <h2>{this.state.heading}</h2>
         <TableContainer component={Paper}>
-          <Table className={this.state.table.minWidth} aria-label="simple table">
+          <Table className={this.props.classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Categories</TableCell>
@@ -96,4 +70,4 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(CategoriesEdit);
+export default connect(mapStateToProps)(withStyles(useStyles)(CategoriesEdit));

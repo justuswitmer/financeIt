@@ -21,7 +21,7 @@ function* addCategorySaga(action) {
   });
   console.log('in AddCategorySaga', response);
   yield put({
-    type: "GET",
+    type: "FETCH_CATEGORY",
     payload: response.data,
   });
 }
@@ -33,9 +33,8 @@ function* updateCategorySaga(action) {
     url: action.url,
     data: action.payload
   });
-  console.log('in updateCategorySaga', action);
   yield put({
-    type: "GET",
+    type: "FETCH_CATEGORY",
     payload: response.data
   });
 }
@@ -46,16 +45,15 @@ function* deleteCategorySaga(action) {
     method: 'DELETE',
     url: action.url,
   });
-  console.log('in updateCategorySaga', action);
   yield put({
-    type: "GET",
+    type: "FETCH_CATEGORY",
     payload: response.data
   });
 }
 
 
 function* categorySaga() {
-  yield takeLatest('GET', fetchCategorySaga);
+  yield takeLatest('FETCH_CATEGORY', fetchCategorySaga);
   yield takeLatest('ADD_CATEGORY', addCategorySaga);
   yield takeLatest('UPDATE_CATEGORY', updateCategorySaga);
   yield takeLatest('DELETE_CATEGORY', deleteCategorySaga);
