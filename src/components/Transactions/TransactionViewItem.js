@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import muiStyles from '../Styling/Styling';
+import './Transactions.css';
 
 // Material-UI
 import {
   TableRow,
   TableCell,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
 } from '@material-ui/core';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { withStyles } from '@material-ui/core/styles';
 // const startOfMonth = moment().format('MM/DD/YYYY');
 // const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
+
 
 class TransactionViewItem extends Component {
   state = {
@@ -56,13 +64,25 @@ class TransactionViewItem extends Component {
 
   render() {
     return (
-      <TableRow>
-        <TableCell component="th" scope="row">
-          {this.props.transaction.description}
-        </TableCell>
-        <TableCell align="right">{this.props.transaction.amount}</TableCell>
-        <TableCell align="right">{moment(this.props.transaction.date).format('MM/DD/YYYY')}</TableCell>
-        <TableCell align="right">{this.props.transaction.name}</TableCell>
+      <TableRow classname={this.props.classes.transaction.root}>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={this.props.classes.transaction.heading}>
+              <p className='transactionP'>{this.props.transaction.description}</p>
+              <p>${this.props.transaction.amount}</p>
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <p>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</p>
+              <p>{this.props.transaction.name}</p>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
       </TableRow>
     );
   }
@@ -72,4 +92,6 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(TransactionViewItem);
+export default connect(mapStateToProps)
+  (withStyles(muiStyles)
+    (TransactionViewItem));

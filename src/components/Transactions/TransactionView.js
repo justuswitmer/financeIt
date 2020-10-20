@@ -178,10 +178,7 @@ class TransactionsView extends Component {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Description</TableCell>
-                <TableCell align="right">Amount</TableCell>
-                <TableCell align="right">Date</TableCell>
-                <TableCell align="right">Category</TableCell>
+                <TableCell>Transactions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

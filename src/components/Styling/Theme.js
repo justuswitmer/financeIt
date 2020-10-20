@@ -95,12 +95,28 @@ const customTheme = createMuiTheme({
       },
       body: {
         color: '#F2F2F2',
+        fontSize: '12px',
       },
     },
-    MuiInputBase: {
-      input: {
-        color: '#333333',
-        content: ""
+    MuiFormLabel: {
+      root: {
+        fontSize: '14px'
+      },
+    },
+    MuiAccordion: {
+      root: {
+        backgroundColor: '#333333'
+      },
+    },
+    MuiAccordionSummary: {
+      content: {
+        justifyContent: 'space-around'
+      },
+    },
+    MuiTypography: {
+      body1: {
+        textAlign: 'center',
+        display: 'inline-flex'
       },
     },
   },

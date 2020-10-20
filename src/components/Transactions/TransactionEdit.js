@@ -21,6 +21,8 @@ import {
   FormControl,
   Select,
 } from '@material-ui/core';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import FolderIcon from '@material-ui/icons/Folder';
 
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
@@ -43,9 +45,7 @@ class TransactionEdit extends Component {
 
   componentDidMount = () => {
     this.handleClick();
-    this.props.dispatch({
-      type: 'FETCH_CATEGORY'
-    });
+
   }
 
   newTransactionChange = (property, event) => {
@@ -176,11 +176,9 @@ class TransactionEdit extends Component {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Description</TableCell>
-                <TableCell align="right">Amount</TableCell>
-                <TableCell align="right">Date</TableCell>
-                <TableCell align="right">Category</TableCell>
-                <TableCell align="right">Account</TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right"><AttachMoneyIcon /></TableCell>
+                <TableCell align="right"><FolderIcon /></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

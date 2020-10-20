@@ -42,7 +42,9 @@ class TransactionEditItem extends Component {
 
   componentDidMount = () => {
     console.log('in componentDidMount');
-
+    this.props.dispatch({
+      type: 'FETCH_CATEGORY'
+    });
   }
 
   transactionChange = (property, event) => {
@@ -100,69 +102,71 @@ class TransactionEditItem extends Component {
 
   render() {
     return (
-      <TableRow>
-        <TableCell
-          component="th"
-          scope="row">
-          <TextField
-            label={this.props.transaction.description}
-            onChange={(event) => this.transactionChange('description', event)}
-          />
-        </TableCell>
-        <TableCell
-          align="right">
-          <TextField
-            label={this.props.transaction.amount}
-            onChange={(event) => this.transactionChange('amount', event)}
-          />
-
-        </TableCell>
-        <TableCell
-          align="right">
-          <TextField
-            type='date'
-            label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
-            onChange={(event) => this.transactionChange('date', event)}
-          />
-        </TableCell>
-        <TableCell
-          align="right">
-          <FormControl variant="outlined">
-            <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              onChange={(event) => this.transactionChange('categoryId', event)}
-              label="category"
-              value={''}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {this.props.category.map(category =>
-                <MenuItem
-                  key={category.id}
-                  value={category.id}
-                >{category.name}
+      <>
+        <TableRow>
+          <TableCell
+            component="th"
+            scope="row">
+            <TextField
+              type='date'
+              label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
+              onChange={(event) => this.transactionChange('date', event)}
+            />
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <TextField
+              label={this.props.transaction.description}
+              onChange={(event) => this.transactionChange('description', event)}
+            />
+          </TableCell>
+          <TableCell
+            align="right">
+            <TextField
+              label={this.props.transaction.amount}
+              onChange={(event) => this.transactionChange('amount', event)}
+            />
+          </TableCell>
+          <TableCell
+            align="right">
+            <FormControl variant="outlined">
+              <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                onChange={(event) => this.transactionChange('categoryId', event)}
+                label="category"
+                value={''}
+              >
+                <MenuItem value="">
+                  <em>None</em>
                 </MenuItem>
-              )}
-            </Select>
-          </FormControl>
-        </TableCell>
-        <TableCell align="right">
-          <CheckBoxIcon
-            value='save'
-            onClick={this.updateTransaction}
-          />
-        </TableCell>
-        <TableCell
-          align="right">
-          <DeleteIcon
-            value='delete'
-            onClick={this.deleteTransaction}
-          />
-        </TableCell>
-      </TableRow>
+                {this.props.category.map(category =>
+                  <MenuItem
+                    key={category.id}
+                    value={category.id}
+                  >{category.name}
+                  </MenuItem>
+                )}
+              </Select>
+            </FormControl>
+          </TableCell>
+          <TableCell align="right">
+            <CheckBoxIcon
+              value='save'
+              onClick={this.updateTransaction}
+            />
+          </TableCell>
+          <TableCell
+            align="right">
+            <DeleteIcon
+              value='delete'
+              onClick={this.deleteTransaction}
+            />
+          </TableCell>
+        </TableRow>
+      </>
     );
   }
 }

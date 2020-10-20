@@ -33,11 +33,15 @@ const muiStyles = (theme) => createStyles({
     margin: 0,
     position: 'sticky'
   },
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
+  transaction: {
+    root: {
+      width: '100%',
+    },
+    heading: {
+      fontSize: theme.typography.pxToRem(15),
+      fontWeight: theme.typography.fontWeightRegular,
+      display: 'inline'
+    },
   },
 });
 
