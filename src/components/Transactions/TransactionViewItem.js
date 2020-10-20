@@ -12,12 +12,14 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
+  Grid,
+  GridList,
+  GridListTile,
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withStyles } from '@material-ui/core/styles';
-// const startOfMonth = moment().format('MM/DD/YYYY');
-// const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 class TransactionViewItem extends Component {
   state = {
@@ -29,10 +31,6 @@ class TransactionViewItem extends Component {
       name: '',
       account: '',
     },
-    // newDate: {
-    //   startDate: moment().startOf('month').format('MM/DD/YYYY'),
-    //   endDate: moment().endOf('month').format('MM/DD/YYYY'),
-    // }
   };
 
   newTransactionChange = (property, event) => {
@@ -64,7 +62,7 @@ class TransactionViewItem extends Component {
 
   render() {
     return (
-      <TableRow classname={this.props.classes.transaction.root}>
+      <GridListTile cols={1}>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -72,18 +70,24 @@ class TransactionViewItem extends Component {
             id="panel1a-header"
           >
             <Typography className={this.props.classes.transaction.heading}>
-              <p className='transactionP'>{this.props.transaction.description}</p>
-              <p>${this.props.transaction.amount}</p>
+              <p item xs={8} className='description'>
+                {this.props.transaction.description}
+              </p>
+              <p item xs={4} className='amount'>
+                $ {this.props.transaction.amount}
+              </p>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <p>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</p>
-              <p>{this.props.transaction.name}</p>
+              <p className='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</p>
+              <p className='category'>{this.props.transaction.name}</p>
+              <CheckBoxIcon />
+              <DeleteIcon />
             </Typography>
           </AccordionDetails>
-        </Accordion>
-      </TableRow>
+        </Accordion >
+      </GridListTile>
     );
   }
 }

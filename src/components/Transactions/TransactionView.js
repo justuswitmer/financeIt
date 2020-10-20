@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import muiStyles from '../Styling/Styling';
 
 // Custom Imports 
 import TransactionViewItem from './TransactionViewItem';
 
 // Material-UI
 import {
-  Table,
-  Paper,
-  TableRow,
-  TableHead,
-  TableContainer,
-  TableCell,
-  TableBody,
   TextField,
   Button,
   InputLabel,
   MenuItem,
   FormControl,
   Select,
+  Grid,
+  GridList,
 } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
@@ -99,99 +96,118 @@ class TransactionsView extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.state.heading}</h2>
-        <TextField
-          type='date'
-          placeholder='start date'
-          onChange={(event) => this.transactionDateChange('startDate', event)}
-          variant='outlined'
-        />
-        <TextField
-          type='date'
-          placeholder='end date'
-          onChange={(event) => this.transactionDateChange('endDate', event)}
-          variant='outlined'
-        />
-        <Button
-          onClick={this.handleClick}
-          variant='contained'
-          color='secondary'
-        >Select Dates
-        </Button>
-        <h3>Add New Transaction</h3>
-        <TextField
-          type='text'
-          placeholder='description'
-          onChange={(event) => this.newTransactionChange('description', event)}
-          value={this.state.newTransaction.transaction}
-          variant='outlined'
-        />
-        <TextField
-          type='text'
-          placeholder='amount'
-          onChange={(event) => this.newTransactionChange('amount', event)}
-          value={this.state.newTransaction.budgetedAmount}
-          variant='outlined'
-        />
-        <TextField
-          type='date'
-          placeholder='date'
-          onChange={(event) => this.newTransactionChange('date', event)}
-          value={this.state.newTransaction.budgetedAmount}
-          variant='outlined'
-        />
-        <FormControl variant="outlined">
-          <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            onChange={(event) => this.newTransactionChange('categoryId', event)}
-            label="category"
-            value={''}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {this.props.category.map(category =>
-              <MenuItem
-                key={category.id}
-                value={category.id}
-              >{category.name}
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <h2>{this.state.heading}</h2>
+        </Grid>
+        <Grid item xs={12}>
+          <h3>Add New Transaction</h3>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            type='text'
+            placeholder='description'
+            onChange={(event) => this.newTransactionChange('description', event)}
+            value={this.state.newTransaction.transaction}
+            variant='outlined'
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            type='text'
+            placeholder='amount'
+            onChange={(event) => this.newTransactionChange('amount', event)}
+            value={this.state.newTransaction.budgetedAmount}
+            variant='outlined'
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            type='date'
+            placeholder='date'
+            onChange={(event) => this.newTransactionChange('date', event)}
+            value={this.state.newTransaction.budgetedAmount}
+            variant='outlined'
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <FormControl variant="outlined">
+            <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              onChange={(event) => this.newTransactionChange('categoryId', event)}
+              label="category"
+              value={''}
+            >
+              <MenuItem value="">
+                <em>None</em>
               </MenuItem>
-            )}
-          </Select>
-        </FormControl>
-        <Button
-          onClick={this.addTransaction}
-          variant='contained'
-          color='secondary'
-        >Add Transaction
-        </Button>
-        <Button
-          onClick={() => { this.props.history.push('/transactionedit') }}
-          variant='contained'
-          color='secondary'
-        >Edit Transactions
-        </Button>
-        <TableContainer component={Paper}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Transactions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.props.transaction.map(transaction =>
-                <TransactionViewItem
-                  key={transaction.id}
-                  transaction={transaction}
-                />
+              {this.props.category.map(category =>
+                <MenuItem
+                  key={category.id}
+                  value={category.id}
+                >{category.name}
+                </MenuItem>
               )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            onClick={this.addTransaction}
+            variant='contained'
+            color='secondary'
+          >Add Transaction
+        </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            onClick={() => { this.props.history.push('/transactionedit') }}
+            variant='contained'
+            color='secondary'
+          >Edit Transactions
+        </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            type='date'
+            placeholder='start date'
+            onChange={(event) => this.transactionDateChange('startDate', event)}
+            variant='outlined'
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            type='date'
+            placeholder='end date'
+            onChange={(event) => this.transactionDateChange('endDate', event)}
+            variant='outlined'
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            onClick={this.handleClick}
+            variant='contained'
+            color='secondary'
+          >Select Dates
+        </Button>
+        </Grid>
+        <div className={this.props.classes.transaction.root}>
+          <GridList
+            cellHeight={'auto'}
+            className={this.props.classes.transaction.gridlist}
+            cols={1}
+          >
+            {this.props.transaction.map(transaction =>
+              <TransactionViewItem
+                key={transaction.id}
+                transaction={transaction}
+              />
+            )}
+          </GridList>
+        </div>
+      </Grid>
     );
   }
 }
@@ -202,4 +218,6 @@ const mapStateToProps = reduxState => ({
   category: reduxState.category,
 })
 
-export default connect(mapStateToProps)(TransactionsView);
+export default connect(mapStateToProps)
+  (withStyles(muiStyles)
+    (TransactionsView));

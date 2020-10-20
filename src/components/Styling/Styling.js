@@ -35,12 +35,20 @@ const muiStyles = (theme) => createStyles({
   },
   transaction: {
     root: {
-      width: '100%',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+      backgroundColor: theme.palette.background.paper,
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightRegular,
       display: 'inline'
+    },
+    gridList: {
+      width: 500,
+      height: 450,
     },
   },
 });

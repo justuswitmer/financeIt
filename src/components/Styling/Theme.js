@@ -29,10 +29,6 @@ const customTheme = createMuiTheme({
   },
   overrides: {
     MuiButton: {
-      // root: {
-      //   borderRadius: '0',
-      //   fontWeight: 'bold',
-      // },
       contained: {
         border: '2px solid #333333',
         boxShadow: '1px 1px 0 #014F56',
@@ -45,18 +41,6 @@ const customTheme = createMuiTheme({
       root: {
         backgroundColor: '#F2F2F2',
       },
-      // rounded: {
-      //   borderRadius: '0',
-      // },
-      // elevation1: {
-      //   boxShadow: '4px 3px 0 #014F56',
-      // },
-      // elevation2: {
-      //   boxShadow: '4px 4px 0 #014F56',
-      // },
-      // elevation3: {
-      //   boxShadow: '4px 5px 0 #014F56',
-      // },
     },
     MuiCard: {
       root: {
@@ -105,13 +89,16 @@ const customTheme = createMuiTheme({
     },
     MuiAccordion: {
       root: {
-        backgroundColor: '#333333'
+        backgroundColor: '#3d3d3d',
+        width: ''
       },
     },
     MuiAccordionSummary: {
-      content: {
-        justifyContent: 'space-around'
+      root: {
+        width: '320px',
+        justifyContent: 'space-between'
       },
+
     },
     MuiTypography: {
       body1: {
