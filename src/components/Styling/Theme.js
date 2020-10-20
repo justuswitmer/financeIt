@@ -85,8 +85,22 @@ const customTheme = createMuiTheme({
     },
     MuiTable: {
       root: {
-        backgroundColor: '#3d3d3d',
+        backgroundColor: '#333333',
         borderRadius: '4px',
+      },
+    },
+    MuiTableCell: {
+      head: {
+        color: '#F29F05'
+      },
+      body: {
+        color: '#F2F2F2',
+      },
+    },
+    MuiInputBase: {
+      input: {
+        color: '#333333',
+        content: ""
       },
     },
   },

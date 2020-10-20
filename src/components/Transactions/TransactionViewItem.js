@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import moment from 'moment';
+import moment from 'moment';
 
 // Material-UI
 import {
@@ -8,7 +8,7 @@ import {
   TableCell,
 } from '@material-ui/core';
 
-// const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
+// const startOfMonth = moment().format('MM/DD/YYYY');
 // const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 
 class TransactionViewItem extends Component {
@@ -61,7 +61,7 @@ class TransactionViewItem extends Component {
           {this.props.transaction.description}
         </TableCell>
         <TableCell align="right">{this.props.transaction.amount}</TableCell>
-        <TableCell align="right">{this.props.transaction.date}</TableCell>
+        <TableCell align="right">{moment(this.props.transaction.date).format('MM/DD/YYYY')}</TableCell>
         <TableCell align="right">{this.props.transaction.name}</TableCell>
       </TableRow>
     );

@@ -16,6 +16,9 @@ import {
   Select,
 } from '@material-ui/core';
 
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 
@@ -118,7 +121,7 @@ class TransactionEditItem extends Component {
           align="right">
           <TextField
             type='date'
-            label={this.props.transaction.date}
+            label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
             onChange={(event) => this.transactionChange('date', event)}
           />
         </TableCell>
@@ -147,22 +150,17 @@ class TransactionEditItem extends Component {
           </FormControl>
         </TableCell>
         <TableCell align="right">
-          <Button
-            variant='contained'
-            color='secondary'
+          <CheckBoxIcon
+            value='save'
             onClick={this.updateTransaction}
-          >
-            Save
-            </Button>
+          />
         </TableCell>
         <TableCell
           align="right">
-          <Button
-            variant='contained'
-            color='secondary'
+          <DeleteIcon
+            value='delete'
             onClick={this.deleteTransaction}
-          >Delete
-          </Button>
+          />
         </TableCell>
       </TableRow>
     );
