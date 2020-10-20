@@ -15,6 +15,7 @@ import {
   Grid,
   GridList,
   GridListTile,
+  Switch,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -31,6 +32,10 @@ class TransactionViewItem extends Component {
       name: '',
       account: '',
     },
+    isChecked: {
+      checkedA: false,
+      checkedB: true,
+    }
   };
 
   newTransactionChange = (property, event) => {
@@ -60,33 +65,84 @@ class TransactionViewItem extends Component {
     })
   }
 
+  handleChange = (event) => {
+    console.log(this.state.isChecked.checkedB);
+
+    this.setState({
+      isChecked: {
+        checkedB: !this.state.isChecked.checkedB
+      }
+    })
+  }
+
   render() {
     return (
       <GridListTile cols={1}>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={this.props.classes.transaction.heading}>
-              <p item xs={8} className='description'>
-                {this.props.transaction.description}
-              </p>
-              <p item xs={4} className='amount'>
-                $ {this.props.transaction.amount}
-              </p>
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              <p className='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</p>
-              <p className='category'>{this.props.transaction.name}</p>
-              <CheckBoxIcon />
-              <DeleteIcon />
-            </Typography>
-          </AccordionDetails>
-        </Accordion >
+        {this.state.isChecked.checkedB ?
+          <Accordion>
+
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={this.props.classes.transaction.heading}>
+                <p item xs={8} className='description'>
+                  {this.props.transaction.description}
+                </p>
+                <p item xs={4} className='amount'>
+                  $ {this.props.transaction.amount}
+                </p>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <p className='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</p>
+                <p className='category'>{this.props.transaction.name}</p>
+                <Switch
+                  onChange={this.handleChange}
+                  color="primary"
+                  name="checkedB"
+                  inputProps={{ 'aria-label': 'primary checkbox' }}
+                />
+                <DeleteIcon />
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+
+          :
+          <Accordion>
+
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={this.props.classes.transaction.heading}>
+                <p item xs={8} className='description'>
+                  {this.props.transaction.description}
+                </p>
+                <p item xs={4} className='amount'>
+                  $ {this.props.transaction.amount}
+                </p>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+
+                <p className='category'>{this.props.transaction.name}</p>
+                <Switch
+                  checkedB={false}
+                  onChange={this.handleChange}
+                  color="primary"
+                  name="checkedA"
+                  inputProps={{ 'aria-label': 'primary checkbox' }}
+                />
+                <DeleteIcon />
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        }
       </GridListTile>
     );
   }

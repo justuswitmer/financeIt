@@ -98,7 +98,6 @@ const customTheme = createMuiTheme({
         width: '320px',
         justifyContent: 'space-between'
       },
-
     },
     MuiTypography: {
       body1: {

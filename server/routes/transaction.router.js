@@ -42,7 +42,7 @@ router.post('/add', rejectUnauthenticated, (req, res) => {
   const userId = req.body.userId;
   const categoryId = req.body.categoryId;
   queryText = `INSERT INTO "transaction"("description", "amount", 
-  "date", "account", "userId", "categoryId")
+  "date", "userId", "categoryId")
   VALUES
   ($1, $2, $3, $4, $5);`;
   pool
