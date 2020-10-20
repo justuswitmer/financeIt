@@ -61,7 +61,7 @@ const customTheme = createMuiTheme({
     MuiCard: {
       root: {
         marginTop: '30px',
-        backgroundColor: '#F2F2F2',
+        backgroundColor: '#3d3d3d',
         overflow: 'visible',
       }
     },
@@ -85,7 +85,7 @@ const customTheme = createMuiTheme({
     },
     MuiTable: {
       root: {
-        backgroundColor: '#6CA663',
+        backgroundColor: '#3d3d3d',
         borderRadius: '4px',
       },
     },

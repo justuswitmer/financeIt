@@ -1,4 +1,22 @@
-.nav {
+#header {
+  position: fixed;
+  bottom: 0;
+  transition: 0.2s;
+  font: 30px;
+}
+
+#headerLarge {
+  position: fixed;
+  bottom: 0;
+  transition: 0.2s;
+  font: 90px;
+}
+
+
+
+
+
+/* .nav {
   margin: 0 0 30px;
   background-color: #00acb0;
   overflow: hidden;
@@ -16,12 +34,12 @@
 
   /* these last two make the logout button in
   the nav bar look like another link */
-  border:none;
+  /*border:none;
   cursor: pointer;
   outline:0;
 }
 
 .nav-link:hover {
   background-color: #008183;
-}
+} */
 

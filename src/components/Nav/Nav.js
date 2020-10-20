@@ -1,133 +1,70 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 // import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import muiStyles from '../Styling/Styling';
-import clsx from 'clsx';
 
 // Material-UI
 import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
+  BottomNavigation,
+  BottomNavigationAction,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import TableChartIcon from '@material-ui/icons/TableChart';
+import FolderIcon from '@material-ui/icons/Folder';
+import ListIcon from '@material-ui/icons/List';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  list: {
-    width: 120
-  },
-  fullList: {
-    width: '120',
-  },
+  root: {
+    width: 375,
+    position: 'fixed',
+    bottom: 0,
+    marginTop: '20px',
+  }
 });
 
 const Nav = (props) => {
 
-  let loginLinkData = {
-    path: '/login',
-    text: 'Login / Register',
-  };
-
-  if (props.store.user.id != null) {
-    loginLinkData.path = '/user';
-    loginLinkData.text = 'Home';
-  }
-
-  ///////////// MATERIAL UI /////////////
-
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
+  const [value, setValue] = React.useState('recents');
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        <ListItem button>
-          <Link className="nav-link" to="/summary">
-            Summary
-          </Link>
-        </ListItem>
-        <ListItem button>
-          <Link className="nav-link" to="/categories">
-            Categories
-          </Link>
-        </ListItem>
-        <ListItem button>
-          <Link className="nav-link" to="/transaction">
-            Transactions
-          </Link>
-        </ListItem>
-        <ListItem button>
-          <Link className="nav-link" to="/account">
-            Account
-          </Link>
-        </ListItem>
-      </List>
-    </div>
-  );
+
 
   return (
-    <div className={props.classes.grid.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={props.classes.menuButton} color="inherit" aria-label="menu">
-            <div>
-              <React.Fragment>
-                <MenuIcon onClick={toggleDrawer('top', true)} />
-                <Drawer anchor={'top'} open={state['top']} onClose={toggleDrawer('top', false)}>
-                  {list('top')}
-                </Drawer>
-              </React.Fragment>
-            </div>
-          </IconButton>
-          <Typography variant="h6" className={props.classes.title}>
-            <Link to="/home">
-              <h2 className="nav-title">Financery</h2>
-            </Link>
-          </Typography>
-          <Button color='inherit' className="nav-right">
-
-            {/* Show the link to the info page and the logout button if the user is logged in */}
-            {props.store.user.id && (
-              <LogOutButton className="nav-link" />
-            )}
-          </Button>
-
-
-        </Toolbar>
-      </AppBar>
-    </div>
+    <BottomNavigation
+      value={value}
+      onChange={handleChange}
+      className={classes.root}>
+      <BottomNavigationAction
+        label="Summary"
+        value="recents"
+        icon={<TableChartIcon />}
+        onClick={() => props.history.push("/summary")}
+      />
+      <BottomNavigationAction
+        label="Categories"
+        value="favorites"
+        icon={<FolderIcon />}
+        onClick={() => props.history.push("/categories")}
+      />
+      <BottomNavigationAction
+        label="Transactions"
+        value="nearby"
+        icon={<ListIcon />}
+        onClick={() => props.history.push("/transaction")}
+      />
+      <BottomNavigationAction
+        label="Account"
+        value="account"
+        icon={<AccountCircleIcon />}
+        onClick={() => props.history.push("/account")}
+      />
+    </BottomNavigation>
   );
 };
 
-export default connect(mapStoreToProps)
-  (withStyles(muiStyles)
-    (Nav));
+export default connect(mapStoreToProps)(withRouter(Nav));

@@ -11,6 +11,12 @@ import muiStyles from '../Styling/Styling';
 import {
   Paper,
   Grid,
+  Table,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+  TableBody,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -74,15 +80,29 @@ class SummaryView extends Component {
           <Grid item xs={12}>
             <button
               onClick={this.handleClick}
-            >Select</button>
+            >Select Dates</button>
           </Grid>
           <Grid item xs={12}>
-            {this.props.summary.map(summary =>
-              <SummaryViewItem
-                key={summary.category}
-                summary={summary}
-              />
-            )}
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Category</TableCell>
+                    <TableCell align="center">Spent</TableCell>
+                    <TableCell align="center">Not Spent</TableCell>
+                    <TableCell align="center">Amount Over/Under</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.summary.map(summary =>
+                    <SummaryViewItem
+                      key={summary.category}
+                      summary={summary}
+                    />
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Grid>
 
         </Grid>

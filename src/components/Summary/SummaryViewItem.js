@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
+// Material-UI
+import {
+  TableRow,
+  TableCell,
+} from '@material-ui/core';
+
 class SummaryViewItem extends Component {
   state = {
     heading: 'Summary Items',
@@ -10,16 +16,21 @@ class SummaryViewItem extends Component {
 
   render() {
     return (
-      <div>
-
-        <li>
-          {this.props.summary.category} |
-          {this.props.summary.categoryAmount} |
+      <TableRow>
+        <TableCell align="center">
+          {this.props.summary.category}
+        </TableCell>
+        <TableCell align="center">
+          {this.props.summary.categoryAmount}
+        </TableCell>
+        <TableCell align="center">
           {this.props.summary.budgetedAmount}
-        </li>
-        <li>{Number(this.props.summary.categoryAmount) +
-          Number(this.props.summary.budgetedAmount)} </li>
-      </div>
+        </TableCell>
+        <TableCell align="center">
+          {Number(this.props.summary.categoryAmount) +
+            Number(this.props.summary.budgetedAmount)}
+        </TableCell>
+      </TableRow>
     );
   }
 }

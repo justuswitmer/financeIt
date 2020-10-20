@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux';
 
 // Component Imports
-import './App.css';
+import './Appp.css';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // CONSTANT COMPONENTS
@@ -60,8 +60,8 @@ class App extends Component {
     return (
       <ThemeProvider theme={customTheme}>
         <Router>
-          <div>
-            <Nav />
+          <div className='app'>
+            <Header />
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />
@@ -117,6 +117,7 @@ class App extends Component {
             </Switch>
             <Footer />
           </div>
+          <Nav />
         </Router>
       </ThemeProvider>
     );

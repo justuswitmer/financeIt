@@ -4,9 +4,8 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 
 const muiStyles = (theme) => createStyles({
   table: {
-    minWidth: '650px',
-    margin: theme.spacing(12),
-    width: '80%',
+    margin: theme.spacing(1),
+    width: '100%',
   },
   tableRow: {
 
@@ -14,6 +13,7 @@ const muiStyles = (theme) => createStyles({
   grid: {
     root: {
       flexGrow: 1,
+
     },
     paper: {
       padding: theme.spacing(2),
@@ -26,6 +26,12 @@ const muiStyles = (theme) => createStyles({
   },
   title: {
     flexGrow: 1,
+    height: "50px",
+    position: 'sticky'
+  },
+  header: {
+    margin: 0,
+    position: 'sticky'
   },
   list: {
     width: 250,
