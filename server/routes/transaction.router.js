@@ -35,12 +35,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // route to retrieve transactions grouped by dates
 router.post('/add', rejectUnauthenticated, (req, res) => {
-  console.log('getting my req.body in transaction router', req.body);
-  const description = req.body.description;
-  const amount = req.body.amount;
-  const date = req.body.date;
-  const userId = req.body.userId;
-  const categoryId = req.body.categoryId;
+  console.log('getting my req.body in transaction router POST', req.body);
+  const description = req.body.transaction.description;
+  const amount = req.body.transaction.amount;
+  const date = req.body.transaction.date;
+  const userId = req.body.user;
+  const categoryId = req.body.transaction.categoryId;
   queryText = `INSERT INTO "transaction"("description", "amount", 
   "date", "userId", "categoryId")
   VALUES
@@ -51,7 +51,7 @@ router.post('/add', rejectUnauthenticated, (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('we got an error in transactions router', err);
+      console.log('we got an error in transactions router POST', err);
       res.sendStatus(500);
     });
 });

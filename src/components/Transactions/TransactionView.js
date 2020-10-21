@@ -25,14 +25,6 @@ const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 class TransactionsView extends Component {
   state = {
     heading: 'Transactions',
-    newTransaction: {
-      description: '',
-      amount: '',
-      date: '',
-      categoryId: '',
-      account: '',
-      userId: this.props.user.id
-    },
     newDate: {
       startDate: moment().startOf('month').format('MM/DD/YYYY'),
       endDate: moment().endOf('month').format('MM/DD/YYYY'),
@@ -48,9 +40,9 @@ class TransactionsView extends Component {
 
   newTransactionChange = (property, event) => {
     console.log('in newTransactionChange', event.target.value);
-    this.setState({
-      newTransaction: {
-        ...this.state.newTransaction,
+    this.props.dispatch({
+      type: 'EDIT_TRANSACTION_FOR_UPDATE',
+      payload: {
         [property]: event.target.value
       },
     })
@@ -60,18 +52,12 @@ class TransactionsView extends Component {
     console.log('in addTransaction');
     this.props.dispatch({
       type: 'ADD_TRANSACTION',
-      payload: this.state.newTransaction
+      payload: {
+        transaction: this.props.updatedTransaction,
+        user: this.props.user.id,
+        date: this.state.newDate,
+      },
     });
-    this.setState({
-      newTransaction: {
-        description: '',
-        amount: '',
-        date: '',
-        categoryId: '',
-        account: '',
-        userId: this.props.user.id
-      }
-    })
   }
 
   transactionDateChange = (property, event) => {
@@ -108,7 +94,6 @@ class TransactionsView extends Component {
             type='text'
             placeholder='description'
             onChange={(event) => this.newTransactionChange('description', event)}
-            value={this.state.newTransaction.transaction}
             variant='outlined'
           />
         </Grid>
@@ -117,7 +102,6 @@ class TransactionsView extends Component {
             type='text'
             placeholder='amount'
             onChange={(event) => this.newTransactionChange('amount', event)}
-            value={this.state.newTransaction.budgetedAmount}
             variant='outlined'
           />
         </Grid>
@@ -126,7 +110,6 @@ class TransactionsView extends Component {
             type='date'
             placeholder='date'
             onChange={(event) => this.newTransactionChange('date', event)}
-            value={this.state.newTransaction.budgetedAmount}
             variant='outlined'
           />
         </Grid>
@@ -210,6 +193,7 @@ const mapStateToProps = reduxState => ({
   transaction: reduxState.transaction,
   user: reduxState.user,
   category: reduxState.category,
+  updatedTransaction: reduxState.saveTransactionForUpdateReducer
 })
 
 export default connect(mapStateToProps)
