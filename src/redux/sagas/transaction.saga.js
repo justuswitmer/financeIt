@@ -22,7 +22,7 @@ function* addTransactionSaga(action) {
   });
   yield put({
     type: "FETCH_TRANSACTION",
-    payload: action.payload.newDate
+    payload: action.payload.date.newDate
   });
 }
 
@@ -35,7 +35,7 @@ function* updateTransactionSaga(action) {
   });
   yield put({
     type: "FETCH_TRANSACTION",
-    payload: action.payload.newDate
+    payload: action.payload.date.newDate
   });
 }
 

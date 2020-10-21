@@ -151,6 +151,12 @@ class TransactionEditItem extends Component {
                 )}
               </Select>
             </FormControl>
+
+
+
+
+
+
           </TableCell>
           <TableCell align="right">
             <CheckBoxIcon

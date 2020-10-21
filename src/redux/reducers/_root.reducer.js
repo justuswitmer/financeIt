@@ -3,7 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import summary from './summary.reducer';
 import category from './category.reducer';
-import transaction from './transaction.reducer';
+import transaction, { saveTransactionForUpdateReducer } from './transaction.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
   summary, // pulls in category amounts from transactions if user is logged in
   category, // pulls in categories if user is logged in
   transaction, // pulls in transaction if user is logged in
+  saveTransactionForUpdateReducer // saving transaction for update
 });
 
 export default rootReducer;

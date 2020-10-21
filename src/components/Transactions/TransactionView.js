@@ -162,12 +162,6 @@ class TransactionsView extends Component {
         </Button>
         </Grid>
         <Grid item xs={12}>
-          <Button
-            onClick={() => { this.props.history.push('/transactionedit') }}
-            variant='contained'
-            color='secondary'
-          >Edit Transactions
-        </Button>
         </Grid>
         <Grid item xs={6}>
           <TextField

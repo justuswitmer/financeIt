@@ -24,8 +24,8 @@ const customTheme = createMuiTheme({
     h4: { color: '#F29F05', fontWeight: 'bold' },
     h5: { color: '#F29F05', fontWeight: 'bold' },
     h6: { color: '#F29F05', fontWeight: 'bold' },
-    body1: { color: '#F2F2F2' },
-    body2: { color: '#F2F2F2' },
+    body1: { color: '#F29F05' },
+    body2: { color: '#F29F05' },
   },
   overrides: {
     MuiButton: {
