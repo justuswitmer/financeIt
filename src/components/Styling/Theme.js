@@ -87,6 +87,13 @@ const customTheme = createMuiTheme({
         fontSize: '14px'
       },
     },
+    MuiFormControl: {
+      root: {
+        width: '-webkit-fill-available',
+        paddingLeft: '5px',
+        paddingRight: '5px'
+      },
+    },
     MuiAccordion: {
       root: {
         backgroundColor: '#3d3d3d',

@@ -82,15 +82,7 @@ class TransactionViewItem extends Component {
         transactionId: this.props.transaction.id
       },
     });
-    this.setState({
-      newTransaction: {
-        description: '',
-        amount: '',
-        date: '',
-        categoryId: '',
-        account: '',
-      }
-    });
+    this.handleChange();
   }
 
   deleteTransaction = () => {
@@ -145,19 +137,21 @@ class TransactionViewItem extends Component {
                 <span item xs={4} className='amount'>
                   $ {this.props.transaction.amount}
                 </span>
+                <span className='updateDeleteBtns'>
+                  <EditIcon
+                    onClick={this.handleChange}
+                  />
+                  <DeleteIcon
+                    value='delete'
+                    onClick={this.deleteTransaction}
+                  />
+                </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
                 <span className='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</span>
                 <span className='category'>{this.props.transaction.name}</span>
-                <EditIcon
-                  onClick={this.handleChange}
-                />
-                <DeleteIcon
-                  value='delete'
-                  onClick={this.deleteTransaction}
-                />
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -168,53 +162,57 @@ class TransactionViewItem extends Component {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <TextField
-                className='description'
-                label={this.props.transaction.description}
-                onChange={(event) => this.newTransactionChange('description', event)}
-              />
-              <TextField
-                className='amount'
-                label={this.props.transaction.amount}
-                onChange={(event) => this.newTransactionChange('amount', event)}
-              />
+              <Typography className={this.props.classes.transaction.heading}>
+                <TextField
+                  className='description'
+                  label={this.props.transaction.description}
+                  onChange={(event) => this.newTransactionChange('description', event)}
+                />
+                <TextField
+                  className='amount'
+                  label={this.props.transaction.amount}
+                  onChange={(event) => this.newTransactionChange('amount', event)}
+                />
+                <span className='updateDeleteBtns'>
+                  <CheckBoxIcon
+                    onClick={this.updateTransaction}
+                  />
+                  <DeleteIcon
+                    value='delete'
+                    onClick={this.deleteTransaction}
+                  />
+                </span>
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <TextField
-                className='date'
-                type='date'
-                label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
-                onChange={(event) => this.newTransactionChange('date', event)}
-              />
-              <FormControl
-                className='category'
-                variant="outlined">
-                <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
-                <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
-                  onChange={(event) => this.newTransactionChange('categoryId', event)}
-                  label="category"
-                  value={''}
-                >
-                  <MenuItem value="">None</MenuItem>
-                  {this.props.category.map(category =>
-                    <MenuItem
-                      key={category.id}
-                      value={category.id}
-                    >{category.name}
-                    </MenuItem>
-                  )}
-                </Select>
-              </FormControl>
-              <CheckBoxIcon
-                onClick={this.handleChange}
-                onClick={this.updateTransaction}
-              />
-              <DeleteIcon
-                value='delete'
-                onClick={this.deleteTransaction}
-              />
+              <Typography>
+                <TextField
+                  className='date'
+                  label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
+                  onChange={(event) => this.newTransactionChange('date', event)}
+                />
+                <FormControl
+                  className='category'
+                  variant="outlined">
+                  <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    onChange={(event) => this.newTransactionChange('categoryId', event)}
+                    label="category"
+                    value={''}
+                  >
+                    <MenuItem value="">None</MenuItem>
+                    {this.props.category.map(category =>
+                      <MenuItem
+                        key={category.id}
+                        value={category.id}
+                      >{category.name}
+                      </MenuItem>
+                    )}
+                  </Select>
+                </FormControl>
+              </Typography>
             </AccordionDetails>
           </Accordion>
         }
