@@ -1,25 +1,25 @@
-.description {
+#description {
   padding-left: 10px;
   padding-right: 10px;
   margin: 0;
   font-size: 14px;
 }
 
-.amount {
+#amount {
   padding-left: 10px;
   padding-right: 10px;
   margin: 0;
   font-size: 14px;
 }
 
-.date {
+#date {
   padding-left: 10px;
   padding-right: 10px;
   margin: 0;
   font-size: 14px;
 }
 
-.category {
+#category {
   padding-left: 10px;
   padding-right: 10px;
   margin: 0;
@@ -30,4 +30,9 @@
   width: 130px;
   position: absolute;
   right: 0;
+}
+
+#GridList {
+  color: #F29F05;
+  background-color: #eeb64f;
 }

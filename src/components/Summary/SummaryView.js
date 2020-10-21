@@ -24,6 +24,7 @@ import { withStyles } from '@material-ui/core/styles';
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 
+let total;
 class SummaryView extends Component {
   state = {
     heading: 'Summary',
@@ -53,10 +54,16 @@ class SummaryView extends Component {
   handleClick = () => {
     console.log('in handleClick', this.state.newDate);
     this.props.dispatch({
-      type: 'FETCH_DATES',
+      type: 'FETCH_SUMMARY_DATES',
+      payload: this.state.newDate
+    });
+    this.props.dispatch({
+      type: 'FETCH_TRANSACTION_TOTAL',
       payload: this.state.newDate
     });
   }
+
+
 
   render() {
     return (
@@ -64,6 +71,11 @@ class SummaryView extends Component {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <h2>{this.state.heading}</h2>
+          </Grid>
+          <Grid item xs={12}>
+            {this.props.totalAmount.map(total =>
+              <p key={total.sum}>${Number(total.sum)}</p>
+            )}
           </Grid>
           <Grid item xs={12}>
             <input
@@ -113,7 +125,8 @@ class SummaryView extends Component {
 
 const mapStateToProps = reduxState => ({
   summary: reduxState.summary,
-  category: reduxState.category
+  totalAmount: reduxState.transactionTotalReducer,
+  category: reduxState.category,
 });
 
 export default connect(mapStateToProps)

@@ -94,6 +94,11 @@ const customTheme = createMuiTheme({
         paddingRight: '5px'
       },
     },
+    MuiSelect: {
+      selectMenu: {
+        width: '80px'
+      },
+    },
     MuiAccordion: {
       root: {
         backgroundColor: '#3d3d3d',
@@ -112,6 +117,13 @@ const customTheme = createMuiTheme({
         display: 'inline-flex'
       },
     },
+    MuiGridListTile: {
+      root: {
+        marginLeft: '9px',
+        marginTop: '1px',
+        marginBottom: '1px',
+      }
+    }
   },
 });
 

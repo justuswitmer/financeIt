@@ -131,10 +131,10 @@ class TransactionViewItem extends Component {
               id="panel1a-header"
             >
               <Typography className={this.props.classes.transaction.heading}>
-                <span className='description'>
+                <span id='description'>
                   {this.props.transaction.description}
                 </span>
-                <span item xs={4} className='amount'>
+                <span id='amount'>
                   $ {this.props.transaction.amount}
                 </span>
                 <span className='updateDeleteBtns'>
@@ -150,8 +150,8 @@ class TransactionViewItem extends Component {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                <span className='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</span>
-                <span className='category'>{this.props.transaction.name}</span>
+                <span id='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</span>
+                <span id='category'>{this.props.transaction.name}</span>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -164,12 +164,12 @@ class TransactionViewItem extends Component {
             >
               <Typography className={this.props.classes.transaction.heading}>
                 <TextField
-                  className='description'
+                  id='description'
                   label={this.props.transaction.description}
                   onChange={(event) => this.newTransactionChange('description', event)}
                 />
                 <TextField
-                  className='amount'
+                  id='amount'
                   label={this.props.transaction.amount}
                   onChange={(event) => this.newTransactionChange('amount', event)}
                 />
@@ -187,22 +187,21 @@ class TransactionViewItem extends Component {
             <AccordionDetails>
               <Typography>
                 <TextField
-                  className='date'
+                  id='date'
                   label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
                   onChange={(event) => this.newTransactionChange('date', event)}
                 />
                 <FormControl
-                  className='category'
-                  variant="outlined">
+                  className={this.props.classes.FormControl}
+                  id='category'
+                >
                   <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
                   <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"
                     onChange={(event) => this.newTransactionChange('categoryId', event)}
                     label="category"
-                    value={''}
+                    value={this.props.transactions.id}
                   >
-                    <MenuItem value="">None</MenuItem>
+
                     {this.props.category.map(category =>
                       <MenuItem
                         key={category.id}

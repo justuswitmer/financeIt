@@ -117,15 +117,10 @@ class TransactionsView extends Component {
           <FormControl variant="outlined">
             <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
             <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
               onChange={(event) => this.newTransactionChange('categoryId', event)}
               label="category"
-              value={''}
+              value={this.props.transaction.id}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               {this.props.category.map(category =>
                 <MenuItem
                   key={category.id}

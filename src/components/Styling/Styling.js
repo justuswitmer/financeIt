@@ -10,6 +10,13 @@ const muiStyles = (theme) => createStyles({
   tableRow: {
 
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
   grid: {
     root: {
       flexGrow: 1,
@@ -40,6 +47,7 @@ const muiStyles = (theme) => createStyles({
       justifyContent: 'space-around',
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
+
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),

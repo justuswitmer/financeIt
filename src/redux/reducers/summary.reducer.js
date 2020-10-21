@@ -8,4 +8,15 @@ const summaryReducer = (state = [], action) => {
   }
 };
 
+export const transactionTotalReducer = (state = [], action) => {
+  console.log('in summaryReducer ', action);
+  switch (action.type) {
+    case 'SET_TRANSACTION_TOTAL':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export default summaryReducer;
+

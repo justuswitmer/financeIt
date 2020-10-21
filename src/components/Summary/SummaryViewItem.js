@@ -8,11 +8,9 @@ import {
   TableCell,
 } from '@material-ui/core';
 
-class SummaryViewItem extends Component {
-  state = {
-    heading: 'Summary Items',
-  };
 
+
+class SummaryViewItem extends Component {
 
   render() {
     return (
