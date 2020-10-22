@@ -40,15 +40,15 @@ import {
 
 // PROTECTED ROUTE //
 //logged in shows UserPage else shows LoginPage
-{/* For protected routes, the view could show one of several things on the same route.
+/* For protected routes, the view could show one of several things on the same route.
 Visiting localhost:3000/user will show the UserPage if the user is logged in.
 If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+Even though it seems like they are different pages, the user is always on localhost:3000/user */
 
 // AUTH REDIRECT //
-{/* When a value is supplied for the authRedirect prop the user will
+/* When a value is supplied for the authRedirect prop the user will
 be redirected to the path supplied when logged in, otherwise they will
-be taken to the component and exact path supplied. */}
+be taken to the component and exact path supplied. */
 
 
 class App extends Component {

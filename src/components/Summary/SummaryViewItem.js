@@ -19,13 +19,13 @@ class SummaryViewItem extends Component {
           {this.props.summary.category}
         </TableCell>
         <TableCell align="center">
-          {this.props.summary.categoryAmount}
+          ${this.props.summary.budgetedAmount}
         </TableCell>
         <TableCell align="center">
-          {this.props.summary.budgetedAmount}
+          ${this.props.summary.categoryAmount}
         </TableCell>
         <TableCell align="center">
-          {Number(this.props.summary.categoryAmount) +
+          ${Number(this.props.summary.categoryAmount) +
             Number(this.props.summary.budgetedAmount)}
         </TableCell>
       </TableRow>

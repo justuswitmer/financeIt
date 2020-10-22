@@ -1,6 +1,20 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
+
+function* fetchSummaryCatSaga() {
+  let response = yield axios({
+    method: 'GET',
+    url: '/api/summary',
+  });
+  console.log('in fetchSummaryCatSaga', response);
+  yield put({
+    type: "SET_SUMMARY_CAT_TOTAL",
+    payload: response.data,
+  });
+}
+
+
 function* fetchSummary(action) {
   console.log('in fetchSummary saga', action);
   let response = yield axios({
@@ -31,6 +45,7 @@ function* fetchSummaryTotalSaga(action) {
 function* summarySaga() {
   yield takeLatest('FETCH_SUMMARY_DATES', fetchSummary);
   yield takeLatest('FETCH_TRANSACTION_TOTAL', fetchSummaryTotalSaga);
+  yield takeLatest('FETCH_SUMMARY_CAT_TOTAL', fetchSummaryCatSaga);
 }
 
 export default summarySaga;

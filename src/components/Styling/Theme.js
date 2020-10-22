@@ -1,6 +1,8 @@
 import {
   createMuiTheme,
 } from '@material-ui/core/styles';
+import './Theme.css';
+const font = "'Open Sans', sans-serif";
 
 // CUSTOM THEME
 const customTheme = createMuiTheme({
@@ -18,28 +20,28 @@ const customTheme = createMuiTheme({
     info: { main: '#6CA663' },
   },
   typography: {
-    h1: { color: '#F29F05', fontWeight: 'bold' },
-    h2: { color: '#F29F05', fontWeight: 'bold' },
-    h3: { color: '#F29F05', fontWeight: 'bold' },
-    h4: { color: '#F29F05', fontWeight: 'bold' },
-    h5: { color: '#F29F05', fontWeight: 'bold' },
-    h6: { color: '#F29F05', fontWeight: 'bold' },
+    fontFamily: font,
+    button: {
+      textTransform: "none"
+    },
     body1: { color: '#F29F05' },
     body2: { color: '#F29F05' },
+
   },
   overrides: {
     MuiButton: {
       contained: {
-        border: '2px solid #333333',
+        border: '2px solid #33333',
         boxShadow: '1px 1px 0 #014F56',
         '&:hover': {
           boxShadow: '1px 1px 0 #014F56',
-        }
+        },
       }
     },
     MuiPaper: {
       root: {
-        backgroundColor: '#F2F2F2',
+        backgroundColor: '#3d3d3d',
+
       },
     },
     MuiCard: {
@@ -75,11 +77,19 @@ const customTheme = createMuiTheme({
     },
     MuiTableCell: {
       head: {
-        color: '#F29F05'
+        color: '#F29F05',
+        padding: '5px',
+        fontWeight: 'bold',
+        fontSize: '14px'
       },
       body: {
         color: '#F2F2F2',
-        fontSize: '12px',
+        fontSize: '14px',
+      },
+    },
+    MuiTableContainer: {
+      root: {
+
       },
     },
     MuiFormLabel: {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-
+import { Button } from '@material-ui/core';
 
 class LoginForm extends Component {
   state = {
@@ -42,10 +42,11 @@ class LoginForm extends Component {
         )}
         <div>
           <label htmlFor="username">
-            Username:
+
             <input
               type="text"
               name="username"
+              placeholder='username'
               required
               value={this.state.username}
               onChange={this.handleInputChangeFor('username')}
@@ -54,10 +55,11 @@ class LoginForm extends Component {
         </div>
         <div>
           <label htmlFor="password">
-            Password:
+
             <input
               type="password"
               name="password"
+              placeholder='password'
               required
               value={this.state.password}
               onChange={this.handleInputChangeFor('password')}
@@ -65,7 +67,13 @@ class LoginForm extends Component {
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Log In" />
+          <Button
+            className="btn"
+            type="submit"
+            name="submit"
+            value="Log In"
+          >Login
+          </Button>
         </div>
       </form>
     );

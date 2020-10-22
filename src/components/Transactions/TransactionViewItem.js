@@ -12,7 +12,6 @@ import {
   AccordionDetails,
   Typography,
   GridListTile,
-  Switch,
   TextField,
   InputLabel,
   MenuItem,
@@ -124,7 +123,6 @@ class TransactionViewItem extends Component {
       <GridListTile cols={1}>
         {this.state.isChecked.checkedB ?
           <Accordion>
-
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"

@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withStyles, createStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/core/styles';
 
 const muiStyles = (theme) => createStyles({
   table: {

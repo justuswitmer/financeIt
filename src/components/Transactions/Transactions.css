@@ -1,25 +1,4 @@
-#description {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 0;
-  font-size: 14px;
-}
-
-#amount {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 0;
-  font-size: 14px;
-}
-
-#date {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 0;
-  font-size: 14px;
-}
-
-#category {
+#description #amount #date #category{
   padding-left: 10px;
   padding-right: 10px;
   margin: 0;

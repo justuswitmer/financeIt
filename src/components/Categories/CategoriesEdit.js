@@ -12,22 +12,8 @@ import {
   TableContainer,
   TableCell,
   TableBody,
-  Grid,
 } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-
-// const useStyles = (theme) => makeStyles({
-//   table: {
-//     minWidth: 650,
-//   },
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//       width: '25ch',
-//     },
-//   },
-// });
-
+import { withStyles } from '@material-ui/core/styles';
 
 class CategoriesEdit extends Component {
   state = {

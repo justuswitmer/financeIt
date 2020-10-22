@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from '@sweetalert/with-react'
+import { Button } from '@material-ui/core';
 
 class RegisterForm extends Component {
   state = {
@@ -48,10 +49,10 @@ class RegisterForm extends Component {
         )}
         <div>
           <label htmlFor="username">
-            Username:
             <input
               type="text"
               name="username"
+              placeholder="username"
               value={this.state.username}
               required
               onChange={this.handleInputChangeFor('username')}
@@ -60,10 +61,10 @@ class RegisterForm extends Component {
         </div>
         <div>
           <label htmlFor="password">
-            Password:
             <input
               type="password"
               name="password"
+              placeholder="password"
               value={this.state.password}
               required
               onChange={this.handleInputChangeFor('password')}
@@ -71,20 +72,14 @@ class RegisterForm extends Component {
           </label>
         </div>
         <div>
-          <input
+          <Button
             className="btn"
             type="submit"
             name="submit"
             value="Register"
             onClick={this.welcome}
-          />
-          <input
-            className="btn"
-            type="button"
-            name="click me"
-            value="click me"
-            onClick={this.welcome}
-          />
+          >Register
+          </Button>
         </div>
       </form>
     );

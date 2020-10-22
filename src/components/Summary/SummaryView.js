@@ -5,6 +5,7 @@ import moment from 'moment';
 
 // Custom imports
 import SummaryViewItem from './SummaryViewItem';
+import SummarySpent from './SummarySpent';
 import muiStyles from '../Styling/Styling';
 
 // Material-UI
@@ -17,14 +18,21 @@ import {
   TableContainer,
   TableCell,
   TableBody,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+
+
 
 // Date formats
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 
-let total;
 class SummaryView extends Component {
   state = {
     heading: 'Summary',
@@ -61,6 +69,9 @@ class SummaryView extends Component {
       type: 'FETCH_TRANSACTION_TOTAL',
       payload: this.state.newDate
     });
+    this.props.dispatch({
+      type: 'FETCH_SUMMARY_CAT_TOTAL'
+    });
   }
 
 
@@ -72,27 +83,36 @@ class SummaryView extends Component {
           <Grid item xs={12}>
             <h2>{this.state.heading}</h2>
           </Grid>
+          <SummarySpent />
           <Grid item xs={12}>
-            {this.props.totalAmount.map(total =>
-              <p key={total.sum}>${Number(total.sum)}</p>
-            )}
-          </Grid>
-          <Grid item xs={12}>
-            <input
-              type='date'
-              placeholder='start date'
-              onChange={(event) => this.handleChange('startDate', event)}
-            />
-            <input
-              type='date'
-              placeholder='end date'
-              onChange={(event) => this.handleChange('endDate', event)}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <button
-              onClick={this.handleClick}
-            >Select Dates</button>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="summaryDates"
+              >
+                <Typography className={this.props.classes.transaction.heading}>
+                  <h5>Select Custom Dates</h5>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  <input
+                    type='date'
+                    placeholder='start date'
+                    onChange={(event) => this.handleChange('startDate', event)}
+                  />
+                  <input
+                    type='date'
+                    placeholder='end date'
+                    onChange={(event) => this.handleChange('endDate', event)}
+                  />
+                  <CheckBoxIcon
+                    onClick={this.handleClick}
+                  />
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
           </Grid>
           <Grid item xs={12}>
             <TableContainer component={Paper}>
@@ -100,9 +120,9 @@ class SummaryView extends Component {
                 <TableHead>
                   <TableRow>
                     <TableCell align="center">Category</TableCell>
+                    <TableCell align="center">Budgeted</TableCell>
                     <TableCell align="center">Spent</TableCell>
-                    <TableCell align="center">Not Spent</TableCell>
-                    <TableCell align="center">Amount Over/Under</TableCell>
+                    <TableCell align="center">Remainder</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -118,7 +138,7 @@ class SummaryView extends Component {
           </Grid>
 
         </Grid>
-      </div>
+      </div >
     );
   }
 }
@@ -127,6 +147,7 @@ const mapStateToProps = reduxState => ({
   summary: reduxState.summary,
   totalAmount: reduxState.transactionTotalReducer,
   category: reduxState.category,
+  summaryCat: reduxState.summaryCatTotalReducer,
 });
 
 export default connect(mapStateToProps)

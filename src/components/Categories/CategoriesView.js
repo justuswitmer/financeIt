@@ -14,7 +14,7 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-import { withStyles, createStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 class CategoriesView extends Component {
 

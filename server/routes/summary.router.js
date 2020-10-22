@@ -8,6 +8,23 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
+// route getting all categories
+router.get('/', rejectUnauthenticated, (req, res) => {
+  console.log('in summary GET router');
+  queryText = `SELECT SUM("budgetedAmount") FROM "category"
+  ;`;
+  pool
+    .query(queryText)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('we got an error in summary router GET', err);
+      res.sendStatus(500);
+    });
+});
+
+
 // route to retrieve transactions grouped by categories and dates
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('getting my req.body in summary router POST', req.body);
