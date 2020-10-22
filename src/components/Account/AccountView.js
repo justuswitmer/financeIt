@@ -50,11 +50,11 @@ class AboutView extends Component {
         </div>
 
 
-        <CSVReader
+        {/* <CSVReader
           label='Upload csv file.'
           // onFileLoaded={(data, fileInfo) => console.dir(data, fileInfo)}
           onFileLoaded={this.handelFileLoad}
-        />
+        /> */}
 
       </div>
     )

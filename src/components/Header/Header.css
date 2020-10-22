@@ -41,5 +41,6 @@ a {
 }
 
 .nav-right {
-  float: right;
+  position: absolute;
+    left: 145px;
 }
