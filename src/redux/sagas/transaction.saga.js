@@ -22,12 +22,12 @@ function* addTransactionSaga(action) {
   });
   yield put({
     type: "FETCH_TRANSACTION",
-    payload: action.payload.newDate
+    payload: action.payload.date
   });
 }
 
 function* updateTransactionSaga(action) {
-  console.log('in updateTransactionSaga', action.payload);
+  console.log('in updateTransactionSaga', action.payload.date);
   yield axios({
     method: 'PUT',
     url: action.url,
@@ -35,7 +35,7 @@ function* updateTransactionSaga(action) {
   });
   yield put({
     type: "FETCH_TRANSACTION",
-    payload: action.payload.newDate
+    payload: action.payload.date
   });
 }
 

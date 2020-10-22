@@ -7,22 +7,11 @@ import {
   TableRow,
   TableCell,
   TextField,
-  Button,
 } from '@material-ui/core';
-
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-
-const useStyles = (theme) => makeStyles({
-  table: {
-    minWidth: 650,
-  },
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-});
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import muiStyles from '../Styling/Styling';
+import { withStyles } from '@material-ui/core/styles';
 
 
 class CategoriesEditItem extends Component {
@@ -62,8 +51,8 @@ class CategoriesEditItem extends Component {
     });
     this.setState({
       updateCategory: {
-        category: '',
-        budgetedAmount: ''
+        category: null,
+        budgetedAmount: null
       }
     });
   }
@@ -94,40 +83,32 @@ class CategoriesEditItem extends Component {
 
   render() {
     return (
-      <div>
-        <TableRow key={this.props.category.id}>
-          <TableCell component="th" scope="row">
-            <TextField
-              label={this.props.category.name}
-              onChange={(event) => this.categoryChange('category', event)}
-            />
-          </TableCell>
-          <TableCell align="right">
-            <TextField
-              label={this.props.category.budgetedAmount}
-              onChange={(event) => this.categoryChange('budgetedAmount', event)}
-            />
-          </TableCell>
-          <TableCell align="right">
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={this.updateCategory}
-            >
-              Save
-            </Button>
-          </TableCell>
-          <TableCell align="right">
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={this.deleteCategory}
-            >
-              Delete
-            </Button>
-          </TableCell>
-        </TableRow>
-      </div>
+      <TableRow key={this.props.category.id}>
+        <TableCell component="th" scope="row">
+          <TextField
+            placeholder={this.props.category.name}
+            onChange={(event) => this.categoryChange('category', event)}
+          />
+        </TableCell>
+        <TableCell align="right">
+          <TextField
+            placeholder={this.props.category.budgetedAmount}
+            onChange={(event) => this.categoryChange('budgetedAmount', event)}
+          />
+        </TableCell>
+        <TableCell align="right">
+          <CheckBoxIcon
+            color='primary'
+            onClick={this.updateCategory}
+          />
+        </TableCell>
+        <TableCell align="right">
+          <DeleteIcon
+            color='primary'
+            onClick={this.deleteCategory}
+          />
+        </TableCell>
+      </TableRow>
     );
   }
 }
@@ -136,4 +117,4 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(withStyles(useStyles)(CategoriesEditItem));
+export default connect(mapStateToProps)(withStyles(muiStyles)(CategoriesEditItem));

@@ -1,21 +1,29 @@
 .nav-title {  
-  font-size: 24px;
-  font-weight: 700;
-  display: inline-block;
-  color: #f2f2f2;
-  padding-left: 10px;
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+  color: #F29F05;
+  position: absolute;
+  left: 28%;
+  right: 25%;
+  margin-top: 8.5px;
 }
 
+a {
+  text-decoration: none;
+}
 .nav {
-  margin: 0 0 30px;
-  background-color: #00acb0;
+  margin: 0;
+  background-color: #587c52;
   overflow: hidden;
+  border-radius: 2px;
+  height: 50px;
 }
 
 .nav-link {
   float: left;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #6CA663;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;

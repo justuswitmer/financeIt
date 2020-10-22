@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import muiStyles from '../Styling/Styling';
 
 // Custom Imports 
 import TransactionViewItem from './TransactionViewItem';
 
 // Material-UI
 import {
-  Table,
-  Paper,
-  TableRow,
-  TableHead,
-  TableContainer,
-  TableCell,
-  TableBody,
   TextField,
   Button,
   InputLabel,
   MenuItem,
   FormControl,
   Select,
+  Grid,
+  GridList,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
 } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
@@ -28,14 +31,6 @@ const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 class TransactionsView extends Component {
   state = {
     heading: 'Transactions',
-    newTransaction: {
-      description: '',
-      amount: '',
-      date: '',
-      categoryId: '',
-      account: '',
-      userId: this.props.user.id
-    },
     newDate: {
       startDate: moment().startOf('month').format('MM/DD/YYYY'),
       endDate: moment().endOf('month').format('MM/DD/YYYY'),
@@ -51,9 +46,9 @@ class TransactionsView extends Component {
 
   newTransactionChange = (property, event) => {
     console.log('in newTransactionChange', event.target.value);
-    this.setState({
-      newTransaction: {
-        ...this.state.newTransaction,
+    this.props.dispatch({
+      type: 'EDIT_TRANSACTION_FOR_UPDATE',
+      payload: {
         [property]: event.target.value
       },
     })
@@ -63,18 +58,12 @@ class TransactionsView extends Component {
     console.log('in addTransaction');
     this.props.dispatch({
       type: 'ADD_TRANSACTION',
-      payload: this.state.newTransaction
+      payload: {
+        transaction: this.props.updatedTransaction,
+        user: this.props.user.id,
+        date: this.state.newDate,
+      },
     });
-    this.setState({
-      newTransaction: {
-        description: '',
-        amount: '',
-        date: '',
-        categoryId: '',
-        account: '',
-        userId: this.props.user.id
-      }
-    })
   }
 
   transactionDateChange = (property, event) => {
@@ -99,99 +88,118 @@ class TransactionsView extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.state.heading}</h2>
-        <TextField
-          type='date'
-          placeholder='start date'
-          onChange={(event) => this.transactionDateChange('startDate', event)}
-          variant='outlined'
-        />
-        <TextField
-          type='date'
-          placeholder='end date'
-          onChange={(event) => this.transactionDateChange('endDate', event)}
-          variant='outlined'
-        />
-        <Button
-          onClick={this.handleClick}
-          variant='contained'
-        >Select Dates
-        </Button>
-        <h3>Add New Transaction</h3>
-        <TextField
-          type='text'
-          placeholder='description'
-          onChange={(event) => this.newTransactionChange('description', event)}
-          value={this.state.newTransaction.transaction}
-          variant='outlined'
-        />
-        <TextField
-          type='text'
-          placeholder='amount'
-          onChange={(event) => this.newTransactionChange('amount', event)}
-          value={this.state.newTransaction.budgetedAmount}
-          variant='outlined'
-        />
-        <TextField
-          type='date'
-          placeholder='date'
-          onChange={(event) => this.newTransactionChange('date', event)}
-          value={this.state.newTransaction.budgetedAmount}
-          variant='outlined'
-        />
-        <FormControl variant="outlined">
-          <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            onChange={(event) => this.newTransactionChange('categoryId', event)}
-            label="category"
-            value={''}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {this.props.category.map(category =>
-              <MenuItem
-                key={category.id}
-                value={category.id}
-              >{category.name}
-              </MenuItem>
-            )}
-          </Select>
-        </FormControl>
-        <Button
-          onClick={this.addTransaction}
-          variant='contained'
-        >Add Transaction
-        </Button>
-        <Button
-          onClick={() => { this.props.history.push('/transactionedit') }}
-          variant='contained'
-        >Edit Transactions
-        </Button>
-        <TableContainer component={Paper}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Description</TableCell>
-                <TableCell align="right">Amount</TableCell>
-                <TableCell align="right">Date</TableCell>
-                <TableCell align="right">Category</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.props.transaction.map(transaction =>
-                <TransactionViewItem
-                  key={transaction.id}
-                  transaction={transaction}
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <h2>{this.state.heading}</h2>
+        </Grid>
+        <Grid item xs={12}>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="summaryDates"
+            >
+              <Typography className={this.props.classes.transaction.heading}>
+                <h5>Add New Transaction</h5>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <Grid item xs={6}>
+                  <TextField
+                    type='text'
+                    placeholder='description'
+                    onChange={(event) => this.newTransactionChange('description', event)}
+                    variant='outlined'
+                  />
+                  <TextField
+                    type='text'
+                    placeholder='amount'
+                    onChange={(event) => this.newTransactionChange('amount', event)}
+                    variant='outlined'
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    type='date'
+                    placeholder='date'
+                    onChange={(event) => this.newTransactionChange('date', event)}
+                    variant='outlined'
+                  />
+                  <FormControl variant="outlined">
+                    <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
+                    <Select
+                      onChange={(event) => this.newTransactionChange('categoryId', event)}
+                      label="category"
+                      value={this.props.transaction.id}
+                    >
+                      {this.props.category.map(category =>
+                        <MenuItem
+                          key={category.id}
+                          value={category.id}
+                        >{category.name}
+                        </MenuItem>
+                      )}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <CheckBoxIcon
+                  onClick={this.addTransaction}
                 />
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </Grid>
+        <Grid item xs={12}>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="summaryDates"
+            >
+              <Typography className={this.props.classes.transaction.heading}>
+                <h5>Select Custom Dates</h5>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <input
+                  type='date'
+                  placeholder='start date'
+                  onChange={(event) => this.transactionDateChange('startDate', event)}
+                  variant='outlined'
+                />
+                <input
+                  type='date'
+                  placeholder='end date'
+                  onChange={(event) => this.transactionDateChange('endDate', event)}
+                  variant='outlined'
+                />
+                <CheckBoxIcon
+                  onClick={this.handleClick}
+                />
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </Grid>
+        <Grid item xs={12}>
+          <h4>Transaction Details</h4>
+        </Grid>
+        <div className={this.props.classes.transaction.root}>
+          <GridList
+            cellHeight={'auto'}
+            className={this.props.classes.transaction.gridlist}
+            cols={1}
+          >
+            {this.props.transaction.map(transaction =>
+              <TransactionViewItem
+                key={transaction.id}
+                transaction={transaction}
+              />
+            )}
+          </GridList>
+        </div>
+      </Grid>
     );
   }
 }
@@ -200,6 +208,9 @@ const mapStateToProps = reduxState => ({
   transaction: reduxState.transaction,
   user: reduxState.user,
   category: reduxState.category,
+  updatedTransaction: reduxState.saveTransactionForUpdateReducer
 })
 
-export default connect(mapStateToProps)(TransactionsView);
+export default connect(mapStateToProps)
+  (withStyles(muiStyles)
+    (TransactionsView));

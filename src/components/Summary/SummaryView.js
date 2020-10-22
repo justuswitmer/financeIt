@@ -2,8 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
+
 // Custom imports
 import SummaryViewItem from './SummaryViewItem';
+import SummarySpent from './SummarySpent';
+import muiStyles from '../Styling/Styling';
+
+// Material-UI
+import {
+  Paper,
+  Grid,
+  Table,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+  TableBody,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+
+
 
 // Date formats
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
@@ -38,43 +62,94 @@ class SummaryView extends Component {
   handleClick = () => {
     console.log('in handleClick', this.state.newDate);
     this.props.dispatch({
-      type: 'FETCH_DATES',
+      type: 'FETCH_SUMMARY_DATES',
       payload: this.state.newDate
+    });
+    this.props.dispatch({
+      type: 'FETCH_TRANSACTION_TOTAL',
+      payload: this.state.newDate
+    });
+    this.props.dispatch({
+      type: 'FETCH_SUMMARY_CAT_TOTAL'
     });
   }
 
+
+
   render() {
     return (
-      <div>
-        <h2>{this.state.heading}</h2>
-        <input
-          type='date'
-          placeholder='start date'
-          onChange={(event) => this.handleChange('startDate', event)}
-        />
-        <input
-          type='date'
-          placeholder='end date'
-          onChange={(event) => this.handleChange('endDate', event)}
-        />
-        <button
-          onClick={this.handleClick}
-        >Select</button>
+      <div className={this.props.classes.grid.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <h2>{this.state.heading}</h2>
+          </Grid>
+          <SummarySpent />
+          <Grid item xs={12}>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="summaryDates"
+              >
+                <Typography className={this.props.classes.transaction.heading}>
+                  <h5>Select Custom Dates</h5>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  <input
+                    type='date'
+                    placeholder='start date'
+                    onChange={(event) => this.handleChange('startDate', event)}
+                  />
+                  <input
+                    type='date'
+                    placeholder='end date'
+                    onChange={(event) => this.handleChange('endDate', event)}
+                  />
+                  <CheckBoxIcon
+                    onClick={this.handleClick}
+                  />
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </Grid>
+          <Grid item xs={12}>
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Category</TableCell>
+                    <TableCell align="center">Budgeted</TableCell>
+                    <TableCell align="center">Spent</TableCell>
+                    <TableCell align="center">Remainder</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.summary.map(summary =>
+                    <SummaryViewItem
+                      key={summary.category}
+                      summary={summary}
+                    />
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
 
-        {this.props.summary.map(summary =>
-          <SummaryViewItem
-            key={summary.category}
-            summary={summary}
-          />
-        )}
-      </div>
+        </Grid>
+      </div >
     );
   }
 }
 
 const mapStateToProps = reduxState => ({
   summary: reduxState.summary,
-  category: reduxState.category
+  totalAmount: reduxState.transactionTotalReducer,
+  category: reduxState.category,
+  summaryCat: reduxState.summaryCatTotalReducer,
 });
 
-export default connect(mapStateToProps)(SummaryView);
+export default connect(mapStateToProps)
+  (withStyles(muiStyles)
+    (SummaryView));

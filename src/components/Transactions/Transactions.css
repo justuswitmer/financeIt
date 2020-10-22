@@ -1,0 +1,17 @@
+#description #amount #date #category{
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.updateDeleteBtns {
+  width: 130px;
+  position: absolute;
+  right: 0;
+}
+
+#GridList {
+  color: #F2F2F2;
+  background-color: #eeb64f;
+}

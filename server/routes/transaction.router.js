@@ -8,7 +8,6 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-
 // route to retrieve transactions grouped by dates
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('getting my req.body in transaction router', req.body);
@@ -36,14 +35,14 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // route to retrieve transactions grouped by dates
 router.post('/add', rejectUnauthenticated, (req, res) => {
-  console.log('getting my req.body in transaction router', req.body);
-  const description = req.body.description;
-  const amount = req.body.amount;
-  const date = req.body.date;
-  const userId = req.body.userId;
-  const categoryId = req.body.categoryId;
+  console.log('getting my req.body in transaction router POST', req.body);
+  const description = req.body.transaction.description;
+  const amount = req.body.transaction.amount;
+  const date = req.body.transaction.date;
+  const userId = req.body.user;
+  const categoryId = req.body.transaction.categoryId;
   queryText = `INSERT INTO "transaction"("description", "amount", 
-  "date", "account", "userId", "categoryId")
+  "date", "userId", "categoryId")
   VALUES
   ($1, $2, $3, $4, $5);`;
   pool
@@ -52,7 +51,7 @@ router.post('/add', rejectUnauthenticated, (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('we got an error in transactions router', err);
+      console.log('we got an error in transactions router POST', err);
       res.sendStatus(500);
     });
 });
@@ -60,23 +59,19 @@ router.post('/add', rejectUnauthenticated, (req, res) => {
 // route to update a new transaction to the transaction table
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('getting my req.body in PUT', req.body);
-  const description = req.body.description;
-  const amount = req.body.amount;
-  const date = req.body.date;
-  const account = req.body.account;
-  const userId = req.body.userId;
-  const categoryId = req.body.categoryId;
+  const description = req.body.transaction.description;
+  const amount = req.body.transaction.amount;
+  const date = req.body.transaction.date;
+  const categoryId = req.body.transaction.categoryId;
   const transactionId = req.body.transactionId;
   queryText = `UPDATE "transaction"
   SET "description" = $1,
     "amount" = $2,
     "date" = $3,
-    "account" = $4,
-    "userId" = $5,
-    "categoryId" = $6
-  WHERE "transaction"."id" = $7;`;
+    "categoryId" = $4
+  WHERE "transaction"."id" = $5;`;
   pool
-    .query(queryText, [description, amount, date, account, userId, categoryId, transactionId])
+    .query(queryText, [description, amount, date, categoryId, transactionId])
     .then(result => {
       res.sendStatus(200);
     })

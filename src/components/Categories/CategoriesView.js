@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import muiStyles from '../Styling/Styling';
 
 // Material-UI
 import {
@@ -12,16 +13,16 @@ import {
   TableBody,
   TextField,
   Button,
+  Grid,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
 } from '@material-ui/core';
-import { withStyles, createStyles } from '@material-ui/core/styles';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-const muiStyles = (theme) => createStyles({
-  table: {
-    minWidth: '650px',
-    margin: theme.spacing(12),
-    width: '80%',
-  },
-});
+import { withStyles } from '@material-ui/core/styles';
 
 class CategoriesView extends Component {
 
@@ -66,55 +67,82 @@ class CategoriesView extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.state.heading}</h2>
-
-        <h3>Add New Category</h3>
-        <TextField
-          type='text'
-          placeholder='new category'
-          onChange={(event) => this.newCategoryChange('category', event)}
-          value={this.state.newCategory.category}
-          variant='outlined'
-        />
-        <TextField
-          type='text'
-          placeholder='new monthly amount'
-          onChange={(event) => this.newCategoryChange('budgetedAmount', event)}
-          value={this.state.newCategory.budgetedAmount}
-          variant='outlined'
-        />
-        <Button
-          onClick={this.addCategory}
-          variant='contained'
-        >Add Category
-        </Button>
-        <Button
-          onClick={() => { this.props.history.push('/categoriesedit') }}
-          variant='contained'
-        >Edit Categories
-        </Button>
-        <TableContainer component={Paper}>
-          <Table className={this.props.classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Categories</TableCell>
-                <TableCell align="right">Monthly Amount</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.props.category.map(category =>
-                <TableRow key={category.id}>
-                  <TableCell component="th" scope="row">
-                    {category.name}
-                  </TableCell>
-                  <TableCell align="right">{category.budgetedAmount}</TableCell>
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <h2>{this.state.heading}</h2>
+        </Grid>
+        <Grid item xs={12}>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="summaryDates"
+            >
+              <Typography className={this.props.classes.transaction.heading}>
+                <h5>Add New Category</h5>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <Grid item xs={6}>
+                  <TextField
+                    type='text'
+                    placeholder='category'
+                    onChange={(event) => this.newCategoryChange('category', event)}
+                    value={this.state.newCategory.category}
+                    variant='outlined'
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    type='text'
+                    placeholder='monthly amount'
+                    onChange={(event) => this.newCategoryChange('budgetedAmount', event)}
+                    value={this.state.newCategory.budgetedAmount}
+                    variant='outlined'
+                  />
+                </Grid>
+                <CheckBoxIcon
+                  onClick={this.addCategory}
+                />
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </Grid>
+        <Grid item xs={12}>
+          <TableContainer component={Paper}>
+            <Table
+              className={this.props.classes.table}
+              aria-label="simple table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Categories</TableCell>
+                  <TableCell align="center">Monthly Amount</TableCell>
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div >
+              </TableHead>
+              <TableBody>
+                {this.props.category.map(category =>
+                  <TableRow key={category.id}>
+                    <TableCell component="th" scope="row" align="center">
+                      {category.name}
+                    </TableCell>
+                    <TableCell align="center">{category.budgetedAmount}</TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+        <Grid item xs={6}>
+          <Button
+            onClick={() => { this.props.history.push('/categoriesedit') }}
+            variant='contained'
+            color='secondary'
+          >Edit Categories
+        </Button>
+        </Grid>
+      </Grid>
     );
   }
 }
@@ -124,4 +152,6 @@ const mapStateToProps = reduxState => ({
   user: reduxState.user
 })
 
-export default connect(mapStateToProps)(withStyles(muiStyles)(CategoriesView));
+export default connect(mapStateToProps)
+  (withStyles(muiStyles)
+    (CategoriesView));
