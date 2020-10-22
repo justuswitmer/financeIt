@@ -120,6 +120,8 @@ class TransactionViewItem extends Component {
 
   render() {
     return (
+
+
       <GridListTile cols={1}>
         {this.state.isChecked.checkedB ?
           <Accordion>
@@ -163,12 +165,12 @@ class TransactionViewItem extends Component {
               <Typography className={this.props.classes.transaction.heading}>
                 <TextField
                   id='description'
-                  label={this.props.transaction.description}
+                  placeholder={this.props.transaction.description}
                   onChange={(event) => this.newTransactionChange('description', event)}
                 />
                 <TextField
                   id='amount'
-                  label={this.props.transaction.amount}
+                  placeholder={this.props.transaction.amount}
                   onChange={(event) => this.newTransactionChange('amount', event)}
                 />
                 <span className='updateDeleteBtns'>
@@ -186,7 +188,7 @@ class TransactionViewItem extends Component {
               <Typography>
                 <TextField
                   id='date'
-                  label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
+                  placeholder={moment(this.props.transaction.date).format('MM/DD/YYYY')}
                   onChange={(event) => this.newTransactionChange('date', event)}
                 />
                 <FormControl
@@ -199,7 +201,6 @@ class TransactionViewItem extends Component {
                     label="category"
                     value={this.props.transactions.id}
                   >
-
                     {this.props.category.map(category =>
                       <MenuItem
                         key={category.id}

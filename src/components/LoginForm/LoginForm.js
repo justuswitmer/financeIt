@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
+import './LoginForm.css';
 
 class LoginForm extends Component {
   state = {
@@ -44,8 +45,9 @@ class LoginForm extends Component {
           <label htmlFor="username">
 
             <input
-              type="text"
+              id='username'
               name="username"
+              variant='outlined'
               placeholder='username'
               required
               value={this.state.username}
@@ -57,6 +59,8 @@ class LoginForm extends Component {
           <label htmlFor="password">
 
             <input
+              id='password'
+              variant='outlined'
               type="password"
               name="password"
               placeholder='password'
@@ -68,7 +72,9 @@ class LoginForm extends Component {
         </div>
         <div>
           <Button
-            className="btn"
+            color='primary'
+            variant='contained'
+            id="btn"
             type="submit"
             name="submit"
             value="Log In"

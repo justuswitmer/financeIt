@@ -5,9 +5,6 @@ const muiStyles = (theme) => createStyles({
     margin: theme.spacing(1),
     width: '100%',
   },
-  tableRow: {
-
-  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -55,6 +52,13 @@ const muiStyles = (theme) => createStyles({
     gridList: {
       width: 500,
       height: 450,
+    },
+  },
+  textField: {
+    root: {
+      margin: theme.spacing(3),
+      width: '25ch',
+
     },
   },
 });

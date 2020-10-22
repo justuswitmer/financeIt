@@ -16,8 +16,14 @@ import {
   Select,
   Grid,
   GridList,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
@@ -87,83 +93,97 @@ class TransactionsView extends Component {
           <h2>{this.state.heading}</h2>
         </Grid>
         <Grid item xs={12}>
-          <h3>Add New Transaction</h3>
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            type='text'
-            placeholder='description'
-            onChange={(event) => this.newTransactionChange('description', event)}
-            variant='outlined'
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            type='text'
-            placeholder='amount'
-            onChange={(event) => this.newTransactionChange('amount', event)}
-            variant='outlined'
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            type='date'
-            placeholder='date'
-            onChange={(event) => this.newTransactionChange('date', event)}
-            variant='outlined'
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl variant="outlined">
-            <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
-            <Select
-              onChange={(event) => this.newTransactionChange('categoryId', event)}
-              label="category"
-              value={this.props.transaction.id}
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="summaryDates"
             >
-              {this.props.category.map(category =>
-                <MenuItem
-                  key={category.id}
-                  value={category.id}
-                >{category.name}
-                </MenuItem>
-              )}
-            </Select>
-          </FormControl>
+              <Typography className={this.props.classes.transaction.heading}>
+                <h5>Add New Transaction</h5>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <Grid item xs={6}>
+                  <TextField
+                    type='text'
+                    placeholder='description'
+                    onChange={(event) => this.newTransactionChange('description', event)}
+                    variant='outlined'
+                  />
+                  <TextField
+                    type='text'
+                    placeholder='amount'
+                    onChange={(event) => this.newTransactionChange('amount', event)}
+                    variant='outlined'
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    type='date'
+                    placeholder='date'
+                    onChange={(event) => this.newTransactionChange('date', event)}
+                    variant='outlined'
+                  />
+                  <FormControl variant="outlined">
+                    <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
+                    <Select
+                      onChange={(event) => this.newTransactionChange('categoryId', event)}
+                      label="category"
+                      value={this.props.transaction.id}
+                    >
+                      {this.props.category.map(category =>
+                        <MenuItem
+                          key={category.id}
+                          value={category.id}
+                        >{category.name}
+                        </MenuItem>
+                      )}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <CheckBoxIcon
+                  onClick={this.addTransaction}
+                />
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </Grid>
         <Grid item xs={12}>
-          <Button
-            onClick={this.addTransaction}
-            variant='contained'
-            color='secondary'
-          >Add Transaction
-        </Button>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="summaryDates"
+            >
+              <Typography className={this.props.classes.transaction.heading}>
+                <h5>Select Custom Dates</h5>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <input
+                  type='date'
+                  placeholder='start date'
+                  onChange={(event) => this.transactionDateChange('startDate', event)}
+                  variant='outlined'
+                />
+                <input
+                  type='date'
+                  placeholder='end date'
+                  onChange={(event) => this.transactionDateChange('endDate', event)}
+                  variant='outlined'
+                />
+                <CheckBoxIcon
+                  onClick={this.handleClick}
+                />
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </Grid>
         <Grid item xs={12}>
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            type='date'
-            placeholder='start date'
-            onChange={(event) => this.transactionDateChange('startDate', event)}
-            variant='outlined'
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            type='date'
-            placeholder='end date'
-            onChange={(event) => this.transactionDateChange('endDate', event)}
-            variant='outlined'
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            onClick={this.handleClick}
-            variant='contained'
-            color='secondary'
-          >Select Dates
-        </Button>
+          <h4>Transaction Details</h4>
         </Grid>
         <div className={this.props.classes.transaction.root}>
           <GridList

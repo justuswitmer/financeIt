@@ -40,8 +40,8 @@ class CategoriesEdit extends Component {
               <TableRow>
                 <TableCell>Categories</TableCell>
                 <TableCell >Monthly Amount</TableCell>
-                <TableCell >Save</TableCell>
-                <TableCell >Delete</TableCell>
+                <TableCell ></TableCell>
+                <TableCell ></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

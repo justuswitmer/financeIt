@@ -29,19 +29,10 @@ const customTheme = createMuiTheme({
 
   },
   overrides: {
-    MuiButton: {
-      contained: {
-        border: '2px solid #33333',
-        boxShadow: '1px 1px 0 #014F56',
-        '&:hover': {
-          boxShadow: '1px 1px 0 #014F56',
-        },
-      }
-    },
     MuiPaper: {
       root: {
-        backgroundColor: '#3d3d3d',
-
+        backgroundColor: '#33333',
+        width: '99%',
       },
     },
     MuiCard: {
@@ -63,10 +54,11 @@ const customTheme = createMuiTheme({
     },
     MuiOutlinedInput: {
       root: {
-        borderRadius: '0',
+        borderRadius: '4px',
+        marginTop: '5px',
       },
       notchedOutline: {
-        borderColor: '#333333',
+        borderColor: '#2D8C1F',
       },
     },
     MuiTable: {
@@ -132,8 +124,8 @@ const customTheme = createMuiTheme({
         marginLeft: '9px',
         marginTop: '1px',
         marginBottom: '1px',
-      }
-    }
+      },
+    },
   },
 });
 
