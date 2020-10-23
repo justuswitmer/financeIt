@@ -24,8 +24,10 @@ const customTheme = createMuiTheme({
     button: {
       textTransform: "none"
     },
-    body1: { color: '#F29F05' },
-    body2: { color: '#F29F05' },
+    body1: {
+      color: '#F29F05',
+    },
+    body2: { color: '#F2F2F2' },
 
   },
   overrides: {
@@ -126,7 +128,19 @@ const customTheme = createMuiTheme({
         marginBottom: '1px',
       },
     },
+    MuiMenuItem: {
+      root: {
+        backgroundColor: '#3d3d3d'
+      },
+    },
+    MuiListItem: {
+      selected: {
+        backgroundColor: 'blue'
+      }
+    }
   },
 });
+// MuiListItem-button:hover
+// .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover
 
 export default customTheme;

@@ -74,7 +74,7 @@ class LoginForm extends Component {
           <Button
             color='primary'
             variant='contained'
-            id="btn"
+            className="btn"
             type="submit"
             name="submit"
             value="Log In"

@@ -10,6 +10,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  AccordionActions,
+  Divider,
   Typography,
   GridListTile,
   TextField,
@@ -17,6 +19,7 @@ import {
   MenuItem,
   FormControl,
   Select,
+  Grid,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -120,9 +123,7 @@ class TransactionViewItem extends Component {
 
   render() {
     return (
-
-
-      <GridListTile cols={1}>
+      <GridListTile cols={2}>
         {this.state.isChecked.checkedB ?
           <Accordion>
             <AccordionSummary
@@ -130,19 +131,14 @@ class TransactionViewItem extends Component {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography className={this.props.classes.transaction.heading}>
+              <Typography variant='body2' className={this.props.classes.transaction.heading}>
                 <span id='description'>
-                  {this.props.transaction.description}
+                  {this.props.transaction.description} ${this.props.transaction.amount}
                 </span>
-                <span id='amount'>
-                  $ {this.props.transaction.amount}
-                </span>
-                <span className='updateDeleteBtns'>
-                  <EditIcon
-                    onClick={this.handleChange}
-                  />
+                <span className='deleteBtn'>
                   <DeleteIcon
                     value='delete'
+                    color='primary'
                     onClick={this.deleteTransaction}
                   />
                 </span>
@@ -150,69 +146,100 @@ class TransactionViewItem extends Component {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                <span id='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</span>
-                <span id='category'>{this.props.transaction.name}</span>
+                <span id='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')} {this.props.transaction.name}</span>
               </Typography>
             </AccordionDetails>
+            <Divider />
+            <AccordionActions>
+              <span className='editBtn'>
+                <EditIcon
+                  onClick={this.handleChange}
+                />
+              </span>
+            </AccordionActions>
           </Accordion>
           :
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={this.props.classes.transaction.heading}>
-                <TextField
-                  id='description'
-                  placeholder={this.props.transaction.description}
-                  onChange={(event) => this.newTransactionChange('description', event)}
-                />
-                <TextField
-                  id='amount'
-                  placeholder={this.props.transaction.amount}
-                  onChange={(event) => this.newTransactionChange('amount', event)}
-                />
-                <span className='updateDeleteBtns'>
+          <Grid container item xs={12}>
+            <Accordion >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={this.props.classes.transaction.heading}>
+                  <span className='updateDeleteBtn'>
+                    <DeleteIcon
+                      value='delete'
+                      onClick={this.deleteTransaction}
+                    />
+                  </span>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography className='editTransaction'>
+                  <Grid item xs={6}>
+                    <TextField
+                      variant='outlined'
+                      label={this.props.transaction.description}
+                      type='text'
+                      id='description'
+                      placeholder={this.props.transaction.description}
+                      onChange={(event) => this.newTransactionChange('description', event)}
+                    />
+                    <TextField
+                      variant='outlined'
+                      label={this.props.transaction.amount}
+                      id='amount'
+                      placeholder={this.props.transaction.amount}
+                      onChange={(event) => this.newTransactionChange('amount', event)}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      variant='outlined'
+                      label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
+                      id='date'
+                      placeholder={moment(this.props.transaction.date).format('MM/DD/YYYY')}
+                      onChange={(event) => this.newTransactionChange('date', event)}
+                    />
+                    <FormControl
+                      variant='outlined'
+                      id='category'
+                    >
+                      <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
+                      <Select
+                        onChange={(event) => this.newTransactionChange('categoryId', event)}
+                        label="category"
+                        value={this.props.transactions.id}
+                      >
+                        {this.props.category.map(category =>
+                          <MenuItem
+                            className='menuItem'
+                            key={category.id}
+                            value={category.id}
+                          >{category.name}
+                          </MenuItem>
+                        )}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                </Typography>
+              </AccordionDetails>
+              <Divider />
+              <AccordionActions>
+                <span className='updateSaveBtn'>
                   <CheckBoxIcon
                     onClick={this.updateTransaction}
                   />
-                  <DeleteIcon
-                    value='delete'
-                    onClick={this.deleteTransaction}
+                </span>
+                <span className='editBtn'>
+                  <EditIcon
+                    onClick={this.handleChange}
                   />
                 </span>
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                <TextField
-                  id='date'
-                  placeholder={moment(this.props.transaction.date).format('MM/DD/YYYY')}
-                  onChange={(event) => this.newTransactionChange('date', event)}
-                />
-                <FormControl
-                  className={this.props.classes.FormControl}
-                  id='category'
-                >
-                  <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
-                  <Select
-                    onChange={(event) => this.newTransactionChange('categoryId', event)}
-                    label="category"
-                    value={this.props.transactions.id}
-                  >
-                    {this.props.category.map(category =>
-                      <MenuItem
-                        key={category.id}
-                        value={category.id}
-                      >{category.name}
-                      </MenuItem>
-                    )}
-                  </Select>
-                </FormControl>
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
+              </AccordionActions>
+            </Accordion>
+          </Grid>
         }
       </GridListTile>
     );

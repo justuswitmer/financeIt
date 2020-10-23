@@ -189,7 +189,7 @@ class TransactionsView extends Component {
           <GridList
             cellHeight={'auto'}
             className={this.props.classes.transaction.gridlist}
-            cols={1}
+            cols={2}
           >
             {this.props.transaction.map(transaction =>
               <TransactionViewItem

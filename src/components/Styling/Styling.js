@@ -49,6 +49,9 @@ const muiStyles = (theme) => createStyles({
       fontWeight: theme.typography.fontWeightRegular,
       display: 'inline'
     },
+    body: {
+      width: '320px'
+    },
     gridList: {
       width: 500,
       height: 450,

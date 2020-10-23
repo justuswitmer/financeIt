@@ -73,7 +73,6 @@ class RegisterForm extends Component {
         </div>
         <div>
           <Button
-            className="btn"
             type="submit"
             name="submit"
             value="Register"

@@ -9,3 +9,8 @@
   position: relative;
   left: 105.75px;
 }
+
+.btn {
+  position: absolute;
+  left: 145px;
+}

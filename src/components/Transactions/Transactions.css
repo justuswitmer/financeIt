@@ -3,15 +3,43 @@
   padding-right: 10px;
   margin: 0;
   font-size: 14px;
+  color: #F2F2F2;
 }
 
-.updateDeleteBtns {
+.deleteBtn {
   width: 130px;
   position: absolute;
-  right: 0;
+  right: -60px;
+}
+
+.editBtn {
+  width: 130px;
+  position: absolute;
+  right: -12px;
+}
+
+/* .updateSaveBtn {
+  width: 130px;
+  position: absolute;
+  right: -12px;
+} */
+
+.updateDeleteBtn {
+  width: 130px;
+  position: absolute;
+  right: -12px;
+  top: 20px;
 }
 
 #GridList {
   color: #F2F2F2;
   background-color: #eeb64f;
+}
+
+.editTransaction {
+  width: 320px;
+}
+
+.menuItem {
+  background-color: blue;
 }
