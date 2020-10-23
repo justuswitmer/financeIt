@@ -13,7 +13,7 @@ const customTheme = createMuiTheme({
     },
     secondary: {
       // light: '',
-      main: '#eeb64f',
+      main: '#3333',
       // dark: '',
       // contrastText: '',
     },
@@ -147,15 +147,10 @@ const customTheme = createMuiTheme({
       root: {
         position: 'fixed',
         bottom: 0,
-        width: '100%',
-
-      },
-    },
-    CategoriesView: {
-      table: {
-        '2': {
-          margin: 0,
-        },
+        width: '358px',
+        backgroundColor: '#0f3809',
+        borderTopRightRadius: '6px',
+        borderTopLeftRadius: '6px',
       },
     },
   },

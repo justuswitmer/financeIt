@@ -46,6 +46,7 @@ const Nav = (props) => {
         onClick={() => props.history.push("/summary")}
       />
       <BottomNavigationAction
+        id='navIcons'
         label="Categories"
         value="favorites"
         icon={<FolderIcon />}

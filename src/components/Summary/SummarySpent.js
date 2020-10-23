@@ -39,7 +39,7 @@ class SummarySpent extends Component {
             id="paper"
             elevation={3}>
             <h5>Total Amount Remaining</h5>
-            <p>{Number(this.props.totalAmount.map(total =>
+            <p>${Number(this.props.totalAmount.map(total =>
               total.sum
             ))
               +
