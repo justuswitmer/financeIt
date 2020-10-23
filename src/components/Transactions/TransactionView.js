@@ -131,7 +131,7 @@ class TransactionsView extends Component {
                     <Select
                       onChange={(event) => this.newTransactionChange('categoryId', event)}
                       label="category"
-                      value={this.props.transaction.id}
+
                     >
                       {this.props.category.map(category =>
                         <MenuItem

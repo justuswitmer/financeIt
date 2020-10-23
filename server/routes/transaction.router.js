@@ -15,7 +15,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const startDate = req.body.startDate;
   const endDate = req.body.endDate;
   queryText = `SELECT "transaction"."id", "transaction"."description", 
-  "transaction"."amount", "transaction"."date", "transaction"."account", 
+  "transaction"."amount", "transaction"."date", 
   "transaction"."categoryId", "category"."name" FROM "transaction"
   JOIN "category"
   ON "transaction"."categoryId" = "category"."id"
