@@ -70,9 +70,10 @@ class LoginForm extends Component {
             />
           </label>
         </div>
-        <div>
+        <div className='login'>
           <Button
             color='primary'
+            size='small'
             variant='contained'
             className="btn"
             type="submit"
@@ -80,6 +81,19 @@ class LoginForm extends Component {
             value="Log In"
           >Login
           </Button>
+          <center className='registerLogin'>
+            <Button
+              color='secondary'
+              size='small'
+              variant='contained'
+              className="btn_asLink"
+              onClick={() => {
+                this.props.history.push('/registration');
+              }}
+            >
+              Register!
+          </Button>
+          </center>
         </div>
       </form>
     );

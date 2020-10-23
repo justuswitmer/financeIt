@@ -1,6 +1,6 @@
-.nav-title {  
+.nav-title1 {  
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 300;
   text-align: center;
   color: #F29F05;
   position: absolute;
@@ -9,15 +9,30 @@
   margin-top: 8.5px;
 }
 
+.nav-title2 {  
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+  color: #f2f2f2e1;
+  position: absolute;
+  left: 58%;
+  right: 25%;
+  margin-top: 8.5px;
+}
+
 a {
   text-decoration: none;
 }
 .nav {
-  margin: 0;
-  background-color: #587c52;
-  overflow: hidden;
-  border-radius: 2px;
+  background-color: #0f3809;
+  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.50);
   height: 50px;
+  position: fixed;
+  top: 10px;
+  left: 17.5px;
+  width: 90%;
+  border-radius: 6px;
+  z-index: 999;
 }
 
 .nav-link {

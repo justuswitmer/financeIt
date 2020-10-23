@@ -115,6 +115,11 @@ const customTheme = createMuiTheme({
         justifyContent: 'space-between'
       },
     },
+    MuiAccordionActions: {
+      root: {
+        height: '30px',
+      },
+    },
     MuiTypography: {
       body1: {
         textAlign: 'center',
@@ -136,8 +141,23 @@ const customTheme = createMuiTheme({
     MuiListItem: {
       selected: {
         backgroundColor: 'blue'
-      }
-    }
+      },
+    },
+    MuiBottomNavigation: {
+      root: {
+        position: 'fixed',
+        bottom: 0,
+        width: '100%',
+
+      },
+    },
+    CategoriesView: {
+      table: {
+        '2': {
+          margin: 0,
+        },
+      },
+    },
   },
 });
 // MuiListItem-button:hover

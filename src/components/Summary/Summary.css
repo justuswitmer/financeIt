@@ -1,16 +1,27 @@
 #gridSummary1 {
-  margin: 0;
+  margin-left: 11px;
   padding-left: 12px;
   text-align: center;
+
 }
 
 #gridSummary2 {
-  margin: 0;
+  margin-left: -12px;
+  margin-right: -12px;
   text-align: center;
 }
 
 #gridSummary3 {
-  margin: 0;
+  margin-right: 10px;
   padding-right: 12px;
   text-align: center;
+}
+
+#paper {
+  background-color: #333333;
+  color: #6CA663;
+  font-weight: 500;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  border: 1px solid #00000062;
 }

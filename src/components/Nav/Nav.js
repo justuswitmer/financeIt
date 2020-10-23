@@ -38,7 +38,7 @@ const Nav = (props) => {
     <BottomNavigation
       value={value}
       onChange={handleChange}
-      className={classes.root}>
+      className='navBar'>
       <BottomNavigationAction
         label="Summary"
         value="recents"

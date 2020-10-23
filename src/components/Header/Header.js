@@ -13,7 +13,8 @@ const Header = (props) => {
     <ThemeProvider theme={customTheme}>
       <div className="nav">
         <Link to="/home">
-          <h2 className="nav-title">financeIt</h2>
+          <h2 className="nav-title1">finance</h2>
+          <h2 className='nav-title2'>it</h2>
         </Link>
       </div>
     </ThemeProvider>

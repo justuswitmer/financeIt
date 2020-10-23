@@ -11,3 +11,8 @@
   transition: 0.2s;
   font: 90px;
 }
+
+.navBar {
+position: absolute;
+bottom: 0;
+}

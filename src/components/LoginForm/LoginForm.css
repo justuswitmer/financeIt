@@ -14,3 +14,17 @@
   position: absolute;
   left: 145px;
 }
+
+.formPanel {
+  padding-top: 50px;
+  background-image: url('../Styling/background.jpg');
+  height: 100vh;
+}
+
+.registerLogin {
+  margin-top: 30px;
+}
+
+.login {
+  padding-top: 5px;
+}

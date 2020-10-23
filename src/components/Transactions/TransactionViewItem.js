@@ -20,6 +20,7 @@ import {
   FormControl,
   Select,
   Grid,
+  Button,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -41,6 +42,31 @@ class TransactionViewItem extends Component {
     newDate: {
       startDate: startOfMonth,
       endDate: endOfMonth,
+    },
+    root: {
+      width: '100%',
+    },
+    heading: {
+      fontSize: '18px',
+    },
+    secondaryHeading: {
+      fontSize: '14px',
+      color: 'blue',
+    },
+    icon: {
+      verticalAlign: 'bottom',
+      height: 20,
+      width: 20,
+    },
+    details: {
+      alignItems: 'center',
+    },
+    column: {
+      flexBasis: '33.33%',
+    },
+    helper: {
+      borderLeft: `2px solid #333333`,
+      padding: '5px',
     },
   };
 
@@ -132,47 +158,48 @@ class TransactionViewItem extends Component {
               id="panel1a-header"
             >
               <Typography variant='body2' className={this.props.classes.transaction.heading}>
-                <span id='description'>
-                  {this.props.transaction.description} ${this.props.transaction.amount}
-                </span>
-                <span className='deleteBtn'>
-                  <DeleteIcon
-                    value='delete'
-                    color='primary'
-                    onClick={this.deleteTransaction}
-                  />
-                </span>
+                <span id='description'>{this.props.transaction.description}</span>
+                <span id='amount'> ${this.props.transaction.amount}</span>
+
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
-                <span id='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')} {this.props.transaction.name}</span>
+              <Typography variant='body2'>
+                <span id='date'>{moment(this.props.transaction.date).format('MM/DD/YYYY')}</span>
+                <span id='category'> {this.props.transaction.name}</span>
               </Typography>
             </AccordionDetails>
             <Divider />
             <AccordionActions>
               <span className='editBtn'>
-                <EditIcon
+                <Button
+                  color='primary'
+                  size='small'
+                  variant='contained'
                   onClick={this.handleChange}
-                />
+                >Edit
+                </Button>
+              </span>
+              <span className='deleteBtn'>
+                <Button
+                  color='primary'
+                  size='small'
+                  variant='contained'
+                  onClick={this.deleteTransaction}
+                >Delete
+                </Button>
               </span>
             </AccordionActions>
           </Accordion>
           :
           <Grid container item xs={12}>
-            <Accordion >
+            <Accordion defaultExpanded>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
                 <Typography className={this.props.classes.transaction.heading}>
-                  <span className='updateDeleteBtn'>
-                    <DeleteIcon
-                      value='delete'
-                      onClick={this.deleteTransaction}
-                    />
-                  </span>
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -182,15 +209,15 @@ class TransactionViewItem extends Component {
                       variant='outlined'
                       label={this.props.transaction.description}
                       type='text'
-                      id='description'
-                      placeholder={this.props.transaction.description}
+
+                      value={this.props.transaction.description}
                       onChange={(event) => this.newTransactionChange('description', event)}
                     />
                     <TextField
                       variant='outlined'
                       label={this.props.transaction.amount}
-                      id='amount'
-                      placeholder={this.props.transaction.amount}
+
+                      value={this.props.transaction.amount}
                       onChange={(event) => this.newTransactionChange('amount', event)}
                     />
                   </Grid>
@@ -198,15 +225,15 @@ class TransactionViewItem extends Component {
                     <TextField
                       variant='outlined'
                       label={moment(this.props.transaction.date).format('MM/DD/YYYY')}
-                      id='date'
-                      placeholder={moment(this.props.transaction.date).format('MM/DD/YYYY')}
+
+                      value={moment(this.props.transaction.date).format('MM/DD/YYYY')}
                       onChange={(event) => this.newTransactionChange('date', event)}
                     />
                     <FormControl
                       variant='outlined'
-                      id='category'
+
                     >
-                      <InputLabel id="demo-simple-select-outlined-label">category</InputLabel>
+                      <InputLabel id="demo-simple-select-outlined-label">{this.props.transaction.name}</InputLabel>
                       <Select
                         onChange={(event) => this.newTransactionChange('categoryId', event)}
                         label="category"
@@ -216,26 +243,43 @@ class TransactionViewItem extends Component {
                           <MenuItem
                             className='menuItem'
                             key={category.id}
-                            value={category.id}
+                            value={category.name}
                           >{category.name}
                           </MenuItem>
                         )}
                       </Select>
+
                     </FormControl>
                   </Grid>
                 </Typography>
               </AccordionDetails>
               <Divider />
-              <AccordionActions>
-                <span className='updateSaveBtn'>
-                  <CheckBoxIcon
+              <AccordionActions id='buttonField'>
+                <span className='saveBtn'>
+                  <Button
+                    color='primary'
+                    size='small'
+                    variant='contained'
                     onClick={this.updateTransaction}
-                  />
+                  >Save</Button>
                 </span>
                 <span className='editBtn'>
-                  <EditIcon
+                  <Button
+                    color='primary'
+                    size='small'
+                    variant='contained'
                     onClick={this.handleChange}
-                  />
+                  >Cancel</Button>
+                </span>
+                <span className='deleteBtn'>
+                  <Button
+                    color='primary'
+                    size='small'
+                    variant='contained'
+                    value='delete'
+                    color='primary'
+                    onClick={this.deleteTransaction}
+                  >Delete</Button>
                 </span>
               </AccordionActions>
             </Accordion>

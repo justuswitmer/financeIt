@@ -15,20 +15,13 @@
 .editBtn {
   width: 130px;
   position: absolute;
-  right: -12px;
+  right: 12px;
 }
 
-/* .updateSaveBtn {
+.saveBtn {
   width: 130px;
   position: absolute;
-  right: -12px;
-} */
-
-.updateDeleteBtn {
-  width: 130px;
-  position: absolute;
-  right: -12px;
-  top: 20px;
+  right: 84px;
 }
 
 #GridList {
@@ -42,4 +35,26 @@
 
 .menuItem {
   background-color: blue;
+}
+
+#description {
+
+}
+
+#amount {
+  position: absolute;
+  right: 55px;
+}
+
+#date {
+
+}
+
+#category {
+  position: absolute;
+  right: 50px;
+}
+
+#buttonField{
+  height: 30px;
 }

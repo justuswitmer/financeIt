@@ -81,7 +81,7 @@ class SummaryView extends Component {
       <div className={this.props.classes.grid.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <h2>{this.state.heading}</h2>
+            <h2 className='headingName'>{this.state.heading}</h2>
           </Grid>
           <SummarySpent />
           <Grid item xs={12}>
