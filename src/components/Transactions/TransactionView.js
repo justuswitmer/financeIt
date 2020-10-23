@@ -90,7 +90,7 @@ class TransactionsView extends Component {
     return (
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <h2>{this.state.heading}</h2>
+          <h2 className='headingName'>{this.state.heading}</h2>
         </Grid>
         <Grid item xs={12}>
           <Accordion>
@@ -183,7 +183,7 @@ class TransactionsView extends Component {
           </Accordion>
         </Grid>
         <Grid item xs={12}>
-          <h4>Transaction Details</h4>
+          <h4 className='headingName'>Transaction Details</h4>
         </Grid>
         <div className={this.props.classes.transaction.root}>
           <GridList

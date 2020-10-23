@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 // Component Imports
 import './Appp.css';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // CONSTANT COMPONENTS
 import Header from '../Header/Header';
@@ -119,7 +120,9 @@ class App extends Component {
                 </Switch>
                 <Footer />
               </div>
-              <Nav />
+              {this.props.store.user.id && (
+                <Nav />
+              )}
             </div>
 
           </div>
@@ -129,4 +132,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+export default connect(mapStoreToProps)(App);

@@ -39,7 +39,7 @@ class AboutView extends Component {
   render() {
     return (
       <div>
-        <h2>{this.state.heading}</h2>
+        <h2 className='headingName'>{this.state.heading}</h2>
 
         <div className="nav-right">
 

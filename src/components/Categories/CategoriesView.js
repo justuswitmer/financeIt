@@ -69,7 +69,7 @@ class CategoriesView extends Component {
     return (
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <h2>{this.state.heading}</h2>
+          <h2 className='headingName'>{this.state.heading}</h2>
         </Grid>
         <Grid item xs={12}>
           <Accordion>
