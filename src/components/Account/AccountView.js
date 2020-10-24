@@ -28,8 +28,16 @@ class AboutView extends Component {
 
   render() {
     return (
-      <div>
+      <div className='accountHeadDiv'>
         <h2 className='headingName'>{this.state.heading}</h2>
+
+        <ul>
+          <li>
+            This is my gratitude page
+        </li>
+        </ul>
+
+
 
         <div className="nav-right">
 
