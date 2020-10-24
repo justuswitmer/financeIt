@@ -24,6 +24,7 @@ class SummarySpent extends Component {
         <Grid id='gridSummary2' item xs={4}>
           <Paper
             id="paper"
+
             elevation={3}>
             <h5>Total Amount Spent</h5>
             {this.props.totalAmount.map(total =>

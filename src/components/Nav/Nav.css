@@ -1,22 +1,5 @@
-#header {
-  position: fixed;
-  bottom: 0;
-  transition: 0.2s;
-  font: 30px;
-}
-
-#headerLarge {
-  position: fixed;
-  bottom: 0;
-  transition: 0.2s;
-  font: 90px;
-}
-
 .navBar {
 position: absolute;
-bottom: 0;
-}
-
-.navIcons {
-  color: blue;
+bottom: -8px;
+width: 95%;
 }

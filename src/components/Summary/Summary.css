@@ -1,27 +1,32 @@
 #gridSummary1 {
-  margin-left: 11px;
-  padding-left: 12px;
+  margin-left: 5px;
+  padding: 0 9px 0 9px;
   text-align: center;
 
 }
 
 #gridSummary2 {
-  margin-left: -12px;
-  margin-right: -12px;
+  margin: 0 -5px 0 -5px;
+  padding: 0 9px 0 9px;
   text-align: center;
 }
 
 #gridSummary3 {
-  margin-right: 10px;
-  padding-right: 12px;
+  padding: 0 9px 0 9px;
   text-align: center;
 }
 
 #paper {
-  background-color: #333333;
+  background-color: #3d3d3d;
   color: #6CA663;
   font-weight: 500;
   padding-bottom: 1px;
   padding-top: 1px;
   border: 1px solid #00000062;
+}
+
+.summaryCustomDateAccordian {
+  margin-bottom: 30px;
+    margin-top: 30px;
+    margin-left: 2px;
 }

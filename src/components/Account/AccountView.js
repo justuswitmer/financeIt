@@ -2,30 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Custom Imports
-import CSVReader from 'react-csv-reader'
-import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Button } from '@material-ui/core';
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
 class AboutView extends Component {
   state = {
     heading: 'Account',
   };
 
 
-
-  componentDidMount = () => {
-    let loginLinkData = {
-      path: '/login',
-      text: 'Login / Register',
-    };
-    if (this.props.store.user.id != null) {
-      loginLinkData.path = '/user';
-      loginLinkData.text = 'Home';
-    }
+  logOutUser = () => {
+    this.props.dispatch({
+      type: 'LOGOUT'
+    });
+    this.props.history.push('/home');
   }
 
   handelFileLoad = (data) => {
@@ -45,9 +35,17 @@ class AboutView extends Component {
 
           {/* Show the link to the info page and the logout button if the user is logged in */}
           {this.props.store.user.id && (
-            <LogOutButton className="nav-link" />
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={this.logOutUser}
+            >
+              Log Out
+            </Button>
           )}
         </div>
+
+
 
 
         {/* <CSVReader

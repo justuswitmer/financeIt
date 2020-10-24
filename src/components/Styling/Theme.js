@@ -1,8 +1,6 @@
 import {
   createMuiTheme,
 } from '@material-ui/core/styles';
-import './Theme.css';
-const font = "'Open Sans', sans-serif";
 
 // CUSTOM THEME
 const customTheme = createMuiTheme({
@@ -20,10 +18,6 @@ const customTheme = createMuiTheme({
     info: { main: '#6CA663' },
   },
   typography: {
-    fontFamily: font,
-    button: {
-      textTransform: "none"
-    },
     body1: {
       color: '#F29F05',
     },
@@ -65,8 +59,9 @@ const customTheme = createMuiTheme({
     },
     MuiTable: {
       root: {
-        backgroundColor: '#333333',
+        backgroundColor: '#3d3d3d',
         borderRadius: '4px',
+        border: '1px solid #00000062',
       },
     },
     MuiTableCell: {
@@ -146,11 +141,12 @@ const customTheme = createMuiTheme({
     MuiBottomNavigation: {
       root: {
         position: 'fixed',
-        bottom: 0,
-        width: '358px',
+        bottom: '0',
+        width: '375px',
         backgroundColor: '#0f3809',
-        borderTopRightRadius: '6px',
-        borderTopLeftRadius: '6px',
+        borderTop: '1px solid #0a290562',
+        alignItems: 'center',
+
       },
     },
   },

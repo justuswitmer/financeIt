@@ -28,31 +28,12 @@ a {
   box-shadow: 0 4px 15px 0 rgba(0,0,0,0.50);
   height: 50px;
   position: fixed;
-  top: 10px;
-  left: 17.5px;
+  top: 0;
+  left: 20px;
   width: 90%;
-  border-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   z-index: 999;
-}
-
-.nav-link {
-  float: left;
-  color: #f2f2f2;
-  background-color: #6CA663;
-  text-align: center;
-  padding: 24px 10px;
-  text-decoration: none;
-  font-size: 15px;
-
-  /* these last two make the logout button in
-  the nav bar look like another link */
-  border:none;
-  cursor: pointer;
-  outline:0;
-}
-
-.nav-link:hover {
-  background-color: #008183;
 }
 
 .nav-right {

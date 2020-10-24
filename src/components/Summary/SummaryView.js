@@ -79,13 +79,13 @@ class SummaryView extends Component {
   render() {
     return (
       <div className={this.props.classes.grid.root}>
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item xs={12}>
             <h2 className='headingName'>{this.state.heading}</h2>
           </Grid>
           <SummarySpent />
           <Grid item xs={12}>
-            <Accordion>
+            <Accordion className='summaryCustomDateAccordian'>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -119,7 +119,7 @@ class SummaryView extends Component {
               <Table aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell align="center">Category</TableCell>
+                    <TableCell align="left">Category</TableCell>
                     <TableCell align="center">Budgeted</TableCell>
                     <TableCell align="center">Spent</TableCell>
                     <TableCell align="center">Remainder</TableCell>

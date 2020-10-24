@@ -15,7 +15,7 @@ class SummaryViewItem extends Component {
   render() {
     return (
       <TableRow>
-        <TableCell align="center">
+        <TableCell align="left">
           {this.props.summary.category}
         </TableCell>
         <TableCell align="center">
