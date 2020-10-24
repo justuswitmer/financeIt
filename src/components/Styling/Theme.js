@@ -25,12 +25,6 @@ const customTheme = createMuiTheme({
 
   },
   overrides: {
-    MuiPaper: {
-      root: {
-        backgroundColor: '#33333',
-        width: '99%',
-      },
-    },
     MuiCard: {
       root: {
         marginTop: '30px',

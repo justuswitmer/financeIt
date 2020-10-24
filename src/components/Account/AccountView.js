@@ -28,7 +28,7 @@ class AboutView extends Component {
 
   render() {
     return (
-      <div className='accountHeadDiv'>
+      <div className='headDiv'>
         <h2 className='headingName'>{this.state.heading}</h2>
 
         <ul>

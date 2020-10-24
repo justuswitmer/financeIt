@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button, TextField } from '@material-ui/core';
+import { Button, Paper, TextField } from '@material-ui/core';
 import './LoginPage.css';
 
 class LoginPage extends Component {
   state = {
     username: '',
     password: '',
+    heading: 'Login',
   };
 
   login = (event) => {
@@ -34,67 +35,68 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <form className="formPanel" onSubmit={this.login}>
-        <h2>Login</h2>
-        {this.props.store.errors.loginMessage && (
-          <h3 className="alert" role="alert">
-            {this.props.store.errors.loginMessage}
-          </h3>
-        )}
-        <div>
-          <label htmlFor="username">
-
-            <input
-              id='username'
-              name="username"
-              variant='outlined'
-              placeholder='username'
-              required
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
-            <input
-              id='password'
-              variant='outlined'
-              type="password"
-              name="password"
-              placeholder='password'
-              required
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
-        </div>
-        <div className='login'>
-          <Button
-            color='primary'
-            size='small'
-            variant='contained'
-            className="btn"
-            type="submit"
-            name="submit"
-            value="Log In"
-          >Login
+      <div className='headDiv'>
+        <h2 className='headingName'>{this.state.heading}</h2>
+        <Paper
+          id="paperLogin"
+          elevation={3}>
+          <form className="formPanel" onSubmit={this.login}>
+            {this.props.store.errors.loginMessage && (
+              <h3 className="alert" role="alert">
+                {this.props.store.errors.loginMessage}
+              </h3>
+            )}
+            <div className='loginFields'>
+              <label htmlFor="username">
+                <TextField
+                  name="username"
+                  variant='outlined'
+                  placeholder='username'
+                  required
+                  value={this.state.username}
+                  onChange={this.handleInputChangeFor('username')}
+                />
+              </label>
+            </div>
+            <div className='loginFields'>
+              <label htmlFor="password">
+                <TextField
+                  variant='outlined'
+                  type="password"
+                  name="password"
+                  placeholder='password'
+                  required
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor('password')}
+                />
+              </label>
+            </div>
+            <div className='login'>
+              <Button
+                color='primary'
+                size='small'
+                variant='contained'
+                className="btn"
+                type="submit"
+                name="submit"
+                value="Log In"
+              >Login
           </Button>
-          <center className='registerLogin'>
-            <Button
-              color='secondary'
-              size='small'
-              variant='contained'
-              className="btn_asLink"
-              onClick={() => {
-                this.props.history.push('/registration');
-              }}
-            >
-              Register!
+              <center className='registerLogin'>
+                <Button
+                  size='small'
+                  className="btn_asLink"
+                  onClick={() => {
+                    this.props.history.push('/registration');
+                  }}
+                >
+                  Register!
           </Button>
-          </center>
-        </div>
-      </form>
+              </center>
+            </div>
+          </form>
+        </Paper>
+      </div>
     );
   }
 }
