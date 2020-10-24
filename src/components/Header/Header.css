@@ -1,21 +1,21 @@
 .nav-title1 {  
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 300;
   text-align: center;
   color: #f29f05;
   position: absolute;
-  left: 115px;
-  margin-top: 8.5px;
+  left: 111px;
+  margin-top: 5.5px;
 }
 
 .nav-title2 {  
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 400;
   text-align: center;
   color: #f2f2f2e1;
   position: absolute;
-  left: 202px;
-  margin-top: 8.5px;
+  left: 210px;
+  margin-top: 5.5px;
 }
 
 a {
