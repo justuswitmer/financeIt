@@ -146,12 +146,15 @@ const customTheme = createMuiTheme({
         backgroundColor: '#0f3809',
         borderTop: '1px solid #0a290562',
         alignItems: 'center',
-
       },
     },
+    MuiButton: {
+      containedSizeSmall: {
+        padding: '4px',
+        fontSize: '12px',
+      }
+    }
   },
 });
-// MuiListItem-button:hover
-// .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover
 
 export default customTheme;

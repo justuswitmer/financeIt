@@ -116,7 +116,8 @@ class SummaryView extends Component {
           </Grid>
           <Grid item xs={12}>
             <TableContainer component={Paper}>
-              <Table aria-label="simple table">
+              <Table
+                aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Category</TableCell>

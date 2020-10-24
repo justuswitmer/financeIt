@@ -72,7 +72,7 @@ class CategoriesView extends Component {
           <h2 className='headingName'>{this.state.heading}</h2>
         </Grid>
         <Grid item xs={12}>
-          <Accordion>
+          <Accordion className='addCatAccordian'>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -86,7 +86,7 @@ class CategoriesView extends Component {
               <Typography>
                 <Grid item xs={6}>
                   <TextField
-                    type='text'
+                  type='text'
                     placeholder='category'
                     onChange={(event) => this.newCategoryChange('category', event)}
                     value={this.state.newCategory.category}
@@ -112,19 +112,18 @@ class CategoriesView extends Component {
         <Grid item xs={12}>
           <TableContainer component={Paper}>
             <Table
-              className={this.props.classes.table}
               aria-label="simple table"
             >
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">Categories</TableCell>
+                  <TableCell align="left">Categories</TableCell>
                   <TableCell align="center">Monthly Amount</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {this.props.category.map(category =>
                   <TableRow key={category.id}>
-                    <TableCell component="th" scope="row" align="center">
+                    <TableCell component="th" scope="row" align="left">
                       {category.name}
                     </TableCell>
                     <TableCell align="center">{category.budgetedAmount}</TableCell>
@@ -134,11 +133,12 @@ class CategoriesView extends Component {
             </Table>
           </TableContainer>
         </Grid>
-        <Grid item xs={6}>
+        <Grid className='editCatBtn' item xs={6}>
           <Button
             onClick={() => { this.props.history.push('/categoriesedit') }}
             variant='contained'
-            color='secondary'
+            color='primary'
+            size='small'
           >Edit Categories
         </Button>
         </Grid>

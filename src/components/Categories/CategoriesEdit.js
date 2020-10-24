@@ -33,7 +33,6 @@ class CategoriesEdit extends Component {
         <h2>{this.state.heading}</h2>
         <TableContainer component={Paper}>
           <Table
-            className={this.props.classes.table}
             aria-label="simple table"
           >
             <TableHead>
