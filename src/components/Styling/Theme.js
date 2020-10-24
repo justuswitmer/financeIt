@@ -106,13 +106,19 @@ const customTheme = createMuiTheme({
     },
     MuiAccordionSummary: {
       root: {
-        width: '320px',
-        justifyContent: 'space-between'
+        width: '333px',
+        justifyContent: 'space-between',
+        minHeight: '40px',
       },
     },
     MuiAccordionActions: {
       root: {
         height: '30px',
+      },
+    },
+    MuiDivider: {
+      root: {
+        backgroundColor: 'rgba(242, 159, 5, 0.5)',
       },
     },
     MuiTypography: {

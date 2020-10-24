@@ -33,17 +33,9 @@
   width: 320px;
 }
 
-#description {
-
-}
-
 #amount {
   position: absolute;
   right: 55px;
-}
-
-#date {
-
 }
 
 #category {
@@ -54,3 +46,8 @@
 #buttonField{
   height: 30px;
 }
+
+/* .transactionAccordian {
+  margin-bottom: 30px;
+  margin-left: 2px;
+} */

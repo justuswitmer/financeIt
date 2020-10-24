@@ -124,9 +124,11 @@ class TransactionViewItem extends Component {
     return (
       <GridListTile cols={2}>
         {this.state.notInEditMode ?
-          <Accordion>
+          <Accordion className='transactionAccordian'>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<ExpandMoreIcon
+                color='primary'
+              />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
@@ -185,17 +187,17 @@ class TransactionViewItem extends Component {
                     />
                     <TextField
                       variant='outlined'
-                      label={this.props.updatedTransaction.amount}
-                      value={this.props.updatedTransaction.amount}
-                      onChange={(event) => this.newTransactionChange('amount', event)}
+                      label={moment(this.props.updatedTransaction.date).format('MM/DD/YYYY')}
+                      value={moment(this.props.updatedTransaction.date).format('MM/DD/YYYY')}
+                      onChange={(event) => this.newTransactionChange('date', event)}
                     />
                   </Grid>
                   <Grid item xs={6}>
                     <TextField
                       variant='outlined'
-                      label={moment(this.props.updatedTransaction.date).format('MM/DD/YYYY')}
-                      value={moment(this.props.updatedTransaction.date).format('MM/DD/YYYY')}
-                      onChange={(event) => this.newTransactionChange('date', event)}
+                      label={this.props.updatedTransaction.amount}
+                      value={this.props.updatedTransaction.amount}
+                      onChange={(event) => this.newTransactionChange('amount', event)}
                     />
                     <FormControl
                       variant='outlined'>

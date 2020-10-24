@@ -9,7 +9,6 @@ import TransactionViewItem from './TransactionViewItem';
 // Material-UI
 import {
   TextField,
-  Button,
   InputLabel,
   MenuItem,
   FormControl,
@@ -20,6 +19,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
+  Divider,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
@@ -88,12 +88,12 @@ class TransactionsView extends Component {
 
   render() {
     return (
-      <Grid container spacing={1}>
+      <Grid container>
         <Grid item xs={12}>
           <h2 className='headingName'>{this.state.heading}</h2>
         </Grid>
         <Grid item xs={12}>
-          <Accordion>
+          <Accordion className='addCatAccordian'>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -122,7 +122,6 @@ class TransactionsView extends Component {
                 <Grid item xs={6}>
                   <TextField
                     type='date'
-                    placeholder='date'
                     onChange={(event) => this.newTransactionChange('date', event)}
                     variant='outlined'
                   />
@@ -150,7 +149,7 @@ class TransactionsView extends Component {
           </Accordion>
         </Grid>
         <Grid item xs={12}>
-          <Accordion>
+          <Accordion className='addCatAccordian'>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -182,6 +181,9 @@ class TransactionsView extends Component {
           </Accordion>
         </Grid>
         <Grid item xs={12}>
+          <Divider
+            color='primary'
+          />
           <h4 className='headingName'>Transaction Details</h4>
         </Grid>
         <div className={this.props.classes.transaction.root}>
