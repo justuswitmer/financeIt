@@ -88,6 +88,7 @@ class LoginPage extends Component {
                 type="submit"
                 name="submit"
                 value="Log In"
+                onClick={() => this.props.history.push('/summary')}
               >Login
               </Button>
               <center className='registerLogin'>
