@@ -9,8 +9,9 @@ import {
 import { connect } from 'react-redux';
 
 // Component Imports
-import './Appp.css';
+import './App.css';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // CONSTANT COMPONENTS
 import Header from '../Header/Header';
@@ -18,8 +19,6 @@ import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
 // LOGIN AND REGISTRATION COMPONENTS
-import UserPage from '../UserPage/UserPage';
-import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
@@ -30,7 +29,6 @@ import CategoriesEdit from '../Categories/CategoriesEdit';
 import CategoriesView from '../Categories/CategoriesView';
 import TransactionView from '../Transactions/TransactionView';
 import AccountView from '../Account/AccountView';
-import TransactionEdit from '../Transactions/TransactionEdit';
 
 // MATERIAL-UI
 import customTheme from '../Styling/Theme';
@@ -66,23 +64,14 @@ class App extends Component {
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />
               <ProtectedRoute
-                exact path="/user"
-                component={UserPage}
-              />
-              <ProtectedRoute
-                exact path="/login"
-                component={LoginPage}
-                authRedirect="/user"
-              />
-              <ProtectedRoute
                 exact path="/registration"
                 component={RegisterPage}
                 authRedirect="/summary"
               />
               <ProtectedRoute
                 exact path="/home"
-                component={LandingPage}
-                authRedirect="/user"
+                component={LoginPage}
+              // authRedirect="/summary"
               />
               <ProtectedRoute
                 exact path="/summary"
@@ -105,10 +94,6 @@ class App extends Component {
                 component={TransactionView}
               />
               <ProtectedRoute
-                exact path="/transactionedit"
-                component={TransactionEdit}
-              />
-              <ProtectedRoute
                 exact path="/account"
                 component={AccountView}
               />
@@ -116,12 +101,14 @@ class App extends Component {
               <Route render={() => <h1>404</h1>} />
             </Switch>
             <Footer />
+            {this.props.store.user.id && (
+              <Nav />
+            )}
           </div>
-          <Nav />
         </Router>
       </ThemeProvider>
     );
   }
 }
 
-export default connect()(App);
+export default connect(mapStoreToProps)(App);

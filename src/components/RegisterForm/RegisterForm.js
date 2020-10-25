@@ -10,9 +10,9 @@ class RegisterForm extends Component {
     password: '',
   };
 
+  // dispatch to send new user info to database
   registerUser = (event) => {
     event.preventDefault();
-
     this.props.dispatch({
       type: 'REGISTER',
       payload: {
@@ -22,12 +22,14 @@ class RegisterForm extends Component {
     });
   }; // end registerUser
 
+  // saving new user info to reduxState
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   };
 
+  // welcome blip for new user
   welcome = () => {
     swal({
       title: "Welcome!",
@@ -73,7 +75,6 @@ class RegisterForm extends Component {
         </div>
         <div>
           <Button
-            className="btn"
             type="submit"
             name="submit"
             value="Register"

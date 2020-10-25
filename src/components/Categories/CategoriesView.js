@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import muiStyles from '../Styling/Styling';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Material-UI
 import {
@@ -22,8 +22,6 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-import { withStyles } from '@material-ui/core/styles';
-
 class CategoriesView extends Component {
 
   state = {
@@ -31,16 +29,18 @@ class CategoriesView extends Component {
     newCategory: {
       category: '',
       budgetedAmount: '',
-      user: this.props.user.id
+      user: this.props.store.user.id
     },
   };
 
+  // dispatch to load the category list
   componentDidMount = () => {
     this.props.dispatch({
       type: 'FETCH_CATEGORY'
     })
   }
 
+  // saving to local state when adding a new category change
   newCategoryChange = (property, event) => {
     console.log('in newCategoryChange', event.target.value);
     this.setState({
@@ -51,12 +51,14 @@ class CategoriesView extends Component {
     })
   }
 
+  // dispatch to send new category to saga
   addCategory = () => {
     console.log('in addCategory');
     this.props.dispatch({
       type: 'ADD_CATEGORY',
       payload: this.state.newCategory
     })
+    // resetting state
     this.setState({
       newCategory: {
         category: '',
@@ -65,20 +67,21 @@ class CategoriesView extends Component {
     })
   }
 
+  // could clean up component by separating table body in a different component
   render() {
     return (
-      <Grid container spacing={1}>
+      <Grid container>
         <Grid item xs={12}>
-          <h2>{this.state.heading}</h2>
+          <h2 className='headingName'>{this.state.heading}</h2>
         </Grid>
         <Grid item xs={12}>
-          <Accordion>
+          <Accordion className='addCatAccordian'>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="summaryDates"
             >
-              <Typography className={this.props.classes.transaction.heading}>
+              <Typography>
                 <h5>Add New Category</h5>
               </Typography>
             </AccordionSummary>
@@ -112,19 +115,18 @@ class CategoriesView extends Component {
         <Grid item xs={12}>
           <TableContainer component={Paper}>
             <Table
-              className={this.props.classes.table}
               aria-label="simple table"
             >
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">Categories</TableCell>
+                  <TableCell align="left">Categories</TableCell>
                   <TableCell align="center">Monthly Amount</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.props.category.map(category =>
+                {this.props.store.category.map(category =>
                   <TableRow key={category.id}>
-                    <TableCell component="th" scope="row" align="center">
+                    <TableCell component="th" scope="row" align="left">
                       {category.name}
                     </TableCell>
                     <TableCell align="center">{category.budgetedAmount}</TableCell>
@@ -134,11 +136,12 @@ class CategoriesView extends Component {
             </Table>
           </TableContainer>
         </Grid>
-        <Grid item xs={6}>
+        <Grid className='editCatBtn' item xs={6}>
           <Button
             onClick={() => { this.props.history.push('/categoriesedit') }}
             variant='contained'
-            color='secondary'
+            color='primary'
+            size='small'
           >Edit Categories
         </Button>
         </Grid>
@@ -147,11 +150,4 @@ class CategoriesView extends Component {
   }
 }
 
-const mapStateToProps = reduxState => ({
-  category: reduxState.category,
-  user: reduxState.user
-})
-
-export default connect(mapStateToProps)
-  (withStyles(muiStyles)
-    (CategoriesView));
+export default connect(mapStoreToProps)(CategoriesView);

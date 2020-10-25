@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CategoriesEditItem from './CategoriesEditItem';
-import muiStyles from '../Styling/Styling';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Material-UI
 import {
@@ -13,14 +13,13 @@ import {
   TableCell,
   TableBody,
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 
 class CategoriesEdit extends Component {
   state = {
     heading: 'Edit Categories',
-    updateCategory: {},
   };
 
+  // dispatch for loading category summary
   componentDidMount = () => {
     this.props.dispatch({
       type: 'FETCH_CATEGORY'
@@ -33,7 +32,6 @@ class CategoriesEdit extends Component {
         <h2>{this.state.heading}</h2>
         <TableContainer component={Paper}>
           <Table
-            className={this.props.classes.table}
             aria-label="simple table"
           >
             <TableHead>
@@ -45,7 +43,7 @@ class CategoriesEdit extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.category.map(category =>
+              {this.props.store.category.map(category =>
                 <CategoriesEditItem
                   category={category}
                 />
@@ -58,11 +56,4 @@ class CategoriesEdit extends Component {
   }
 }
 
-const mapStateToProps = reduxState => ({
-  category: reduxState.category,
-  user: reduxState.user
-})
-
-export default connect(mapStateToProps)
-  (withStyles(muiStyles)
-    (CategoriesEdit));
+export default connect(mapStoreToProps)(CategoriesEdit);

@@ -1,46 +1,47 @@
-.nav-title {  
-  font-size: 28px;
-  font-weight: 400;
+/* first part of app title */
+.nav-title1 {  
+  font-size: 32px;
+  font-weight: 300;
   text-align: center;
-  color: #F29F05;
+  color: #f29f05;
   position: absolute;
-  left: 28%;
-  right: 25%;
-  margin-top: 8.5px;
+  left: 111px;
+  margin-top: 5.5px;
 }
 
+/* second part of app title */
+.nav-title2 {  
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  color: #f2f2f2e1;
+  position: absolute;
+  left: 210px;
+  margin-top: 5.5px;
+}
+
+/* takes link styling out of app title*/
 a {
   text-decoration: none;
 }
+
+/* top bar around app title*/
 .nav {
-  margin: 0;
-  background-color: #587c52;
-  overflow: hidden;
-  border-radius: 2px;
+  background-color: #0f3809;
+  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.50);
   height: 50px;
+  position: fixed;
+  top: 0;
+  left: 19px;
+  width: 90%;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  z-index: 999;
 }
 
-.nav-link {
-  float: left;
-  color: #f2f2f2;
-  background-color: #6CA663;
-  text-align: center;
-  padding: 24px 10px;
-  text-decoration: none;
-  font-size: 15px;
-
-  /* these last two make the logout button in
-  the nav bar look like another link */
-  border:none;
-  cursor: pointer;
-  outline:0;
-}
-
-.nav-link:hover {
-  background-color: #008183;
-}
-
+/* logout button div in AccountView */
 .nav-right {
   position: absolute;
-    left: 145px;
+    left: 138px;
 }
+

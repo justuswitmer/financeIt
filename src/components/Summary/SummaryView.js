@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-
 // Custom imports
 import SummaryViewItem from './SummaryViewItem';
 import SummarySpent from './SummarySpent';
-import muiStyles from '../Styling/Styling';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Material-UI
 import {
@@ -23,13 +22,10 @@ import {
   AccordionDetails,
   Typography,
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-
-
-// Date formats
+// Date formats for determining dates for query
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 
@@ -42,15 +38,16 @@ class SummaryView extends Component {
     }
   };
 
+  // triggers function to dispatch summary categories
   componentDidMount() {
     this.handleClick();
     console.log('in componentDidMount', this.state.newDate);
   }
 
+  // stores custom date changes in local state
   handleChange = (property, event) => {
     console.log('in handleChange', event.target.value);
     console.log(startOfMonth, endOfMonth);
-
     this.setState({
       newDate: {
         ...this.state.newDate,
@@ -59,6 +56,9 @@ class SummaryView extends Component {
     })
   }
 
+  // sends dispatch for summary dates
+  // sends dispatch for transactionTotalReducer
+  // sends dispatch for summaryCatTotalReducer
   handleClick = () => {
     console.log('in handleClick', this.state.newDate);
     this.props.dispatch({
@@ -74,24 +74,23 @@ class SummaryView extends Component {
     });
   }
 
-
-
   render() {
     return (
-      <div className={this.props.classes.grid.root}>
-        <Grid container spacing={3}>
+      <div >
+        <Grid container>
           <Grid item xs={12}>
-            <h2>{this.state.heading}</h2>
+            <h2 className='headingName'>{this.state.heading}</h2>
           </Grid>
+          {/* child component displaying first three summary grids */}
           <SummarySpent />
           <Grid item xs={12}>
-            <Accordion>
+            <Accordion className='summaryCustomDateAccordian'>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="summaryDates"
               >
-                <Typography className={this.props.classes.transaction.heading}>
+                <Typography >
                   <h5>Select Custom Dates</h5>
                 </Typography>
               </AccordionSummary>
@@ -116,17 +115,19 @@ class SummaryView extends Component {
           </Grid>
           <Grid item xs={12}>
             <TableContainer component={Paper}>
-              <Table aria-label="simple table">
+              <Table
+                aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell align="center">Category</TableCell>
+                    <TableCell align="left">Category</TableCell>
                     <TableCell align="center">Budgeted</TableCell>
                     <TableCell align="center">Spent</TableCell>
                     <TableCell align="center">Remainder</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {this.props.summary.map(summary =>
+                  {/* child component that displays the summary items */}
+                  {this.props.store.summary.map(summary =>
                     <SummaryViewItem
                       key={summary.category}
                       summary={summary}
@@ -136,20 +137,10 @@ class SummaryView extends Component {
               </Table>
             </TableContainer>
           </Grid>
-
         </Grid>
       </div >
     );
   }
 }
 
-const mapStateToProps = reduxState => ({
-  summary: reduxState.summary,
-  totalAmount: reduxState.transactionTotalReducer,
-  category: reduxState.category,
-  summaryCat: reduxState.summaryCatTotalReducer,
-});
-
-export default connect(mapStateToProps)
-  (withStyles(muiStyles)
-    (SummaryView));
+export default connect(mapStoreToProps)(SummaryView);

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { sum } from 'mathjs'
-
-import muiStyles from '../Styling/Styling';
-import { withStyles } from '@material-ui/core/styles';
-import { Grid, Paper } from '@material-ui/core';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 import './Summary.css';
+
+// MATERIAL UI 
+import {
+  Grid,
+  Paper
+} from '@material-ui/core';
+
 
 class SummarySpent extends Component {
   render() {
@@ -16,7 +19,8 @@ class SummarySpent extends Component {
             id="paper"
             elevation={3}>
             <h5>Total Amount Budgeted</h5>
-            {this.props.summaryCat.map(total =>
+            {/* maps through summaryCatTotalReducer */}
+            {this.props.store.summaryCatTotalReducer.map(total =>
               <p key={total.sum}>${Number(total.sum)}</p>
             )}
           </Paper>
@@ -26,11 +30,11 @@ class SummarySpent extends Component {
             id="paper"
             elevation={3}>
             <h5>Total Amount Spent</h5>
-            {this.props.totalAmount.map(total =>
-              <p
-                key={total.sum}
-
-              >${Number(total.sum)}</p>
+            {/* maps through transactionTotalReducer */}
+            {this.props.store.transactionTotalReducer.map(total =>
+              <p key={total.sum}
+              >${Number(total.sum)}
+              </p>
             )}
           </Paper>
         </Grid>
@@ -39,11 +43,13 @@ class SummarySpent extends Component {
             id="paper"
             elevation={3}>
             <h5>Total Amount Remaining</h5>
-            <p>{Number(this.props.totalAmount.map(total =>
+            {/* maps through transactionTotalReducer and 
+            summaryCatTotalReducer and subtracts one from the other*/}
+            <p>${Number(this.props.store.transactionTotalReducer.map(total =>
               total.sum
             ))
               +
-              Number(this.props.summaryCat.map(total =>
+              Number(this.props.store.summaryCatTotalReducer.map(total =>
                 total.sum
               ))}</p>
           </Paper>
@@ -53,12 +59,4 @@ class SummarySpent extends Component {
   }
 }
 
-const mapStateToProps = reduxState => ({
-  summary: reduxState.summary,
-  totalAmount: reduxState.transactionTotalReducer,
-  summaryCat: reduxState.summaryCatTotalReducer,
-});
-
-export default connect(mapStateToProps)
-  (withStyles(muiStyles)
-    (SummarySpent));
+export default connect(mapStoreToProps)(SummarySpent);

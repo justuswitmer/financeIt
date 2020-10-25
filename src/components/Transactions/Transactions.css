@@ -3,15 +3,51 @@
   padding-right: 10px;
   margin: 0;
   font-size: 14px;
+  color: #F2F2F2;
 }
 
-.updateDeleteBtns {
+.deleteBtn {
   width: 130px;
   position: absolute;
-  right: 0;
+  right: -60px;
+}
+
+.editBtn {
+  width: 130px;
+  position: absolute;
+  right: 12px;
+}
+
+.saveBtn {
+  width: 130px;
+  position: absolute;
+  right: 84px;
 }
 
 #GridList {
   color: #F2F2F2;
   background-color: #eeb64f;
 }
+
+.editTransaction {
+  width: 320px;
+}
+
+#amount {
+  position: absolute;
+  right: 55px;
+}
+
+#category {
+  position: absolute;
+  right: 50px;
+}
+
+#buttonField{
+  height: 30px;
+}
+
+/* .transactionAccordian {
+  margin-bottom: 30px;
+  margin-left: 2px;
+} */

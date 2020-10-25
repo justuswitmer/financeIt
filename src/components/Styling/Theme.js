@@ -1,10 +1,8 @@
+// create custom themes of components
 import {
   createMuiTheme,
 } from '@material-ui/core/styles';
-import './Theme.css';
-const font = "'Open Sans', sans-serif";
 
-// CUSTOM THEME
 const customTheme = createMuiTheme({
   // theme settings
   palette: {
@@ -13,45 +11,23 @@ const customTheme = createMuiTheme({
     },
     secondary: {
       // light: '',
-      main: '#eeb64f',
+      main: '#3333',
       // dark: '',
       // contrastText: '',
     },
     info: { main: '#6CA663' },
   },
+  // color of text
   typography: {
-    fontFamily: font,
-    button: {
-      textTransform: "none"
+    body1: {
+      color: '#F29F05',
     },
-    body1: { color: '#F29F05' },
-    body2: { color: '#F29F05' },
+    body2: { color: '#F2F2F2' },
 
   },
+  // overides for components
   overrides: {
-    MuiPaper: {
-      root: {
-        backgroundColor: '#33333',
-        width: '99%',
-      },
-    },
-    MuiCard: {
-      root: {
-        marginTop: '30px',
-        backgroundColor: '#3d3d3d',
-        overflow: 'visible',
-      }
-    },
-    MuiCardHeader: {
-      root: {
-        margin: '-30px auto 0',
-        backgroundColor: '#4EA09E',
-        border: '2px solid #333333',
-        boxSizing: 'border-box',
-        width: '90%',
-        fontWeight: 'bold',
-      }
-    },
+    // text field customization 
     MuiOutlinedInput: {
       root: {
         borderRadius: '4px',
@@ -61,12 +37,15 @@ const customTheme = createMuiTheme({
         borderColor: '#2D8C1F',
       },
     },
+    // tables for summary and categories pages
     MuiTable: {
       root: {
-        backgroundColor: '#333333',
+        backgroundColor: '#3d3d3d',
         borderRadius: '4px',
+        border: '1px solid #00000062',
       },
     },
+    // table cells for summary and categories pages
     MuiTableCell: {
       head: {
         color: '#F29F05',
@@ -79,16 +58,13 @@ const customTheme = createMuiTheme({
         fontSize: '14px',
       },
     },
-    MuiTableContainer: {
-      root: {
-
-      },
-    },
+    // used in category select
     MuiFormLabel: {
       root: {
         fontSize: '14px'
       },
     },
+    // used in category select
     MuiFormControl: {
       root: {
         width: '-webkit-fill-available',
@@ -96,29 +72,47 @@ const customTheme = createMuiTheme({
         paddingRight: '5px'
       },
     },
+    // used in category select
     MuiSelect: {
       selectMenu: {
         width: '80px'
       },
     },
+    // customizing all accordians
     MuiAccordion: {
       root: {
         backgroundColor: '#3d3d3d',
         width: ''
       },
     },
+    // customizing all accordian summaries
     MuiAccordionSummary: {
       root: {
-        width: '320px',
-        justifyContent: 'space-between'
+        width: '333px',
+        justifyContent: 'space-between',
+        minHeight: '40px',
       },
     },
+    // customizing all accordian actions
+    MuiAccordionActions: {
+      root: {
+        height: '30px',
+      },
+    },
+    // customizing all accordian dividers
+    MuiDivider: {
+      root: {
+        backgroundColor: 'rgba(242, 159, 5, 0.5)',
+      },
+    },
+    // customization of typography in accordians
     MuiTypography: {
       body1: {
         textAlign: 'center',
         display: 'inline-flex'
       },
     },
+    // used in TransactionsView
     MuiGridListTile: {
       root: {
         marginLeft: '9px',
@@ -126,6 +120,30 @@ const customTheme = createMuiTheme({
         marginBottom: '1px',
       },
     },
+    // menu for cateroy dropodown
+    MuiMenuItem: {
+      root: {
+        backgroundColor: '#3d3d3d'
+      },
+    },
+    // navBar
+    MuiBottomNavigation: {
+      root: {
+        position: 'fixed',
+        bottom: '0',
+        width: '375px',
+        backgroundColor: '#0f3809',
+        borderTop: '1px solid #0a290562',
+        alignItems: 'center',
+      },
+      // small Buttons
+    },
+    MuiButton: {
+      containedSizeSmall: {
+        padding: '4px',
+        fontSize: '12px',
+      }
+    }
   },
 });
 

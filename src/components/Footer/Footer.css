@@ -1,5 +1,6 @@
+/* styling for footer*/
 footer {
-  padding: 50px 20px 20px 20px;
+  padding: 15px 20px 70px 20px;
   text-align: center;
-
+  background-color: #333333;
 }
