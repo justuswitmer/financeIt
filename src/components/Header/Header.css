@@ -1,3 +1,4 @@
+/* first part of app title */
 .nav-title1 {  
   font-size: 32px;
   font-weight: 300;
@@ -8,6 +9,7 @@
   margin-top: 5.5px;
 }
 
+/* second part of app title */
 .nav-title2 {  
   font-size: 32px;
   font-weight: 400;
@@ -18,9 +20,12 @@
   margin-top: 5.5px;
 }
 
+/* takes link styling out of app title*/
 a {
   text-decoration: none;
 }
+
+/* top bar around app title*/
 .nav {
   background-color: #0f3809;
   box-shadow: 0 4px 15px 0 rgba(0,0,0,0.50);
@@ -34,6 +39,7 @@ a {
   z-index: 999;
 }
 
+/* logout button div in AccountView */
 .nav-right {
   position: absolute;
     left: 138px;

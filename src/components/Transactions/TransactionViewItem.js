@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import muiStyles from '../Styling/Styling';
 import './Transactions.css';
 import swal from '@sweetalert/with-react'
 
@@ -22,7 +21,6 @@ import {
   Grid,
   Button,
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
@@ -132,7 +130,7 @@ class TransactionViewItem extends Component {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography variant='body2' className={this.props.classes.transaction.heading}>
+              <Typography variant='body2'>
                 <span id='description'>{this.props.transaction.description}</span>
                 <span id='amount'> ${this.props.transaction.amount}</span>
               </Typography>
@@ -173,7 +171,7 @@ class TransactionViewItem extends Component {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography className={this.props.classes.transaction.heading}>
+                <Typography>
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -244,7 +242,6 @@ class TransactionViewItem extends Component {
                     size='small'
                     variant='contained'
                     value='delete'
-                    color='primary'
                     onClick={this.deleteTransaction}
                   >Delete</Button>
                 </span>
@@ -264,6 +261,4 @@ const mapStateToProps = reduxState => ({
   updatedTransaction: reduxState.saveTransactionForUpdateReducer
 })
 
-export default connect(mapStateToProps)
-  (withStyles(muiStyles)
-    (TransactionViewItem));
+export default connect(mapStateToProps)(TransactionViewItem);

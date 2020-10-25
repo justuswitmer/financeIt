@@ -1,3 +1,4 @@
+/* login field divs */
 .loginFields {
   width: 70%;
   position: relative;
@@ -5,15 +6,18 @@
   margin-bottom: 10px;
 }
 
+/* login button */
 .btn {
   position: absolute;
   left: 145px;
 }
 
+/* form panel padding */
 .formPanel {
   padding-top: 50px;
 }
 
+/* register button */
 .registerLogin {
   margin-top: 30px;
   color: #F2F2F2;
@@ -21,12 +25,14 @@
   left: 21px;
 }
 
+/* login and register button div */
 .login {
   padding-top: 5px;
   position: relative;
   left: -21px;
 }
 
+/* Material UI Paper surrounding login fields and buttons */
 #paperLogin {
   background-color: #3d3d3d;
   color: #6CA663;

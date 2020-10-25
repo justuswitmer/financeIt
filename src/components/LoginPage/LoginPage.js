@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button, Paper, TextField } from '@material-ui/core';
 import './LoginPage.css';
+
+// MATERIAL UI
+import {
+  Button,
+  Paper,
+  TextField
+} from '@material-ui/core';
 
 class LoginPage extends Component {
   state = {
@@ -11,9 +17,10 @@ class LoginPage extends Component {
     heading: 'Login',
   };
 
+  // logic to detect if username and password fields are filled
+  // and then send dispatch if so
   login = (event) => {
     event.preventDefault();
-
     if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'LOGIN',
@@ -27,6 +34,7 @@ class LoginPage extends Component {
     }
   }; // end login
 
+  // sending data to reduxState for login info
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -81,7 +89,7 @@ class LoginPage extends Component {
                 name="submit"
                 value="Log In"
               >Login
-          </Button>
+              </Button>
               <center className='registerLogin'>
                 <Button
                   size='small'
@@ -89,9 +97,8 @@ class LoginPage extends Component {
                   onClick={() => {
                     this.props.history.push('/registration');
                   }}
-                >
-                  Register!
-          </Button>
+                >Register!
+                </Button>
               </center>
             </div>
           </form>

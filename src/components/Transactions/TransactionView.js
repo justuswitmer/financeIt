@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import muiStyles from '../Styling/Styling';
 
 // Custom Imports 
 import TransactionViewItem from './TransactionViewItem';
@@ -21,7 +20,6 @@ import {
   Typography,
   Divider,
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -99,7 +97,7 @@ class TransactionsView extends Component {
               aria-controls="panel1a-content"
               id="summaryDates"
             >
-              <Typography className={this.props.classes.transaction.heading}>
+              <Typography>
                 <h5>Add New Transaction</h5>
               </Typography>
             </AccordionSummary>
@@ -155,7 +153,7 @@ class TransactionsView extends Component {
               aria-controls="panel1a-content"
               id="summaryDates"
             >
-              <Typography className={this.props.classes.transaction.heading}>
+              <Typography>
                 <h5>Select Custom Dates</h5>
               </Typography>
             </AccordionSummary>
@@ -186,10 +184,9 @@ class TransactionsView extends Component {
           />
           <h4 className='headingName'>Transaction Details</h4>
         </Grid>
-        <div className={this.props.classes.transaction.root}>
+        <div>
           <GridList
             cellHeight={'auto'}
-            className={this.props.classes.transaction.gridlist}
             cols={2}
           >
             {this.props.transaction.map(transaction =>
@@ -212,6 +209,4 @@ const mapStateToProps = reduxState => ({
   updatedTransaction: reduxState.saveTransactionForUpdateReducer
 })
 
-export default connect(mapStateToProps)
-  (withStyles(muiStyles)
-    (TransactionsView));
+export default connect(mapStateToProps)(TransactionsView);

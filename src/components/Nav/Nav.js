@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Material-UI
@@ -13,28 +12,27 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import FolderIcon from '@material-ui/icons/Folder';
 import ListIcon from '@material-ui/icons/List';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  root: {
-    width: 375,
-    position: 'fixed',
-    bottom: 0,
-    marginTop: '20px',
-  }
-});
+// import { makeStyles } from '@material-ui/core/styles';
+// const useStyles = makeStyles({
+//   root: {
+//     width: 375,
+//     position: 'fixed',
+//     bottom: 0,
+//     marginTop: '20px',
+//   }
+// });
 
 const Nav = (props) => {
 
-  const classes = useStyles();
+  // const classes = useStyles();
   const [value, setValue] = React.useState('recents');
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-
-
   return (
+    // show navigation on bottom of screen
     <BottomNavigation
       value={value}
       onChange={handleChange}

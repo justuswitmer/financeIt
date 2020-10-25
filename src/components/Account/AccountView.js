@@ -10,14 +10,14 @@ class AboutView extends Component {
     heading: 'Account',
   };
 
-
+  // logs out user and redirects to the home page
   logOutUser = () => {
     this.props.dispatch({
       type: 'LOGOUT'
     });
     this.props.history.push('/home');
   }
-
+  // stretch goal that would allow for uploading of file
   handelFileLoad = (data) => {
     console.log(data[3]);
     this.props.dispatch({
@@ -30,17 +30,14 @@ class AboutView extends Component {
     return (
       <div className='headDiv'>
         <h2 className='headingName'>{this.state.heading}</h2>
-
+        {/* list out thanks, difficulties, and things to do */}
         <ul>
           <li>
             This is my gratitude page
         </li>
         </ul>
 
-
-
         <div className="nav-right">
-
           {/* Show the link to the info page and the logout button if the user is logged in */}
           {this.props.store.user.id && (
             <Button
@@ -52,8 +49,6 @@ class AboutView extends Component {
             </Button>
           )}
         </div>
-
-
 
 
         {/* <CSVReader

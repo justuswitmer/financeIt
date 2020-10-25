@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import muiStyles from '../Styling/Styling';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Material-UI
 import {
@@ -22,8 +22,6 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-import { withStyles } from '@material-ui/core/styles';
-
 class CategoriesView extends Component {
 
   state = {
@@ -31,16 +29,18 @@ class CategoriesView extends Component {
     newCategory: {
       category: '',
       budgetedAmount: '',
-      user: this.props.user.id
+      user: this.props.store.user.id
     },
   };
 
+  // dispatch to load the category list
   componentDidMount = () => {
     this.props.dispatch({
       type: 'FETCH_CATEGORY'
     })
   }
 
+  // saving to local state when adding a new category change
   newCategoryChange = (property, event) => {
     console.log('in newCategoryChange', event.target.value);
     this.setState({
@@ -51,12 +51,14 @@ class CategoriesView extends Component {
     })
   }
 
+  // dispatch to send new category to saga
   addCategory = () => {
     console.log('in addCategory');
     this.props.dispatch({
       type: 'ADD_CATEGORY',
       payload: this.state.newCategory
     })
+    // resetting state
     this.setState({
       newCategory: {
         category: '',
@@ -65,6 +67,7 @@ class CategoriesView extends Component {
     })
   }
 
+  // could clean up component by separating table body in a different component
   render() {
     return (
       <Grid container>
@@ -78,7 +81,7 @@ class CategoriesView extends Component {
               aria-controls="panel1a-content"
               id="summaryDates"
             >
-              <Typography className={this.props.classes.transaction.heading}>
+              <Typography>
                 <h5>Add New Category</h5>
               </Typography>
             </AccordionSummary>
@@ -86,7 +89,7 @@ class CategoriesView extends Component {
               <Typography>
                 <Grid item xs={6}>
                   <TextField
-                  type='text'
+                    type='text'
                     placeholder='category'
                     onChange={(event) => this.newCategoryChange('category', event)}
                     value={this.state.newCategory.category}
@@ -121,7 +124,7 @@ class CategoriesView extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.props.category.map(category =>
+                {this.props.store.category.map(category =>
                   <TableRow key={category.id}>
                     <TableCell component="th" scope="row" align="left">
                       {category.name}
@@ -147,11 +150,4 @@ class CategoriesView extends Component {
   }
 }
 
-const mapStateToProps = reduxState => ({
-  category: reduxState.category,
-  user: reduxState.user
-})
-
-export default connect(mapStateToProps)
-  (withStyles(muiStyles)
-    (CategoriesView));
+export default connect(mapStoreToProps)(CategoriesView);

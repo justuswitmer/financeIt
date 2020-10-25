@@ -10,8 +10,6 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import muiStyles from '../Styling/Styling';
-import { withStyles } from '@material-ui/core/styles';
 
 
 class CategoriesEditItem extends Component {
@@ -25,12 +23,7 @@ class CategoriesEditItem extends Component {
     },
   }
 
-  componentDidMount = () => {
-    this.props.dispatch({
-      type: 'FETCH_CATEGORY'
-    })
-  }
-
+  // updating local state with the changed values of a category
   categoryChange = (property, event) => {
     console.log('in  categoryChange', event.target.value);
     this.setState({
@@ -42,6 +35,7 @@ class CategoriesEditItem extends Component {
     });
   }
 
+  // sending local state to the saga to get sent to the database
   updateCategory = () => {
     console.log('in updateCategory', this.state.updateCategory);
     this.props.dispatch({
@@ -49,6 +43,7 @@ class CategoriesEditItem extends Component {
       url: `/api/category/${this.props.category.id}`,
       payload: this.state.updateCategory
     });
+    // resetting local state
     this.setState({
       updateCategory: {
         category: null,
@@ -57,6 +52,7 @@ class CategoriesEditItem extends Component {
     });
   }
 
+  // distpatch and confirmation to delete a category
   deleteCategory = () => {
     console.log('in deleteCategory');
     swal({
@@ -113,8 +109,4 @@ class CategoriesEditItem extends Component {
   }
 }
 
-const mapStateToProps = reduxState => ({
-  user: reduxState.user
-})
-
-export default connect(mapStateToProps)(withStyles(muiStyles)(CategoriesEditItem));
+export default connect()(CategoriesEditItem);
