@@ -1,3 +1,4 @@
+// sets transaction detail after they are set
 const transactionReducer = (state = [], action) => {
   console.log('in transactionReducer', action);
   switch (action.type) {
@@ -8,6 +9,7 @@ const transactionReducer = (state = [], action) => {
   }
 };
 
+// sets updated transaction detail and saves it until it is called
 export const saveTransactionForUpdateReducer = (state = {}, action) => {
   console.log('in transactionReducer', action);
   switch (action.type) {

@@ -1,6 +1,7 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
+// fetches all transactions according to date specified
 function* fetchTransactionSaga(action) {
   console.log('in fetchTransactionSaga', action);
   let response = yield axios({
@@ -13,6 +14,7 @@ function* fetchTransactionSaga(action) {
     payload: response.data,
   });
 }
+// adds a new transactions then fetches all transactions
 function* addTransactionSaga(action) {
   console.log('in addTransactionSaga');
   yield axios({
@@ -26,6 +28,7 @@ function* addTransactionSaga(action) {
   });
 }
 
+// updates a transactions then fetches all transactions
 function* updateTransactionSaga(action) {
   console.log('in updateTransactionSaga', action.payload.date);
   yield axios({
@@ -39,6 +42,7 @@ function* updateTransactionSaga(action) {
   });
 }
 
+// deletes a transactions then fetches all transactions
 function* deleteTransactionSaga(action) {
   console.log('in deleteTransactionSaga', action.payload);
   yield axios({

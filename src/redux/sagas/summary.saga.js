@@ -1,7 +1,7 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
-
+// fetches the total of categories and then sets them
 function* fetchSummaryCatSaga() {
   let response = yield axios({
     method: 'GET',
@@ -14,7 +14,7 @@ function* fetchSummaryCatSaga() {
   });
 }
 
-
+// fetches all categories according to the date specified
 function* fetchSummary(action) {
   console.log('in fetchSummary saga', action);
   let response = yield axios({
@@ -29,8 +29,9 @@ function* fetchSummary(action) {
   });
 }
 
+// fetches transaction total according to date specified
 function* fetchSummaryTotalSaga(action) {
-  console.log('in fetchTransactionSaga', action);
+  console.log('in fetchSummaryTotalSaga', action);
   let response = yield axios({
     method: 'POST',
     url: '/api/summary/sum',

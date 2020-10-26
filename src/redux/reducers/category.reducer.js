@@ -1,3 +1,4 @@
+// sets categories after they are fetched
 const categoryReducer = (state = [], action) => {
   console.log('in category reducer', action);
   switch (action.type) {

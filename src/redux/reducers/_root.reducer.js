@@ -5,8 +5,8 @@ import summary, { transactionTotalReducer, summaryCatTotalReducer } from './summ
 import category from './category.reducer';
 import transaction, { saveTransactionForUpdateReducer } from './transaction.reducer';
 
-// rootReducer is the primary reducer for our entire project
-// It bundles up all of the other reducers so our project can use them.
+// rootReducer is the primary reducer for the entire project
+// It bundles up all of the other reducers so the project can use them.
 // This is imported in index.js as rootSaga
 
 // Lets make a bigger object for our store, with the objects from our reducers.

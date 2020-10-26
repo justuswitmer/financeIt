@@ -1,6 +1,7 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
+// fetches categories to display in Categories page
 function* fetchCategorySaga() {
   let response = yield axios({
     method: 'GET',
@@ -13,6 +14,7 @@ function* fetchCategorySaga() {
   });
 }
 
+// sends new category to database then fetches them
 function* addCategorySaga(action) {
   let response = yield axios({
     method: 'POST',
@@ -26,6 +28,7 @@ function* addCategorySaga(action) {
   });
 }
 
+// updates a category then fetches them
 function* updateCategorySaga(action) {
   console.log('in updateCategorySaga', action.payload);
   let response = yield axios({
@@ -39,6 +42,7 @@ function* updateCategorySaga(action) {
   });
 }
 
+// deletes a category then fetches them
 function* deleteCategorySaga(action) {
   console.log('in updateCategorySaga', action.url);
   let response = yield axios({
@@ -51,13 +55,11 @@ function* deleteCategorySaga(action) {
   });
 }
 
-
 function* categorySaga() {
   yield takeLatest('FETCH_CATEGORY', fetchCategorySaga);
   yield takeLatest('ADD_CATEGORY', addCategorySaga);
   yield takeLatest('UPDATE_CATEGORY', updateCategorySaga);
   yield takeLatest('DELETE_CATEGORY', deleteCategorySaga);
 }
-
 
 export default categorySaga;
