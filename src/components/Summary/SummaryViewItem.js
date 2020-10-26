@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Material-UI
 import {
@@ -8,10 +7,9 @@ import {
   TableCell,
 } from '@material-ui/core';
 
-
-
 class SummaryViewItem extends Component {
 
+  // shows three grid summaries
   render() {
     return (
       <TableRow>
@@ -25,6 +23,7 @@ class SummaryViewItem extends Component {
           ${this.props.summary.categoryAmount}
         </TableCell>
         <TableCell align="center">
+          {/* takes categoryAmount and budgetAmount and adds them together */}
           ${Number(this.props.summary.categoryAmount) +
             Number(this.props.summary.budgetedAmount)}
         </TableCell>
@@ -33,4 +32,4 @@ class SummaryViewItem extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(SummaryViewItem);
+export default connect()(SummaryViewItem);

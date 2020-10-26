@@ -129,7 +129,7 @@ class CategoriesView extends Component {
                     <TableCell component="th" scope="row" align="left">
                       {category.name}
                     </TableCell>
-                    <TableCell align="center">{category.budgetedAmount}</TableCell>
+                    <TableCell align="center">${category.budgetedAmount}</TableCell>
                   </TableRow>
                 )}
               </TableBody>
@@ -140,7 +140,7 @@ class CategoriesView extends Component {
           <Button
             onClick={() => { this.props.history.push('/categoriesedit') }}
             variant='contained'
-            color='primary'
+            color='secondary'
             size='small'
           >Edit Categories
         </Button>

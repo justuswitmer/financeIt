@@ -72,6 +72,7 @@ class AboutView extends Component {
               <h5>Challenges Overcome & Next Steps</h5>
             </Typography>
           </AccordionSummary>
+          <Divider />
           <AccordionDetails>
             <Typography variant='body2'>
               <ul>
@@ -95,6 +96,7 @@ class AboutView extends Component {
               <h5>Thank You</h5>
             </Typography>
           </AccordionSummary>
+          <Divider />
           <AccordionDetails>
             <Typography variant='body2'>
               <ul>
@@ -110,7 +112,7 @@ class AboutView extends Component {
           {this.props.store.user.id && (
             <Button
               variant='contained'
-              color='primary'
+              color='secondary'
               onClick={this.logOutUser}
             >
               Log Out

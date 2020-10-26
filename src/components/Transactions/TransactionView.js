@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-
-// Custom Imports 
+import mapStoreToProps from '../../redux/mapStoreToProps';
 import TransactionViewItem from './TransactionViewItem';
 
 // Material-UI
@@ -23,6 +22,7 @@ import {
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+// Moment.js
 const startOfMonth = moment().startOf('month').format('MM/DD/YYYY');
 const endOfMonth = moment().endOf('month').format('MM/DD/YYYY');
 
@@ -35,6 +35,7 @@ class TransactionsView extends Component {
     }
   };
 
+  // fetches transactions and categories on load
   componentDidMount = () => {
     this.handleClick();
     this.props.dispatch({
@@ -42,6 +43,7 @@ class TransactionsView extends Component {
     });
   }
 
+  // stores transaction changes to reduxState
   newTransactionChange = (property, event) => {
     console.log('in newTransactionChange', event.target.value);
     this.props.dispatch({
@@ -49,25 +51,26 @@ class TransactionsView extends Component {
       payload: {
         [property]: event.target.value
       },
-    })
+    });
   }
 
+  // sends a new transaction to the database
   addTransaction = () => {
     console.log('in addTransaction');
     this.props.dispatch({
       type: 'ADD_TRANSACTION',
       payload: {
-        transaction: this.props.updatedTransaction,
-        user: this.props.user.id,
+        transaction: this.props.store.saveTransactionForUpdateReducer,
+        user: this.props.store.user.id,
         date: this.state.newDate,
       },
     });
   }
 
+  // stores date change to local state
   transactionDateChange = (property, event) => {
     console.log('in transactionDateChange', event.target.value);
     console.log(startOfMonth, endOfMonth);
-
     this.setState({
       newDate: {
         ...this.state.newDate,
@@ -76,6 +79,7 @@ class TransactionsView extends Component {
     })
   }
 
+  // fetches transaction date change to database
   handleClick = () => {
     console.log('in handleClick', this.state.newDate);
     this.props.dispatch({
@@ -129,7 +133,7 @@ class TransactionsView extends Component {
                       onChange={(event) => this.newTransactionChange('categoryId', event)}
                       label="category"
                     >
-                      {this.props.category.map(category =>
+                      {this.props.store.category.map(category =>
                         <MenuItem
                           key={category.id}
                           value={category.id}
@@ -189,7 +193,8 @@ class TransactionsView extends Component {
             cellHeight={'auto'}
             cols={2}
           >
-            {this.props.transaction.map(transaction =>
+            {/* maps transactions to child component */}
+            {this.props.store.transaction.map(transaction =>
               <TransactionViewItem
                 key={transaction.id}
                 transaction={transaction}
@@ -202,11 +207,4 @@ class TransactionsView extends Component {
   }
 }
 
-const mapStateToProps = reduxState => ({
-  transaction: reduxState.transaction,
-  user: reduxState.user,
-  category: reduxState.category,
-  updatedTransaction: reduxState.saveTransactionForUpdateReducer
-})
-
-export default connect(mapStateToProps)(TransactionsView);
+export default connect(mapStoreToProps)(TransactionsView);
