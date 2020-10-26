@@ -81,7 +81,7 @@ class LoginPage extends Component {
             </div>
             <div className='login'>
               <Button
-                color='primary'
+                color='secondary'
                 size='small'
                 variant='contained'
                 className="btn"

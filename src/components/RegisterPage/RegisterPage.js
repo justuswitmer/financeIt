@@ -16,7 +16,7 @@ class RegisterPage extends Component {
             type="button"
             className="btn_asLink"
             onClick={() => {
-              this.props.history.push('/login');
+              this.props.history.push('/home');
             }}
           >Login
           </Button>

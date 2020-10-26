@@ -1,3 +1,4 @@
+/* applies to the four spans showing the transaction item fields */
 #description #amount #date #category{
   padding-left: 10px;
   padding-right: 10px;
@@ -6,48 +7,45 @@
   color: #F2F2F2;
 }
 
+/* applies to delete button on transactionsViewItem */
 .deleteBtn {
   width: 130px;
   position: absolute;
   right: -60px;
 }
 
+/* applies to edit button on transactionsViewItem */
 .editBtn {
   width: 130px;
   position: absolute;
   right: 12px;
 }
 
+/* applies to save button on transactionsViewItem */
 .saveBtn {
   width: 130px;
   position: absolute;
   right: 84px;
 }
 
-#GridList {
-  color: #F2F2F2;
-  background-color: #eeb64f;
-}
-
+/* applies to accordian details in transactionsViewItem */
 .editTransaction {
   width: 320px;
 }
 
+/* applies to amount field in transactionsViewItem */
 #amount {
   position: absolute;
   right: 55px;
 }
 
+/* applies to category field in transactionsViewItem */
 #category {
   position: absolute;
   right: 50px;
 }
 
+/* applies to accordianActions in transactionsViewItem */
 #buttonField{
   height: 30px;
 }
-
-/* .transactionAccordian {
-  margin-bottom: 30px;
-  margin-left: 2px;
-} */
